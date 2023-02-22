@@ -228,12 +228,6 @@ class LogFormatter {
    */
   LogFormatter(const std::string& pattern);
 
-  /**
-   * @brief 返回格式化日志文本
-   * @param[in] logger 日志器
-   * @param[in] level 日志级别
-   * @param[in] event 日志事件
-   */
   std::string format(std::shared_ptr<Logger> logger, LogLevel::Level level,
                      LogEvent::ptr event);
   std::ostream& format(std::ostream& ofs, std::shared_ptr<Logger> logger,
@@ -250,20 +244,10 @@ class LogFormatter {
      * @brief 析构函数
      */
     virtual ~FormatItem() {}
-    /**
-     * @brief 格式化日志到流
-     * @param[in, out] os 日志输出流
-     * @param[in] logger 日志器
-     * @param[in] level 日志等级
-     * @param[in] event 日志事件
-     */
     virtual void format(std::ostream& os, std::shared_ptr<Logger> logger,
                         LogLevel::Level level, LogEvent::ptr event) = 0;
   };
 
-  /**
-   * @brief 初始化,解析日志模板
-   */
   void init();
 
   /**
@@ -293,8 +277,7 @@ class LogAppender {
 
  public:
   typedef std::shared_ptr<LogAppender> ptr;
-  // typedef Spinlock MutexType;
-
+  typedef Mutex MutexType;
   virtual ~LogAppender() {}
 
   virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level,
@@ -319,7 +302,8 @@ class LogAppender {
  protected:
   LogLevel::Level m_level = LogLevel::DEBUG;
   bool m_hasFormatter = false;
-  hx_sylar::Mutex m_mutex;
+  Mutex m_mutex;
+
   LogFormatter::ptr m_formatter;
 };
 
@@ -331,6 +315,7 @@ class Logger : public std::enable_shared_from_this<Logger> {
 
  public:
   typedef std::shared_ptr<Logger> ptr;
+  typedef Mutex MutexType;
   Logger(const std::string& name = "root");
 
   void log(LogLevel::Level level, LogEvent::ptr event);
@@ -408,6 +393,7 @@ class FileLogAppender : public LogAppender {
  */
 class LoggerManager {
  public:
+  typedef Mutex MutexType;
   LoggerManager();
   Logger::ptr getLogger(const std::string& name);
   void init();
@@ -415,6 +401,7 @@ class LoggerManager {
   std::string toYamlString();
 
  private:
+  MutexType m_mutex;
   std::map<std::string, Logger::ptr> m_loggers;
 
   Logger::ptr m_root;

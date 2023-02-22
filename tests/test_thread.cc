@@ -14,17 +14,36 @@ void fun1() {
     ++count;
   }
 }
-void fun2() {}
+void fun2() {
+  int x = 10001;
+  while (x--)
+    HX_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+}
 
+void fun3() {
+  int x =10010;
+  while (x--)
+    HX_LOG_INFO(g_logger) << "==============================================";
+}
 int main(int argc, char **argv) {
+  HX_LOG_INFO(g_logger) << "thread starts ";
+  YAML::Node root = YAML::LoadFile("/home/hx/hx_sylar/bin/conf/log2.yml");
+  hx_sylar::Config::LoadFromYaml(root);
   std::vector<hx_sylar::Thread::ptr> thrs;
-  for (int i = 0; i < 5; ++i) {
+  for (int i = 0; i < 2; ++i) {
     hx_sylar::Thread::ptr thr(
-        new hx_sylar::Thread(&fun1, "name_" + std::to_string(i)));
+        new hx_sylar::Thread(&fun1, "name_" + std::to_string(i * 2)));
+    hx_sylar::Thread::ptr thr2(
+        new hx_sylar::Thread(&fun2, "name_" + std::to_string(i)));
+
+    hx_sylar::Thread::ptr thr3(
+        new hx_sylar::Thread(&fun3, "name_" + std::to_string(i)));
     thrs.push_back(thr);
+    thrs.push_back(thr2);
+    thrs.push_back(thr3);
   }
 
-  for (int i = 0; i < 5; ++i) {
+  for (size_t i = 0; i < thrs.size(); ++i) {
     thrs[i]->join();
   }
 

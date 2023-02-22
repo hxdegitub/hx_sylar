@@ -1,0 +1,6 @@
+logs:
+    - name: root
+      level: info
+      appenders:
+          - type: FileLogAppender
+            file: /home/hx/hx_sylar/mutex.txt

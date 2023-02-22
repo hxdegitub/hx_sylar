@@ -130,6 +130,19 @@ class RWMutex {  // read write lock
   pthread_rwlock_t m_lock;  // lock
 };
 
+class NullMutex {
+  typedef ScopedLockImpl<Mutex> Lock;
+  NullMutex() {}
+  ~NullMutex() {}
+  void lock() {}
+  void unlock() {}
+};
+
+class NullRWMutex {
+  typedef ReadScopedLockImpl<NullMutex> ReadLock;
+  typedef WriteScopedLockImpl<NullMutex> WriteLock;
+};
+
 class Thread {
  public:
   typedef std::shared_ptr<Thread> ptr;
