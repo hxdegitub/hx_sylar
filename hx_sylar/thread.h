@@ -4,12 +4,12 @@
 #include <semaphore.h>
 #include <unistd.h>
 
+#include <atomic>
 #include <functional>
 #include <memory>
 #include <mutex>
 #include <string>
 #include <thread>
-
 namespace hx_sylar {
 
 class Semaphore {
@@ -53,7 +53,7 @@ struct ScopedLockImpl {
 
 class Mutex {
  public:
-  typedef ScopedLockImpl<Mutex> Lock;
+  // typedef ScopedLockImpl<Mutex> Lock;
   Mutex() { pthread_mutex_init(&m_mutex, nullptr); }
   ~Mutex() { pthread_mutex_destroy(&m_mutex); }
   void lock() { pthread_mutex_lock(&m_mutex); }
@@ -131,7 +131,7 @@ class RWMutex {  // read write lock
 };
 
 class NullMutex {
-  typedef ScopedLockImpl<Mutex> Lock;
+  typedef ScopedLockImpl<NullMutex> Lock;
   NullMutex() {}
   ~NullMutex() {}
   void lock() {}
@@ -139,10 +139,46 @@ class NullMutex {
 };
 
 class NullRWMutex {
+ public:
   typedef ReadScopedLockImpl<NullMutex> ReadLock;
   typedef WriteScopedLockImpl<NullMutex> WriteLock;
+
+  NullRWMutex() {}
+  ~NullRWMutex() {}
+  void lock() {}
+  void unlock() {}
 };
 
+class Spinlock {
+ public:
+  typedef ScopedLockImpl<Spinlock> Lock;
+
+  Spinlock() { pthread_spin_init(&m_mutex, 0); }
+  ~Spinlock() { pthread_spin_destroy(&m_mutex); }
+  void lock() { pthread_spin_lock(&m_mutex); }
+  void unlock() { pthread_spin_unlock(&m_mutex); }
+
+ private:
+  pthread_spinlock_t m_mutex;
+};
+
+class CASLock {
+ public:
+  typedef ScopedLockImpl<CASLock> Lock;
+  CASLock() { m_mutex.clear(); }
+  ~CASLock() {}
+  void lock() {
+    while (std::atomic_flag_test_and_set_explicit(&m_mutex,
+                                                  std::memory_order_acquire))
+      ;
+  }
+  void unlock() {
+    std::atomic_flag_clear_explicit(&m_mutex, std::memory_order_release);
+  }
+
+ private:
+  volatile std::atomic_flag m_mutex;
+};
 class Thread {
  public:
   typedef std::shared_ptr<Thread> ptr;

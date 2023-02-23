@@ -343,6 +343,11 @@ FileLogAppender::FileLogAppender(const std::string& filename)
 void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level,
                           LogEvent::ptr event) {
   if (level >= m_level) {
+    uint64_t now = time(0);
+    if (now != m_lastTime) {
+      reopen();
+      m_lastTime = now;
+    }
     MutexType::Lock lock(m_mutex);
     if (!m_formatter->format(m_filestream, logger, level, event)) {
       std::cout << "error" << std::endl;
@@ -387,7 +392,6 @@ void StdoutLogAppender::log(std::shared_ptr<Logger> logger,
 
 std::string StdoutLogAppender::toYamlString() {
   MutexType::Lock lock(m_mutex);
-
   YAML::Node node;
   node["type"] = "StdoutLogAppender";
   if (m_level != LogLevel::UNKNOW) {
