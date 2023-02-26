@@ -1379,9 +1379,7 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../tests/test_scheduler
   /usr/include/boost/mpl/front.hpp \
   /usr/include/boost/mpl/aux_/front_impl.hpp \
   /usr/include/boost/function_types/function_arity.hpp \
-  ../hx_sylar/scheduler.h \
-  ../hx_sylar/fiber.h \
-  ../hx_sylar/thread.h
+  ../hx_sylar/scheduler.h
 
 
 ../hx_sylar/scheduler.h:
