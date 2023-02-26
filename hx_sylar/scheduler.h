@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "fiber.h"
-//#include "mutex.h"
 #include "thread.h"
 namespace hx_sylar {
 class Scheduler {
@@ -21,7 +20,7 @@ class Scheduler {
   void start();
   void stop();
   template <class FiberOrCb>
-  void Schedule(FiberOrCb cb, int thread = -1) {
+  void schedule(FiberOrCb cb, int thread = -1) {
     bool need_tickle = false;
     {
       MutexType::Lock lock(m_mutex);
@@ -46,11 +45,15 @@ class Scheduler {
     }
   }
 
+  void swithcTo(int thread);
+  std::ostream& dump(std::ostream& os);
+
  protected:
   virtual void tickle();
   void run();
   virtual bool stopping();
-  void SetThis();
+  virtual void idle();
+  virtual void setThis();
 
  private:
   template <class FiberOrCb>
@@ -88,6 +91,7 @@ class Scheduler {
   MutexType m_mutex;
   std::vector<Thread::ptr> m_threads;
   std::list<FiberAndThread> m_fibers;
+  // std::map<int,std::list<FiberAndThread> > m_
   Fiber::ptr m_rootFiber;
   std::string m_name;
 
@@ -95,7 +99,7 @@ class Scheduler {
   std::vector<int> m_threadIds;
   size_t m_threadCount = 0;
   size_t m_activeThreadCount = 0;
-  size_t m_idThreadCount = 0;
+  size_t m_idleThreadCount = 0;
   bool m_stopping = true;
   bool m_autoStop = false;
   int m_rootThread = 0;

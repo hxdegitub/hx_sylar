@@ -9,6 +9,8 @@
 #include "thread.h"
 namespace hx_sylar {
 class Fiber : public std::enable_shared_from_this<Fiber> {
+  friend class Scheduler;
+
  public:
   typedef std::shared_ptr<Fiber> ptr;
   enum State {
@@ -33,6 +35,8 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   void swapIn();
   // 切换到后台执行
   void swapOut();
+  void call();
+  void back();
   uint64_t getId() const { return m_id; }
 
  public:
@@ -52,7 +56,8 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   static uint64_t GetFiberId();
 
   State getState() const { return m_state; }
-  void back();
+  //  void back();
+  void setState(State s);
 
  private:
   uint64_t m_id = 0;
