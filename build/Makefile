@@ -171,6 +171,32 @@ test_thread/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
 .PHONY : test_thread/fast
 
+#=============================================================================
+# Target rules for targets named test_util
+
+# Build rule for target.
+test_util: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_util
+.PHONY : test_util
+
+# fast build rule for target.
+test_util/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
+.PHONY : test_util/fast
+
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
 hx_sylar/config.o: hx_sylar/config.cc.o
 .PHONY : hx_sylar/config.o
 
@@ -194,6 +220,30 @@ hx_sylar/config.s: hx_sylar/config.cc.s
 hx_sylar/config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/config.cc.s
 .PHONY : hx_sylar/config.cc.s
+
+hx_sylar/fiber.o: hx_sylar/fiber.cc.o
+.PHONY : hx_sylar/fiber.o
+
+# target to build an object file
+hx_sylar/fiber.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.o
+.PHONY : hx_sylar/fiber.cc.o
+
+hx_sylar/fiber.i: hx_sylar/fiber.cc.i
+.PHONY : hx_sylar/fiber.i
+
+# target to preprocess a source file
+hx_sylar/fiber.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.i
+.PHONY : hx_sylar/fiber.cc.i
+
+hx_sylar/fiber.s: hx_sylar/fiber.cc.s
+.PHONY : hx_sylar/fiber.s
+
+# target to generate assembly for a file
+hx_sylar/fiber.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.s
+.PHONY : hx_sylar/fiber.cc.s
 
 hx_sylar/log.o: hx_sylar/log.cc.o
 .PHONY : hx_sylar/log.o
@@ -315,6 +365,30 @@ tests/test_config.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cc.s
 .PHONY : tests/test_config.cc.s
 
+tests/test_fiber.o: tests/test_fiber.cc.o
+.PHONY : tests/test_fiber.o
+
+# target to build an object file
+tests/test_fiber.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o
+.PHONY : tests/test_fiber.cc.o
+
+tests/test_fiber.i: tests/test_fiber.cc.i
+.PHONY : tests/test_fiber.i
+
+# target to preprocess a source file
+tests/test_fiber.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i
+.PHONY : tests/test_fiber.cc.i
+
+tests/test_fiber.s: tests/test_fiber.cc.s
+.PHONY : tests/test_fiber.s
+
+# target to generate assembly for a file
+tests/test_fiber.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
+.PHONY : tests/test_fiber.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 .PHONY : tests/test_thread.o
 
@@ -339,6 +413,30 @@ tests/test_thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
 .PHONY : tests/test_thread.cc.s
 
+tests/test_util.o: tests/test_util.cc.o
+.PHONY : tests/test_util.o
+
+# target to build an object file
+tests/test_util.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.o
+.PHONY : tests/test_util.cc.o
+
+tests/test_util.i: tests/test_util.cc.i
+.PHONY : tests/test_util.i
+
+# target to preprocess a source file
+tests/test_util.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.i
+.PHONY : tests/test_util.cc.i
+
+tests/test_util.s: tests/test_util.cc.s
+.PHONY : tests/test_util.s
+
+# target to generate assembly for a file
+tests/test_util.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cc.s
+.PHONY : tests/test_util.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -350,10 +448,15 @@ help:
 	@echo "... hx_sylar"
 	@echo "... test"
 	@echo "... test_config"
+	@echo "... test_fiber"
 	@echo "... test_thread"
+	@echo "... test_util"
 	@echo "... hx_sylar/config.o"
 	@echo "... hx_sylar/config.i"
 	@echo "... hx_sylar/config.s"
+	@echo "... hx_sylar/fiber.o"
+	@echo "... hx_sylar/fiber.i"
+	@echo "... hx_sylar/fiber.s"
 	@echo "... hx_sylar/log.o"
 	@echo "... hx_sylar/log.i"
 	@echo "... hx_sylar/log.s"
@@ -369,9 +472,15 @@ help:
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_fiber.o"
+	@echo "... tests/test_fiber.i"
+	@echo "... tests/test_fiber.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
+	@echo "... tests/test_util.o"
+	@echo "... tests/test_util.i"
+	@echo "... tests/test_util.s"
 .PHONY : help
 
 

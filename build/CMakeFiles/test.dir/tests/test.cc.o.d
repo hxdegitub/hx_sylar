@@ -178,6 +178,7 @@ CMakeFiles/test.dir/tests/test.cc.o: /home/hx/hx_sylar/tests/test.cc \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc \
+ /home/hx/hx_sylar/tests/../hx_sylar/singleton.h \
  /home/hx/hx_sylar/tests/../hx_sylar/thread.h /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
@@ -186,13 +187,13 @@ CMakeFiles/test.dir/tests/test.cc.o: /home/hx/hx_sylar/tests/test.cc \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h /usr/include/c++/11/functional \
- /usr/include/c++/11/bits/std_function.h /usr/include/c++/11/mutex \
- /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/linux/close_range.h /usr/include/c++/11/atomic \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/mutex /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h \
- /home/hx/hx_sylar/tests/../hx_sylar/singleton.h \
  /home/hx/hx_sylar/tests/../hx_sylar/util.h \
  /usr/include/x86_64-linux-gnu/sys/syscall.h \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
- /usr/include/x86_64-linux-gnu/bits/syscall.h
+ /usr/include/x86_64-linux-gnu/bits/syscall.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/util.h

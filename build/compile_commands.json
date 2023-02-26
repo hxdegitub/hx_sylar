@@ -1,8 +1,18 @@
 [
 {
   "directory": "/home/hx/hx_sylar/build",
+  "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/config.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/config.cc.o -c /home/hx/hx_sylar/hx_sylar/config.cc",
+  "file": "/home/hx/hx_sylar/hx_sylar/config.cc"
+},
+{
+  "directory": "/home/hx/hx_sylar/build",
   "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/log.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/log.cc.o -c /home/hx/hx_sylar/hx_sylar/log.cc",
   "file": "/home/hx/hx_sylar/hx_sylar/log.cc"
+},
+{
+  "directory": "/home/hx/hx_sylar/build",
+  "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/thread.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o -c /home/hx/hx_sylar/hx_sylar/thread.cc",
+  "file": "/home/hx/hx_sylar/hx_sylar/thread.cc"
 },
 {
   "directory": "/home/hx/hx_sylar/build",
@@ -11,13 +21,8 @@
 },
 {
   "directory": "/home/hx/hx_sylar/build",
-  "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/config.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/config.cc.o -c /home/hx/hx_sylar/hx_sylar/config.cc",
-  "file": "/home/hx/hx_sylar/hx_sylar/config.cc"
-},
-{
-  "directory": "/home/hx/hx_sylar/build",
-  "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/thread.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o -c /home/hx/hx_sylar/hx_sylar/thread.cc",
-  "file": "/home/hx/hx_sylar/hx_sylar/thread.cc"
+  "command": "/usr/bin/g++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/fiber.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.o -c /home/hx/hx_sylar/hx_sylar/fiber.cc",
+  "file": "/home/hx/hx_sylar/hx_sylar/fiber.cc"
 },
 {
   "directory": "/home/hx/hx_sylar/build",
@@ -33,5 +38,15 @@
   "directory": "/home/hx/hx_sylar/build",
   "command": "/usr/bin/g++  -D__FILE__=\\\"tests/test_thread.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -o CMakeFiles/test_thread.dir/tests/test_thread.cc.o -c /home/hx/hx_sylar/tests/test_thread.cc",
   "file": "/home/hx/hx_sylar/tests/test_thread.cc"
+},
+{
+  "directory": "/home/hx/hx_sylar/build",
+  "command": "/usr/bin/g++  -D__FILE__=\\\"tests/test_util.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -o CMakeFiles/test_util.dir/tests/test_util.cc.o -c /home/hx/hx_sylar/tests/test_util.cc",
+  "file": "/home/hx/hx_sylar/tests/test_util.cc"
+},
+{
+  "directory": "/home/hx/hx_sylar/build",
+  "command": "/usr/bin/g++  -D__FILE__=\\\"tests/test_fiber.cc\\\" -I/home/hx/hx_sylar/.  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/hx/hx_sylar/tests/test_fiber.cc",
+  "file": "/home/hx/hx_sylar/tests/test_fiber.cc"
 }
 ]

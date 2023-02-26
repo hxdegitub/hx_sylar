@@ -1,0 +1,5 @@
+{
+  "*.c" :{"alternate" : "{}.h"},
+  "*.h" :{"alternate" : "{}.cc"},
+  "*.cc" :{"alternate" : "{}.h"}
+}

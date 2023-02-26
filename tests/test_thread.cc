@@ -15,14 +15,12 @@ void fun1() {
   }
 }
 void fun2() {
-  int x = 10001;
-  while (x--)
+  while (true)
     HX_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 }
 
 void fun3() {
-  int x =10010;
-  while (x--)
+  while (true)
     HX_LOG_INFO(g_logger) << "==============================================";
 }
 int main(int argc, char **argv) {

@@ -1,4 +1,3 @@
-
 #ifndef __HX_LOG_H__
 #define __HX_LOG_H__
 
@@ -13,19 +12,16 @@
 #include <string>
 #include <vector>
 
-#include "thread.h"
-
-//#include "config.h"
 #include "singleton.h"
 #include "thread.h"
 #include "util.h"
 
-#define HX_LOG_LEVEL(logger, level)                                      \
-  if (logger->getLevel() <= level)                                       \
-  hx_sylar::LogEventWrap(                                                \
-      hx_sylar::LogEvent::ptr(new hx_sylar::LogEvent(                    \
-          logger, level, __FILE__, __LINE__, 0, hx_sylar::GetThreadId(), \
-          hx_sylar::GetFiberId(), time(0))))                             \
+#define HX_LOG_LEVEL(logger, level)                                       \
+  if (logger->getLevel() <= level)                                        \
+  hx_sylar::LogEventWrap(                                                 \
+      hx_sylar::LogEvent::ptr(new hx_sylar::LogEvent(                     \
+          logger, level, __FILE__, __LINE__, 0, hx_sylar::GetThreadId(),  \
+          hx_sylar::GetFiberId(), time(0), hx_sylar::Thread::GetName()))) \
       .getSS()
 
 #define HX_LOG_DEBUG(logger) HX_LOG_LEVEL(logger, hx_sylar::LogLevel::DEBUG)
@@ -38,13 +34,13 @@
 
 #define HX_LOG_FATAL(logger) HX_LOG_LEVEL(logger, hx_sylar::LogLevel::FATAL)
 
-#define HX_LOG_FMT_LEVEL(logger, level, fmt, ...)                        \
-  if (logger->getLevel() <= level)                                       \
-  hx_sylar::LogEventWrap(                                                \
-      hx_sylar::LogEvent::ptr(new hx_sylar::LogEvent(                    \
-          logger, level, __FILE__, __LINE__, 0, hx_sylar::GetThreadId(), \
-          hx_sylar::GetFiberId(), time(0))))                             \
-      .getEvent()                                                        \
+#define HX_LOG_FMT_LEVEL(logger, level, fmt, ...)                         \
+  if (logger->getLevel() <= level)                                        \
+  hx_sylar::LogEventWrap(                                                 \
+      hx_sylar::LogEvent::ptr(new hx_sylar::LogEvent(                     \
+          logger, level, __FILE__, __LINE__, 0, hx_sylar::GetThreadId(),  \
+          hx_sylar::GetFiberId(), time(0), hx_sylar::Thread::GetName()))) \
+      .getEvent()                                                         \
       ->format(fmt, __VA_ARGS__)
 
 #define HX_LOG_FMT_DEBUG(logger, fmt, ...) \
@@ -112,7 +108,7 @@ class LogEvent {
   LogEvent();
   LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
            const char* file, int32_t line, uint32_t elapse, uint32_t thread_id,
-           uint32_t fiber_id, uint64_t time);
+           uint32_t fiber_id, uint64_t time, const std::string& thread_name);
 
   const char* getFile() const { return m_file; }
 
@@ -131,7 +127,6 @@ class LogEvent {
    * @brief 返回日志内容
    */
   std::string getContent() const { return m_ss.str(); }
-
   /**
    * @brief 返回日志器
    */

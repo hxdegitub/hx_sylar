@@ -53,7 +53,7 @@ struct ScopedLockImpl {
 
 class Mutex {
  public:
-  // typedef ScopedLockImpl<Mutex> Lock;
+  typedef ScopedLockImpl<Mutex> Lock;
   Mutex() { pthread_mutex_init(&m_mutex, nullptr); }
   ~Mutex() { pthread_mutex_destroy(&m_mutex); }
   void lock() { pthread_mutex_lock(&m_mutex); }

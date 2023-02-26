@@ -3,11 +3,12 @@
 #include <execinfo.h>
 #include <unistd.h>
 
+#include "fiber.h"
 #include "log.h"
 hx_sylar::Logger::ptr g_logger = HX_LOG_NAME("system");
 namespace hx_sylar {
 pid_t GetThreadId() { return syscall(SYS_gettid); }
-uint32_t GetFiberId() { return 0; }
+uint32_t GetFiberId() { return hx_sylar::Fiber::GetFiberId(); }
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {
   void** array = (void**)malloc(sizeof(void*) * size);
   size_t s = ::backtrace(array, size);

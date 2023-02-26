@@ -248,11 +248,12 @@ int main(int argc, char** argv) {
   std::cout << " ==== " << std::endl;
   sleep(10);
   // test_loadconf();
-  return 0;
+
   hx_sylar::Config::Visit([](hx_sylar::ConfigVarBase::ptr var) {
     HX_LOG_INFO(HX_LOG_ROOT())
-        << "name=" << var->getName() << " description=" << var->getDescription()
-        << " typename=" << var->getTypeName() << " value=" << var->toString();
+        << "name=" << var->getName()
+        << " description = " << var->getDescription()
+        << " typename=" << var->getTypeName() << " value = " << var->toString();
   });
 
   return 0;
