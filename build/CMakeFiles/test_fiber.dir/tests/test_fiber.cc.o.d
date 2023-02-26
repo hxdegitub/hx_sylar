@@ -117,6 +117,7 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/backward/auto_ptr.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/fiber.h \
  /home/hx/hx_sylar/tests/../hx_sylar/hx_sylar.h /usr/include/assert.h \
  /usr/include/c++/11/stdlib.h /usr/include/c++/11/cstdlib \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
@@ -769,7 +770,6 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
  /usr/include/x86_64-linux-gnu/bits/syscall.h \
- /home/hx/hx_sylar/tests/../hx_sylar/fiber.h \
  /home/hx/hx_sylar/tests/../hx_sylar/macro.h \
  /usr/include/boost/contract_macro.hpp \
  /usr/include/boost/contract/override.hpp \

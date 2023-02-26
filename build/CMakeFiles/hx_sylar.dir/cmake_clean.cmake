@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/log.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/log.cc.o.d"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/util.cc.o"

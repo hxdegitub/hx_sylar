@@ -3,6 +3,7 @@
 #include <atomic>
 
 #include "hx_sylar.h"
+#include "scheduler.h"
 #include "util.h"
 
 namespace hx_sylar {
@@ -59,7 +60,7 @@ void Fiber::MainFunc() {
   } catch (std::exception& ex) {
     cur->m_state = EXCEPT;
     HX_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
-                           << " fiber_id=" << cur->getId() << std::endl
+                           << " fiber_id= " << cur->getId() << std::endl
                            << hx_sylar::BacktraceToString(10);
   } catch (...) {
     cur->m_state = EXCEPT;
@@ -122,18 +123,33 @@ void Fiber::reset(std::function<void()> cb) {
   m_state = INIT;
 }
 
+void Fiber::call() {
+  m_state = EXEC;
+  HX_LOG_DEBUG(g_logger) << GetFiberId();
+  if (swapcontext(&(t_threadFiber->m_ctx), &m_ctx)) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+}
+
+void Fiber::back() {
+  m_state = EXEC;
+  if (swapcontext(&m_ctx, &(t_threadFiber->m_ctx))) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+}
+
 void Fiber::swapIn() {
   SetThis(this);
   HX_ASSERT1(m_state != EXEC, "state error ");
 
-  if (swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
+  if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
     HX_ASSERT1(false, "swapcontext");
   }
 }
 
 void Fiber::swapOut() {
-  SetThis(t_threadFiber.get());
-  if (swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+  SetThis(Scheduler::GetMainFiber());
+  if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
     HX_ASSERT1(false, "swapcontext");
   }
 }
@@ -149,6 +165,7 @@ void Fiber::YieldToReady() {
 
 //协程切换到后台，并且设置为Hold状态
 void Fiber::YieldToHold() {
+  HX_LOG_DEBUG(g_logger) << "YieldToHold";
   Fiber::ptr cur = GetThis();
   HX_ASSERT(cur->m_state != EXEC);
   cur->m_state = HOLD;

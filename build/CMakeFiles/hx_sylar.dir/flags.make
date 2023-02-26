@@ -18,3 +18,5 @@ CXX_FLAGS =  -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-
 
 # Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.o_DEFINES = __FILE__="hx_sylar/fiber.cc"
 
+# Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o_DEFINES = __FILE__="hx_sylar/scheduler.cc"
+

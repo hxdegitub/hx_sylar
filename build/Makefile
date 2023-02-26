@@ -197,6 +197,19 @@ test_fiber/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
 .PHONY : test_fiber/fast
 
+#=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
 hx_sylar/config.o: hx_sylar/config.cc.o
 .PHONY : hx_sylar/config.o
 
@@ -268,6 +281,30 @@ hx_sylar/log.s: hx_sylar/log.cc.s
 hx_sylar/log.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/log.cc.s
 .PHONY : hx_sylar/log.cc.s
+
+hx_sylar/scheduler.o: hx_sylar/scheduler.cc.o
+.PHONY : hx_sylar/scheduler.o
+
+# target to build an object file
+hx_sylar/scheduler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o
+.PHONY : hx_sylar/scheduler.cc.o
+
+hx_sylar/scheduler.i: hx_sylar/scheduler.cc.i
+.PHONY : hx_sylar/scheduler.i
+
+# target to preprocess a source file
+hx_sylar/scheduler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.i
+.PHONY : hx_sylar/scheduler.cc.i
+
+hx_sylar/scheduler.s: hx_sylar/scheduler.cc.s
+.PHONY : hx_sylar/scheduler.s
+
+# target to generate assembly for a file
+hx_sylar/scheduler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.s
+.PHONY : hx_sylar/scheduler.cc.s
 
 hx_sylar/thread.o: hx_sylar/thread.cc.o
 .PHONY : hx_sylar/thread.o
@@ -389,6 +426,30 @@ tests/test_fiber.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_scheduler.o: tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.cc.o
+
+tests/test_scheduler.i: tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.cc.i
+
+tests/test_scheduler.s: tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 .PHONY : tests/test_thread.o
 
@@ -449,6 +510,7 @@ help:
 	@echo "... test"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... hx_sylar/config.o"
@@ -460,6 +522,9 @@ help:
 	@echo "... hx_sylar/log.o"
 	@echo "... hx_sylar/log.i"
 	@echo "... hx_sylar/log.s"
+	@echo "... hx_sylar/scheduler.o"
+	@echo "... hx_sylar/scheduler.i"
+	@echo "... hx_sylar/scheduler.s"
 	@echo "... hx_sylar/thread.o"
 	@echo "... hx_sylar/thread.i"
 	@echo "... hx_sylar/thread.s"
@@ -475,6 +540,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

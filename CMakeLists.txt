@@ -27,6 +27,7 @@ set(LIB_SRC
     hx_sylar/thread.cc
     hx_sylar/util.cc
     hx_sylar/fiber.cc
+    hx_sylar/scheduler.cc
 )
 
 
@@ -68,6 +69,12 @@ add_executable(test_fiber tests/test_fiber.cc)
 add_dependencies(test_fiber hx_sylar)
 force_redefine_file_macro_for_sources(test_fiber)
 target_link_libraries(test_fiber ${LIB_LIB})
+
+add_executable(test_scheduler tests/test_scheduler.cc)
+add_dependencies(test_scheduler hx_sylar)
+force_redefine_file_macro_for_sources(test_scheduler)
+target_link_libraries(test_scheduler ${LIB_LIB})
+
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUT_PUT_PATH${PROJECT_SOURCE_DIR}/bin)

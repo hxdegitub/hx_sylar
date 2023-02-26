@@ -5,6 +5,7 @@
 #include <functional>
 #include <memory>
 
+#include "fiber.h"
 #include "hx_sylar.h"
 #include "thread.h"
 namespace hx_sylar {

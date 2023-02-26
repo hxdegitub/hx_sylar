@@ -4,8 +4,10 @@
 #include "singleton.h"
 #include "thread.h"
 #include "util.h"
-
 namespace hx_sylar {
+
+class Fiber;
+
 static Logger::ptr g_logger = HX_LOG_NAME("system");
 static thread_local Scheduler* t_scheduler = nullptr;
 static thread_local Fiber* t_fiber = nullptr;
@@ -27,7 +29,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
   } else {
     m_rootThread = -1;
   }
-  m_threadCount = -1;
+  m_threadCount = threads;
 }
 Scheduler::~Scheduler() {
   HX_ASSERT(m_stopping);
@@ -49,18 +51,28 @@ void Scheduler::start() {
                                   m_name + " " + std::to_string(i)));
     m_threadIds.push_back(m_threads[i]->getId());
   }
+  lock.unlock();
+  if (m_rootFiber) {
+    m_rootFiber->call();
+    HX_LOG_INFO(g_logger) << "swapin call";
+  }
 }
 void Scheduler::stop() {
   m_autoStop = true;
   if (m_rootFiber && m_threadCount == 0 &&
-      m_rootFiber->getState() == Fiber::INIT) {
+      (m_rootFiber->getState() == Fiber::INIT ||
+       m_rootFiber->getState() == Fiber::TERM)) {
     HX_LOG_INFO(g_logger) << this << " stopped ";
     m_stopping = true;
     if (stopping()) {
       return;
     }
   }
-  bool exit_on_this_fiber = false;
+  // HX_LOG_DEBUG(g_logger) << "debug stop";
+  // HX_ASSERT(false);
+  // return;
+
+  // bool exit_on_this_fiber = false;
   if (m_rootThread != -1) {
     HX_ASSERT(GetThis() == this);
   } else {
@@ -70,13 +82,33 @@ void Scheduler::stop() {
   m_stopping = true;
   for (size_t i = 0; i < m_threadCount; ++i) {
     tickle();
+    // HX_LOG_DEBUG(g_logger) << "debug stop"
+    //                        << "m_threadCount = " << m_threadCount;
+    // HX_ASSERT(false);
   }
   if (m_rootFiber) {
     tickle();
   }
-  //    if(exit_on_this_fiber){}
+  if (m_rootFiber) {
+    if (!stopping()) {
+      return;
+    }
+  }
+
+  std::vector<Thread::ptr> thrs;
+  {
+    MutexType::Lock lock(m_mutex);
+    thrs.swap(m_threads);
+  }
+
+  for (auto& i : thrs) {
+    i->join();
+  }
 }
+
+void Scheduler::setThis() { t_scheduler = this; }
 void Scheduler::run() {
+  Fiber::GetThis();
   setThis();
   if (hx_sylar::GetThreadId() != m_rootThread) {
     t_fiber = Fiber::GetThis().get();
@@ -113,7 +145,8 @@ void Scheduler::run() {
     if (tickle_me) {
       tickle();
     }
-    if (ft.fiber && ft.fiber->getState() != Fiber::TERM) {
+    if (ft.fiber && (ft.fiber->getState() != Fiber::TERM ||
+                     ft.fiber->getState() != Fiber::EXCEPT)) {
       ft.fiber->swapIn();
       --m_activeThreadCount;
       if (ft.fiber->getState() == Fiber::READY) {

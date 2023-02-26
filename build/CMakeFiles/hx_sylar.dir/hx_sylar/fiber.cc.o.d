@@ -1244,4 +1244,5 @@ CMakeFiles/hx_sylar.dir/hx_sylar/fiber.cc.o: \
  /usr/include/boost/mpl/aux_/empty_impl.hpp \
  /usr/include/boost/mpl/front.hpp \
  /usr/include/boost/mpl/aux_/front_impl.hpp \
- /usr/include/boost/function_types/function_arity.hpp
+ /usr/include/boost/function_types/function_arity.hpp \
+ /home/hx/hx_sylar/hx_sylar/scheduler.h
