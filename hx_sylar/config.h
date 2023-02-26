@@ -117,9 +117,6 @@ class LexicalCast<std::string, std::list<T> > {
   }
 };
 
-/**
- * @brief 类型转换模板类片特化(std::list<T> 转换成 YAML String)
- */
 template <class T>
 class LexicalCast<std::list<T>, std::string> {
  public:
@@ -293,16 +290,11 @@ template <class T, class FromStr = LexicalCast<std::string, T>,
           class ToStr = LexicalCast<T, std::string> >
 class ConfigVar : public ConfigVarBase {
  public:
+  typedef RWMutex RWMutexType;
   typedef std::shared_ptr<ConfigVar> ptr;
   typedef std::function<void(const T& old_value, const T& new_value)>
       on_change_cb;
 
-  /**
-   * @brief 通过参数名,参数值,描述构造ConfigVar
-   * @param[in] name 参数名称有效字符为[0-9a-z_.]
-   * @param[in] default_value 参数的默认值
-   * @param[in] description 参数的描述
-   */
   ConfigVar(const std::string& name, const T& default_value,
             const std::string& description = "")
       : ConfigVarBase(name, description), m_val(default_value) {}
@@ -313,6 +305,7 @@ class ConfigVar : public ConfigVarBase {
    */
   std::string toString() override {
     try {
+      RWMutexType ::ReadLock lock(m_mutex);
       return ToStr()(m_val);
     } catch (std::exception& e) {
       HX_LOG_ERROR(HX_LOG_ROOT())
@@ -334,11 +327,14 @@ class ConfigVar : public ConfigVarBase {
     }
     return false;
   }
-  const T getValue() { return m_val; }
+  const T getValue() {
+    RWMutex::ReadLock lock(m_mutex);
+    return m_val;
+  }
 
   void setValue(const T& v) {
     {
-      // RWMutexType::ReadLock lock(m_mutex);
+      RWMutexType::ReadLock lock(m_mutex);
       if (v == m_val) {
         return;
       }
@@ -346,19 +342,15 @@ class ConfigVar : public ConfigVarBase {
         i.second(m_val, v);
       }
     }
-    // RWMutexType::WriteLock lock(m_mutex);
+    RWMutexType::WriteLock lock(m_mutex);
     m_val = v;
   }
 
   std::string getTypeName() const override { return typeid(m_val).name(); }
 
-  /**
-   * @brief 添加变化回调函数
-   * @return 返回该回调函数对应的唯一id,用于删除回调
-   */
   uint64_t addListener(on_change_cb cb) {
     static uint64_t s_fun_id = 0;
-    // RWMutexType::WriteLock lock(m_mutex);
+    RWMutexType::WriteLock lock(m_mutex);
     ++s_fun_id;
     m_cbs[s_fun_id] = cb;
     return s_fun_id;
@@ -369,31 +361,23 @@ class ConfigVar : public ConfigVarBase {
    * @param[in] key 回调函数的唯一id
    */
   void delListener(uint64_t key) {
-    // RWMutexType::WriteLock lock(m_mutex);
+    RWMutexType::WriteLock lock(m_mutex);
     m_cbs.erase(key);
   }
 
-  /**
-   * @brief 获取回调函数
-   * @param[in] key 回调函数的唯一id
-   * @return 如果存在返回对应的回调函数,否则返回nullptr
-   */
   on_change_cb getListener(uint64_t key) {
-    // RWMutexType::ReadLock lock(m_mutex);
+    RWMutexType::ReadLock lock(m_mutex);
     auto it = m_cbs.find(key);
     return it == m_cbs.end() ? nullptr : it->second;
   }
 
-  /**
-   * @brief 清理所有的回调函数
-   */
   void clearListener() {
-    // RWMutexType::WriteLock lock(m_mutex);
+    RWMutexType::WriteLock lock(m_mutex);
     m_cbs.clear();
   }
 
  private:
-  // RWMutexType m_mutex;
+  RWMutexType m_mutex;
   T m_val;
   //变更回调函数组, uint64_t key,要求唯一，一般可以用hash
   std::map<uint64_t, on_change_cb> m_cbs;
@@ -402,12 +386,12 @@ class ConfigVar : public ConfigVarBase {
 class Config {
  public:
   typedef std::unordered_map<std::string, ConfigVarBase::ptr> ConfigVarMap;
-
+  typedef RWMutex RWMutexType;
   template <class T>
   static typename ConfigVar<T>::ptr Lookup(
       const std::string& name, const T& default_value,
       const std::string& description = "") {
-    // RWMutexType::WriteLock lock(GetMutex());
+    RWMutexType::WriteLock lock(GetMutex());
     auto it = GetDatas().find(name);
     if (it != GetDatas().end()) {
       auto tmp = std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
@@ -442,7 +426,7 @@ class Config {
    */
   template <class T>
   static typename ConfigVar<T>::ptr Lookup(const std::string& name) {
-    // RWMutexType::ReadLock lock(GetMutex());
+    RWMutexType::ReadLock lock(GetMutex());
     auto it = GetDatas().find(name);
     if (it == GetDatas().end()) {
       return nullptr;
@@ -463,7 +447,12 @@ class Config {
     static ConfigVarMap s_datas;
     return s_datas;
   }
+  static RWMutexType& GetMutex() {
+    static RWMutexType s_mutex;
+    return s_mutex;
+  }
 };
+
 }  // namespace hx_sylar
 
 #endif

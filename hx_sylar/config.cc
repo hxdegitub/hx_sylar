@@ -11,7 +11,7 @@ namespace hx_sylar {
 static hx_sylar::Logger::ptr g_logger = HX_LOG_NAME("system");
 
 ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
-  // RWMutexType::ReadLock lock(GetMutex());
+  RWMutexType::ReadLock lock(GetMutex());
   auto it = GetDatas().find(name);
   return it == GetDatas().end() ? nullptr : it->second;
 }
@@ -61,7 +61,7 @@ void Config::LoadFromYaml(const YAML::Node& root) {
 }
 
 static std::map<std::string, uint64_t> s_file2modifytime;
-// static hx_sylar::Mutex s_mutex;
+static hx_sylar::Mutex s_mutex;
 
 // void Config::LoadFromConfDir(const std::string& path, bool force) {
 //   std::string absoulte_path =
@@ -89,12 +89,12 @@ static std::map<std::string, uint64_t> s_file2modifytime;
 //   }
 // }
 
-// void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
-//   // RWMutexType::ReadLock lock(GetMutex());
-//   ConfigVarMap& m = GetDatas();
-//   for (auto it = m.begin(); it != m.end(); ++it) {
-//     cb(it->second);
-//   }
-// }
+void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+  RWMutexType::ReadLock lock(GetMutex());
+  ConfigVarMap& m = GetDatas();
+  for (auto it = m.begin(); it != m.end(); ++it) {
+    cb(it->second);
+  }
+}
 
 }  // namespace hx_sylar
