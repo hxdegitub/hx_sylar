@@ -27,7 +27,7 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   Fiber();
 
  public:
-  Fiber(std::function<void()> cb, size_t staksize = 0);
+  Fiber(std::function<void()> cb, size_t staksize = 0, bool use_caller = false);
   ~Fiber();
   // 重置协程函数
   void reset(std::function<void()> cb);
@@ -53,6 +53,8 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   static uint64_t TotalFibers();
 
   static void MainFunc();
+
+  static void CallerMainFunc();
 
   static uint64_t GetFiberId();
 

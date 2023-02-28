@@ -36,10 +36,101 @@ Fiber::Fiber() {
   if (getcontext(&m_ctx)) {
     HX_ASSERT1(false, "getcontext");
   }
+
   ++s_fiber_count;
 
   HX_LOG_DEBUG(g_logger) << " Fiber create ";
 }
+
+Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
+    : m_id(++s_fiber_id), m_cb(cb) {
+  ++s_fiber_count;
+  m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
+
+  m_stack = StackAllocator::Alloc(m_stacksize);
+  if (getcontext(&m_ctx)) {
+    HX_ASSERT1(false, "getContext");
+  }
+  m_ctx.uc_link = nullptr;
+  m_ctx.uc_stack.ss_sp = m_stack;
+  m_ctx.uc_stack.ss_size = m_stacksize;
+
+  if (!use_caller) {
+    makecontext(&m_ctx, &Fiber::MainFunc, 0);
+  } else {
+    makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+  }
+
+  HX_LOG_INFO(g_logger) << " create fiber ";
+}
+
+Fiber::~Fiber() {
+  --s_fiber_count;
+  if (m_stack) {
+    HX_ASSERT(m_state == TERM || m_state == INIT || m_state == EXCEPT);
+    StackAllocator::Dealloc(m_stack, m_stacksize);
+  } else {
+    HX_ASSERT(!m_cb);
+    HX_ASSERT(m_state == EXEC);
+    Fiber* cur = t_fiber;
+    if (cur == this) {
+      SetThis(nullptr);
+    }
+  }
+  HX_LOG_DEBUG(g_logger) << "Fiber::~Fiber id=" << m_id
+                         << " total=" << s_fiber_count;
+}
+
+void Fiber::reset(std::function<void()> cb) {
+  HX_ASSERT(m_stack);
+  HX_ASSERT(m_state == TERM || m_state == INIT || m_state == EXCEPT);
+  m_cb = cb;
+  if (getcontext(&m_ctx)) {
+    HX_ASSERT(false);
+  }
+  m_ctx.uc_link = nullptr;
+  m_ctx.uc_stack.ss_sp = m_stack;
+  m_ctx.uc_stack.ss_size = m_stacksize;
+  makecontext(&m_ctx, &Fiber::MainFunc, 0);
+  m_state = INIT;
+}
+
+void Fiber::call() {
+  SetThis(this);
+  m_state = EXEC;
+  if (swapcontext(&(t_threadFiber->m_ctx), &m_ctx)) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+  HX_LOG_INFO(g_logger) << "swapin call";
+}
+
+void Fiber::back() {
+  SetThis(t_threadFiber.get());
+  m_state = EXEC;
+  if (swapcontext(&m_ctx, &(t_threadFiber->m_ctx))) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+}
+
+void Fiber::swapIn() {
+  SetThis(this);
+  HX_ASSERT1(m_state != EXEC, "state error ");
+  m_state = EXEC;
+  if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+}
+
+void Fiber::swapOut() {
+  SetThis(Scheduler::GetMainFiber());
+  if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
+    HX_ASSERT1(false, "swapcontext");
+  }
+}
+
+void Fiber::SetThis(Fiber* f) { t_fiber = f; }
+
+//协程切换到后台，并且设置为Ready状态
 Fiber::ptr Fiber::GetThis() {
   if (t_fiber) {
     return t_fiber->shared_from_this();
@@ -49,6 +140,24 @@ Fiber::ptr Fiber::GetThis() {
   t_threadFiber = main_fiber;
   return t_fiber->shared_from_this();
 }
+
+void Fiber::YieldToReady() {
+  Fiber::ptr cur = GetThis();
+  HX_ASSERT(cur->m_state == EXEC);
+  cur->m_state = READY;
+  cur->swapOut();
+}
+
+//协程切换到后台，并且设置为Hold状态
+void Fiber::YieldToHold() {
+  // HX_LOG_DEBUG(g_logger) << "YieldToHold";
+  Fiber::ptr cur = GetThis();
+  HX_ASSERT(cur->m_state == EXEC);
+  // cur->m_state = HOLD;
+  cur->swapOut();
+}
+
+uint64_t Fiber::TotalFibers() { return s_fiber_count; }
 
 void Fiber::MainFunc() {
   Fiber::ptr cur = GetThis();
@@ -75,101 +184,29 @@ void Fiber::MainFunc() {
   HX_ASSERT1(false, "never reach");
 }
 
-Fiber::Fiber(std::function<void()> cb, size_t stacksize)
-    : m_id(++s_fiber_id), m_cb(cb) {
-  ++s_fiber_count;
-  m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
-
-  m_stack = StackAllocator::Alloc(m_stacksize);
-  if (getcontext(&m_ctx)) {
-    HX_ASSERT1(false, "getContext");
-  }
-  // ASSERT1()
-  m_ctx.uc_link = nullptr;
-  m_ctx.uc_stack.ss_sp = m_stack;
-  m_ctx.uc_stack.ss_size = m_stacksize;
-
-  makecontext(&m_ctx, &Fiber::MainFunc, 0);
-  HX_LOG_INFO(g_logger) << " creaste fiber ";
-}
-
-Fiber::~Fiber() {
-  --s_fiber_count;
-  if (m_stack) {
-    HX_ASSERT(m_state == TERM || m_state == INIT);
-    StackAllocator::Dealloc(m_stack, m_stacksize);
-  } else {
-    HX_ASSERT(!m_cb);
-    HX_ASSERT(m_state == EXEC);
-    Fiber* cur = t_fiber;
-    if (cur == this) {
-      SetThis(nullptr);
-    }
-  }
-  HX_LOG_DEBUG(g_logger) << " Fiber destory ";
-}
-
-void Fiber::reset(std::function<void()> cb) {
-  HX_ASSERT(m_stack);
-  HX_ASSERT(m_state == TERM || m_state == INIT);
-  m_cb = cb;
-  if (getcontext(&m_ctx)) {
-    HX_ASSERT(false);
-  }
-  m_ctx.uc_link = nullptr;
-  m_ctx.uc_stack.ss_sp = m_stack;
-  m_ctx.uc_stack.ss_size = m_stacksize;
-  makecontext(&m_ctx, &Fiber::MainFunc, 0);
-  m_state = INIT;
-}
-
-void Fiber::call() {
-  m_state = EXEC;
-  HX_LOG_DEBUG(g_logger) << GetFiberId();
-  if (swapcontext(&(t_threadFiber->m_ctx), &m_ctx)) {
-    HX_ASSERT1(false, "swapcontext");
-  }
-}
-
-void Fiber::back() {
-  m_state = EXEC;
-  if (swapcontext(&m_ctx, &(t_threadFiber->m_ctx))) {
-    HX_ASSERT1(false, "swapcontext");
-  }
-}
-
-void Fiber::swapIn() {
-  SetThis(this);
-  HX_ASSERT1(m_state != EXEC, "state error ");
-
-  if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
-    HX_ASSERT1(false, "swapcontext");
-  }
-}
-
-void Fiber::swapOut() {
-  SetThis(Scheduler::GetMainFiber());
-  if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
-    HX_ASSERT1(false, "swapcontext");
-  }
-}
-
-void Fiber::SetThis(Fiber* f) { t_fiber = f; }
-//协程切换到后台，并且设置为Ready状态
-void Fiber::YieldToReady() {
+void Fiber::CallerMainFunc() {
   Fiber::ptr cur = GetThis();
-  HX_ASSERT(cur->m_state == EXEC);
-  cur->m_state = READY;
-  cur->swapOut();
-}
+  HX_ASSERT(cur);
+  try {
+    cur->m_cb();
+    cur->m_cb = nullptr;
+    cur->m_state = TERM;
+  } catch (std::exception& ex) {
+    cur->m_state = EXCEPT;
+    HX_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what()
+                           << " fiber_id= " << cur->getId() << std::endl
+                           << hx_sylar::BacktraceToString(10);
+  } catch (...) {
+    cur->m_state = EXCEPT;
+    HX_LOG_ERROR(g_logger) << "Fiber Except"
+                           << " fiber_id=" << cur->getId() << std::endl
+                           << hx_sylar::BacktraceToString(10);
+  }
 
-//协程切换到后台，并且设置为Hold状态
-void Fiber::YieldToHold() {
-  HX_LOG_DEBUG(g_logger) << "YieldToHold";
-  Fiber::ptr cur = GetThis();
-  HX_ASSERT(cur->m_state != EXEC);
-  cur->m_state = HOLD;
-  cur->swapOut();
+  auto raw_ptr = cur.get();
+  cur.reset();
+  raw_ptr->back();
+  HX_ASSERT1(false, "never reach" + std::to_string(raw_ptr->getId()));
 }
 
 }  // namespace hx_sylar

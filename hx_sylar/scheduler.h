@@ -37,7 +37,8 @@ class Scheduler {
     {
       MutexType::Lock lock(m_mutex);
       while (begin != end) {
-        need_tickle = scheduleNoLock(&*begin) || need_tickle;
+        need_tickle = scheduleNoLock(&*begin, -1) || need_tickle;
+        ++begin;
       }
     }
     if (need_tickle) {
@@ -45,7 +46,7 @@ class Scheduler {
     }
   }
 
-  void swithcTo(int thread);
+  void swithcTo(int thread = -1);
   std::ostream& dump(std::ostream& os);
 
  protected:
@@ -57,7 +58,7 @@ class Scheduler {
 
  private:
   template <class FiberOrCb>
-  bool scheduleNoLock(FiberOrCb fc, int thread = -1) {
+  bool scheduleNoLock(FiberOrCb fc, int thread) {
     bool need_tickle = m_fibers.empty();
     FiberAndThread ft(fc, thread);
     if (ft.fiber || ft.cb) {
@@ -68,8 +69,11 @@ class Scheduler {
 
  private:
   struct FiberAndThread {
+    /// 协程
     Fiber::ptr fiber;
+    /// 协程执行函数
     std::function<void()> cb;
+    /// 线程id
     int thread;
 
     FiberAndThread(Fiber::ptr f, int thr) : fiber(f), thread(thr) {}
@@ -80,6 +84,7 @@ class Scheduler {
     }
 
     FiberAndThread() : thread(-1) {}
+    // clear the fiber
     void reset() {
       fiber = nullptr;
       cb = nullptr;
@@ -91,7 +96,6 @@ class Scheduler {
   MutexType m_mutex;
   std::vector<Thread::ptr> m_threads;
   std::list<FiberAndThread> m_fibers;
-  // std::map<int,std::list<FiberAndThread> > m_
   Fiber::ptr m_rootFiber;
   std::string m_name;
 
