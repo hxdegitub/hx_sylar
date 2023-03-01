@@ -198,7 +198,7 @@ void Scheduler::run() {
       } else if (cb_fiber->getState() == Fiber::EXCEPT ||
                  cb_fiber->getState() == Fiber::TERM) {
         cb_fiber->reset(nullptr);
-      } else {  // if(cb_fiber->getState() != Fiber::TERM) {
+      } else {
         cb_fiber->m_state = Fiber::HOLD;
         cb_fiber.reset();
       }

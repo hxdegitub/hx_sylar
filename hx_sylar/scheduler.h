@@ -54,7 +54,7 @@ class Scheduler {
   void run();
   virtual bool stopping();
   virtual void idle();
-  virtual void setThis();
+  void setThis();
 
  private:
   template <class FiberOrCb>
