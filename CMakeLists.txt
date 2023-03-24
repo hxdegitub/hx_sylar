@@ -25,9 +25,11 @@ set(LIB_SRC
     hx_sylar/config.cc
     hx_sylar/log.cc
     hx_sylar/thread.cc
+    hx_sylar/iomanager.cc
     hx_sylar/util.cc
     hx_sylar/fiber.cc
     hx_sylar/scheduler.cc
+
 )
 
 
@@ -74,6 +76,12 @@ add_executable(test_scheduler tests/test_scheduler.cc)
 add_dependencies(test_scheduler hx_sylar)
 force_redefine_file_macro_for_sources(test_scheduler)
 target_link_libraries(test_scheduler ${LIB_LIB})
+
+
+add_executable(test_iomanager tests/test_iomanager.cc)
+add_dependencies(test_iomanager hx_sylar)
+force_redefine_file_macro_for_sources(test_iomanager)
+target_link_libraries(test_iomanager ${LIB_LIB})
 
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

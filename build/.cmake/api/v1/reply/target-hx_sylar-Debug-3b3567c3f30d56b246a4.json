@@ -29,7 +29,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 34,
+				"line" : 36,
 				"parent" : 0
 			},
 			{
@@ -47,8 +47,14 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 36,
+				"line" : 38,
 				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 15,
+				"parent" : 4
 			},
 			{
 				"command" : 3,
@@ -191,7 +197,7 @@
 			[
 				{
 					"backtrace" : 8,
-					"define" : "__FILE__=\"hx_sylar/util.cc\""
+					"define" : "__FILE__=\"hx_sylar/iomanager.cc\""
 				},
 				{
 					"define" : "hx_sylar_EXPORTS"
@@ -221,7 +227,7 @@
 			[
 				{
 					"backtrace" : 9,
-					"define" : "__FILE__=\"hx_sylar/fiber.cc\""
+					"define" : "__FILE__=\"hx_sylar/util.cc\""
 				},
 				{
 					"define" : "hx_sylar_EXPORTS"
@@ -251,7 +257,7 @@
 			[
 				{
 					"backtrace" : 10,
-					"define" : "__FILE__=\"hx_sylar/scheduler.cc\""
+					"define" : "__FILE__=\"hx_sylar/fiber.cc\""
 				},
 				{
 					"define" : "hx_sylar_EXPORTS"
@@ -268,6 +274,36 @@
 			"sourceIndexes" : 
 			[
 				5
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 11,
+					"define" : "__FILE__=\"hx_sylar/scheduler.cc\""
+				},
+				{
+					"define" : "hx_sylar_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/hx/hx_sylar/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				6
 			]
 		}
 	],
@@ -306,7 +342,8 @@
 				2,
 				3,
 				4,
-				5
+				5,
+				6
 			]
 		}
 	],
@@ -333,18 +370,24 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 3,
-			"path" : "hx_sylar/util.cc",
+			"path" : "hx_sylar/iomanager.cc",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 4,
-			"path" : "hx_sylar/fiber.cc",
+			"path" : "hx_sylar/util.cc",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 5,
+			"path" : "hx_sylar/fiber.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 6,
 			"path" : "hx_sylar/scheduler.cc",
 			"sourceGroupIndex" : 0
 		}

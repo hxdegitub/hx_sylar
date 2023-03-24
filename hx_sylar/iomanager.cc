@@ -44,7 +44,7 @@ IOManager::IOManager(size_t threads, bool user_call, const std::string& name)
   m_epfd = epoll_create(5000);
   HX_ASSERT(m_epfd > 0);
   int rt = pipe(m_tickleFds);
-  HX_ASSERT(rt);
+  HX_ASSERT(!rt);
 
   epoll_event event;
   memset(&event, 0, sizeof(epoll_event));
@@ -52,11 +52,11 @@ IOManager::IOManager(size_t threads, bool user_call, const std::string& name)
   event.data.fd = m_tickleFds[0];
 
   rt = fcntl(m_tickleFds[0], F_SETFL, O_NONBLOCK);
-  HX_ASSERT(rt);
+  HX_ASSERT(!rt);
 
   rt = epoll_ctl(m_epfd, EPOLL_CTL_ADD, m_tickleFds[0], &event);
 
-  HX_ASSERT(rt);
+  HX_ASSERT(!rt);
 
   m_fdContexts.resize(64);
   start();
@@ -233,6 +233,119 @@ bool IOManager::canceAll(int fd) {
 }
 static IOManager* GetThis() {
   return dynamic_cast<IOManager*>(Scheduler::GetThis());
+}
+
+void IOManager::tickle() {
+  if (hasIdleThreads()) {
+    return;
+  }
+  int rt = write(m_tickleFds[1], "T", 1);
+  HX_ASSERT(rt == 1);
+}
+
+bool IOManager::stopping() {
+  return Scheduler::stopping() && m_pendingEventCount == 0;
+}
+
+void IOManager::idle() {
+  const uint64_t MAX_EVNETS = 256;
+  epoll_event* events = new epoll_event[MAX_EVNETS]();
+  std::shared_ptr<epoll_event> shared_events(
+      events, [](epoll_event* ptr) { delete[] ptr; });
+
+  while (true) {
+    uint64_t next_timeout = 0;
+    if ((stopping())) {
+      HX_LOG_INFO(g_logger) << "name= : " << getName() << " idle stopping exit";
+      break;
+    }
+
+    int rt = 0;
+    do {
+      static const int MAX_TIMEOUT = 3000;
+      if (next_timeout != ~0ull) {
+        next_timeout =
+            (int)next_timeout > MAX_TIMEOUT ? MAX_TIMEOUT : next_timeout;
+      } else {
+        next_timeout = MAX_TIMEOUT;
+      }
+      rt = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
+      if (rt < 0 && errno == EINTR) {
+      } else {
+        break;
+      }
+    } while (true);
+
+    std::vector<std::function<void()> > cbs;
+    // listExpiredCb(cbs);
+    if (!cbs.empty()) {
+      // SYLAR_LOG_DEBUG(g_logger) << "on timer cbs.size=" << cbs.size();
+      schedule(cbs.begin(), cbs.end());
+      cbs.clear();
+    }
+
+    // if(SYLAR_UNLIKELY(rt == MAX_EVNETS)) {
+    //     SYLAR_LOG_INFO(g_logger) << "epoll wait events=" << rt;
+    // }
+
+    for (int i = 0; i < rt; ++i) {
+      epoll_event& event = events[i];
+      if (event.data.fd == m_tickleFds[0]) {
+        uint8_t dummy[256];
+        while (read(m_tickleFds[0], dummy, sizeof(dummy)) > 0)
+          ;
+        continue;
+      }
+
+      FdContext* fd_ctx = (FdContext*)event.data.ptr;
+      FdContext::MutexType::Lock lock(fd_ctx->mutex);
+      if (event.events & (EPOLLERR | EPOLLHUP)) {
+        event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
+      }
+      int real_events = NONE;
+      if (event.events & EPOLLIN) {
+        real_events |= READ;
+      }
+      if (event.events & EPOLLOUT) {
+        real_events |= WRITE;
+      }
+
+      if ((fd_ctx->events & real_events) == NONE) {
+        continue;
+      }
+
+      int left_events = (fd_ctx->events & ~real_events);
+      int op = left_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+      event.events = EPOLLET | left_events;
+
+      int rt2 = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
+      if (rt2) {
+        HX_LOG_ERROR(g_logger)
+            << "epoll_ctl(" << m_epfd << ", " << op << ", " << fd_ctx->fd
+            << ", " << (EPOLL_EVENTS)event.events << "):" << rt2 << " ("
+            << errno << ") (" << strerror(errno) << ")";
+        continue;
+      }
+
+      // SYLAR_LOG_INFO(g_logger) << " fd=" << fd_ctx->fd << " events=" <<
+      // fd_ctx->events
+      //                          << " real_events=" << real_events;
+      if (real_events & READ) {
+        fd_ctx->triggerEvent(READ);
+        --m_pendingEventCount;
+      }
+      if (real_events & WRITE) {
+        fd_ctx->triggerEvent(WRITE);
+        --m_pendingEventCount;
+      }
+    }
+
+    Fiber::ptr cur = Fiber::GetThis();
+    auto raw_ptr = cur.get();
+    cur.reset();
+
+    raw_ptr->swapOut();
+  }
 }
 
 }  // namespace hx_sylar

@@ -101,7 +101,7 @@ void Fiber::call() {
   if (swapcontext(&(t_threadFiber->m_ctx), &m_ctx)) {
     HX_ASSERT1(false, "swapcontext");
   }
-  HX_LOG_INFO(g_logger) << "swapin call";
+  // HX_LOG_INFO(g_logger) << "swapin call";
 }
 
 void Fiber::back() {

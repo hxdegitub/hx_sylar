@@ -55,6 +55,7 @@ class Scheduler {
   virtual bool stopping();
   virtual void idle();
   void setThis();
+  bool hasIdleThreads() { return m_idleThreadCount > 0; }
 
  private:
   template <class FiberOrCb>

@@ -9,8 +9,8 @@ class IOManager : public Scheduler {
 
   enum Event {
     NONE = 0x0,
-    READ = 0x1,
-    WRITE = 0x2,
+    READ = 0x1,   /// EPOLLIN
+    WRITE = 0x4,  // EPOLLOUT
   };
 
  private:
@@ -55,7 +55,7 @@ class IOManager : public Scheduler {
   void idle() override;
 
   void contextResize(size_t size);
-  bool stopping(uint64_t& timeout);
+  // bool stopping(uint64_t& timeout);
 
  private:
   int m_epfd = 0;

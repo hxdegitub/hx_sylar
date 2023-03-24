@@ -5,5 +5,6 @@
 /home/hx/hx_sylar/build/CMakeFiles/test_util.dir
 /home/hx/hx_sylar/build/CMakeFiles/test_fiber.dir
 /home/hx/hx_sylar/build/CMakeFiles/test_scheduler.dir
+/home/hx/hx_sylar/build/CMakeFiles/test_iomanager.dir
 /home/hx/hx_sylar/build/CMakeFiles/edit_cache.dir
 /home/hx/hx_sylar/build/CMakeFiles/rebuild_cache.dir
