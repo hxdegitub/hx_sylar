@@ -5,7 +5,6 @@
 
 #include <boost/contract_macro.hpp>
 
-#include "util.h"
 #define HX_ASSERT(x)                                    \
   if (!(x)) {                                           \
     HX_LOG_ERROR(HX_LOG_ROOT())                         \
