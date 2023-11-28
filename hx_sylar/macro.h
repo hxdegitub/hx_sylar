@@ -16,7 +16,7 @@
 #define HX_ASSERT1(x, w)                                \
   if (!(x)) {                                           \
     HX_LOG_ERROR(HX_LOG_ROOT())                         \
-        << " ASSERTION:  " #x << std::endl              \
+        << " ASSERTION:  " #x << '\n'             \
         << w << "\nbacktrace : \n"                      \
         << hx_sylar::BacktraceToString(100, 2, "    "); \
     assert(x);                                          \

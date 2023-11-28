@@ -751,7 +751,8 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
  /usr/include/c++/11/bits/unordered_map.h \
  /usr/include/c++/11/unordered_set \
  /usr/include/c++/11/bits/unordered_set.h \
- /home/hx/hx_sylar/tests/../hx_sylar/log.h /usr/include/c++/11/fstream \
+ /home/hx/hx_sylar/tests/../hx_sylar/log.h /usr/include/c++/11/cstdarg \
+ /usr/include/c++/11/fstream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc \
@@ -764,16 +765,13 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/thread \
  /usr/include/c++/11/bits/std_thread.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/hx/hx_sylar/tests/../hx_sylar/util.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/noncopyable.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/util.h /usr/include/c++/11/cxxabi.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
  /usr/include/x86_64-linux-gnu/sys/syscall.h \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
- /usr/include/x86_64-linux-gnu/bits/syscall.h \
- /home/hx/hx_sylar/tests/../hx_sylar/fiber.h /usr/include/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
- /home/hx/hx_sylar/tests/../hx_sylar/hx_sylar.h \
+ /usr/include/x86_64-linux-gnu/bits/syscall.h /usr/include/c++/11/iomanip \
  /home/hx/hx_sylar/tests/../hx_sylar/macro.h \
  /usr/include/boost/contract_macro.hpp \
  /usr/include/boost/contract/override.hpp \
@@ -785,8 +783,7 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
  /usr/include/boost/type_index/stl_type_index.hpp \
  /usr/include/boost/type_index/type_index_facade.hpp \
  /usr/include/boost/container_hash/hash_fwd.hpp \
- /usr/include/boost/core/demangle.hpp /usr/include/c++/11/cxxabi.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
+ /usr/include/boost/core/demangle.hpp \
  /usr/include/boost/type_traits/decay.hpp \
  /usr/include/boost/type_traits/remove_bounds.hpp \
  /usr/include/boost/type_traits/remove_extent.hpp \
@@ -1154,7 +1151,6 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
  /usr/include/boost/exception/to_string.hpp \
  /usr/include/boost/exception/detail/is_output_streamable.hpp \
  /usr/include/boost/exception/detail/object_hex_dump.hpp \
- /usr/include/c++/11/iomanip \
  /usr/include/boost/exception/current_exception_cast.hpp \
  /usr/include/c++/11/iostream \
  /usr/include/boost/contract/detail/checking.hpp \
@@ -1252,4 +1248,9 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: \
  /usr/include/boost/mpl/front.hpp \
  /usr/include/boost/mpl/aux_/front_impl.hpp \
  /usr/include/boost/function_types/function_arity.hpp \
- /home/hx/hx_sylar/tests/../hx_sylar/scheduler.h
+ /home/hx/hx_sylar/tests/../hx_sylar/scheduler.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/fiber.h /usr/include/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/hx_sylar.h

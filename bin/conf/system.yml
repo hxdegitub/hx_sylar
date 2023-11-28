@@ -1,3 +1,3 @@
 server:
-    work_path: /apps/work/sylar
-    pid_file: sylar.pid
+    work_path: /apps/work/hx_sylar
+    pid_file: hx_sylar.pid

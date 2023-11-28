@@ -5,7 +5,6 @@
 #include <functional>
 #include <memory>
 
-#include "fiber.h"
 #include "hx_sylar.h"
 #include "thread.h"
 namespace hx_sylar {
@@ -13,7 +12,7 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   friend class Scheduler;
 
  public:
-  typedef std::shared_ptr<Fiber> ptr;
+  using ptr = std::shared_ptr<Fiber>;
   enum State {
     INIT,
     HOLD,

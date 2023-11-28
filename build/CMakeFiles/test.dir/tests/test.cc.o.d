@@ -151,8 +151,8 @@ CMakeFiles/test.dir/tests/test.cc.o: /home/hx/hx_sylar/tests/test.cc \
  /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
  /usr/include/c++/11/ratio /usr/include/c++/11/limits \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
- /home/hx/hx_sylar/tests/../hx_sylar/log.h /usr/include/c++/11/fstream \
- /usr/include/c++/11/bits/codecvt.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/log.h /usr/include/c++/11/cstdarg \
+ /usr/include/c++/11/fstream /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/list \
@@ -191,9 +191,17 @@ CMakeFiles/test.dir/tests/test.cc.o: /home/hx/hx_sylar/tests/test.cc \
  /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h \
- /home/hx/hx_sylar/tests/../hx_sylar/util.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/noncopyable.h \
+ /home/hx/hx_sylar/tests/../hx_sylar/util.h /usr/include/c++/11/cxxabi.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/cxxabi_tweaks.h \
  /usr/include/x86_64-linux-gnu/sys/syscall.h \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
- /usr/include/x86_64-linux-gnu/bits/syscall.h \
+ /usr/include/x86_64-linux-gnu/bits/syscall.h /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h \
  /home/hx/hx_sylar/tests/../hx_sylar/util.h

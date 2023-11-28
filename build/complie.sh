@@ -1,3 +1,0 @@
-cmake ..
-make
-../bin/test

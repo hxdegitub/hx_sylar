@@ -3,7 +3,7 @@ int count = 0;
 hx_sylar::Logger::ptr g_logger = HX_LOG_ROOT();
 
 hx_sylar::RWMutex s_mutex;
-void fun1() {
+void Fun1() {
   HX_LOG_INFO(g_logger) << "name : " << hx_sylar::Thread::GetName()
                         << "this name "
                         << hx_sylar::Thread::GetThis()->getName()
@@ -14,28 +14,31 @@ void fun1() {
     ++count;
   }
 }
-void fun2() {
-  while (true)
+ void Fun2() {
+  int i = 1;
+  while ((i --) != 0 ) {
     HX_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 }
+}
 
-void fun3() {
-  while (true)
+[[noreturn]] void Fun3() {
+  while (true) {
     HX_LOG_INFO(g_logger) << "==============================================";
 }
-int main(int argc, char **argv) {
+}
+auto main(int argc, char **argv) -> int {
   HX_LOG_INFO(g_logger) << "thread starts ";
   YAML::Node root = YAML::LoadFile("/home/hx/hx_sylar/bin/conf/log2.yml");
   hx_sylar::Config::LoadFromYaml(root);
   std::vector<hx_sylar::Thread::ptr> thrs;
-  for (int i = 0; i < 2; ++i) {
+  for (int i = 0; i < 1; ++i) {
     hx_sylar::Thread::ptr thr(
-        new hx_sylar::Thread(&fun1, "name_" + std::to_string(i * 2)));
+        new hx_sylar::Thread(&Fun1, "name_" + std::to_string(i * 2)));
     hx_sylar::Thread::ptr thr2(
-        new hx_sylar::Thread(&fun2, "name_" + std::to_string(i)));
+        new hx_sylar::Thread(&Fun2, "name_" + std::to_string(i)));
 
     hx_sylar::Thread::ptr thr3(
-        new hx_sylar::Thread(&fun3, "name_" + std::to_string(i)));
+        new hx_sylar::Thread(&Fun3, "name_" + std::to_string(i)));
     thrs.push_back(thr);
     thrs.push_back(thr2);
     thrs.push_back(thr3);

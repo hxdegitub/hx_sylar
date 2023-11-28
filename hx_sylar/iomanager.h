@@ -1,11 +1,15 @@
 #ifndef __HX_IOMANAGER_H__
 #define __HX_IOMANAGER_H__
+
 #include "scheduler.h"
+#include "timer.h"
+
 namespace hx_sylar {
-class IOManager : public Scheduler {
+class TimerManager;
+class IOManager : public Scheduler, public TimerManager {
  public:
-  typedef std::shared_ptr<IOManager> ptr;
-  typedef RWMutex RWMutexType;
+  using ptr = std::shared_ptr<IOManager>;
+  using RWMutexType = RWMutex;
 
   enum Event {
     NONE = 0x0,
@@ -15,8 +19,10 @@ class IOManager : public Scheduler {
 
  private:
   struct FdContext {
-    typedef Mutex MutexType;
+    using MutexType = Mutex;
     struct EventContext {
+      explicit EventContext(const std::function<void()>& cb);
+
       // 事件执行的调度器
       Scheduler* scheduler = nullptr;
       ///事件协程
@@ -26,40 +32,43 @@ class IOManager : public Scheduler {
     };
 
     // member function:
-    EventContext& getContext(Event event);
+    auto getContext(Event event) -> EventContext&;
     void resetContext(EventContext& eventContext);
     void triggerEvent(Event event);
     // member data
     EventContext read;
     EventContext write;
-    int fd;  //
+    int fd;
     Event events = NONE;
     MutexType mutex;
   };
 
  public:
-  IOManager(size_t threads = 1, bool user_call = true,
-            const std::string& name = "");
-  ~IOManager();
+  explicit IOManager(size_t threads = 1, bool user_call = true,
+                     const std::string& name = "");
+  ~IOManager() override;
 
-  int addEvent(int fd, Event event, std::function<void()> cb = nullptr);
-  bool delEvent(int fd, Event evnet);
-  bool cancelEvent(int fd, Event event);
-  bool canceAll(int fd);
-  static IOManager* GetThis();
+  auto addEvent(int fd, Event event, std::function<void()> cb = nullptr) -> int;
+  auto delEvent(int fd, Event evnet) -> bool;
+  auto cancelEvent(int fd, Event event) -> bool;
+  bool cancelAll(int fd);
+  static auto GetThis() -> IOManager*;
 
  protected:
   void tickle() override;
 
-  bool stopping() override;
+  auto stopping() -> bool override;
+  auto stopping(uint64_t& timeout) -> bool;
   void idle() override;
 
   void contextResize(size_t size);
+
+  void onTimerInsertedAtFront() override;
   // bool stopping(uint64_t& timeout);
 
  private:
   int m_epfd = 0;
-  int m_tickleFds[2];
+  int m_tickleFds[2]{};
   std::atomic<size_t> m_pendingEventCount = {0};
   RWMutexType m_mutex;
   std::vector<FdContext*> m_fdContexts;

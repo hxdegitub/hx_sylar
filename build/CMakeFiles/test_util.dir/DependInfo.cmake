@@ -11,9 +11,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/hx/hx_sylar/tests/test_util.cc" "CMakeFiles/test_util.dir/tests/test_util.cc.o" "gcc" "CMakeFiles/test_util.dir/tests/test_util.cc.o.d"
   )
 
-# Targets to which this target links.
-set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/hx/hx_sylar/build/CMakeFiles/hx_sylar.dir/DependInfo.cmake"
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

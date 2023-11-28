@@ -92,9 +92,10 @@ static hx_sylar::Mutex s_mutex;
 void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
   RWMutexType::ReadLock lock(GetMutex());
   ConfigVarMap& m = GetDatas();
-  for (auto it = m.begin(); it != m.end(); ++it) {
-    cb(it->second);
+  for (auto & it : m) {
+    cb(it.second);
   }
 }
+void Config::LoadFromConfDir(const std::string &path, bool force) {}
 
 }  // namespace hx_sylar

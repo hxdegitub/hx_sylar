@@ -75,9 +75,9 @@ class LexicalCast<std::string, std::vector<T> > {
     YAML::Node node = YAML::Load(v);
     typename std::vector<T> vec;
     std::stringstream ss;
-    for (size_t i = 0; i < node.size(); ++i) {
+    for (auto && i : node) {
       ss.str("");
-      ss << node[i];
+      ss << i;
       vec.push_back(LexicalCast<std::string, T>()(ss.str()));
     }
     return vec;
@@ -87,7 +87,7 @@ class LexicalCast<std::string, std::vector<T> > {
 template <class T>
 class LexicalCast<std::vector<T>, std::string> {
  public:
-  std::string operator()(const std::vector<T>& v) {
+  auto operator()(const std::vector<T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Sequence);
     for (auto& i : v) {
       node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
@@ -104,13 +104,13 @@ class LexicalCast<std::vector<T>, std::string> {
 template <class T>
 class LexicalCast<std::string, std::list<T> > {
  public:
-  std::list<T> operator()(const std::string& v) {
+  auto operator()(const std::string& v) -> std::list<T> {
     YAML::Node node = YAML::Load(v);
     typename std::list<T> vec;
     std::stringstream ss;
-    for (size_t i = 0; i < node.size(); ++i) {
+    for (auto && i : node) {
       ss.str("");
-      ss << node[i];
+      ss << i;
       vec.push_back(LexicalCast<std::string, T>()(ss.str()));
     }
     return vec;
@@ -120,7 +120,7 @@ class LexicalCast<std::string, std::list<T> > {
 template <class T>
 class LexicalCast<std::list<T>, std::string> {
  public:
-  std::string operator()(const std::list<T>& v) {
+  auto operator()(const std::list<T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Sequence);
     for (auto& i : v) {
       node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
@@ -137,13 +137,13 @@ class LexicalCast<std::list<T>, std::string> {
 template <class T>
 class LexicalCast<std::string, std::set<T> > {
  public:
-  std::set<T> operator()(const std::string& v) {
+  auto operator()(const std::string& v) -> std::set<T> {
     YAML::Node node = YAML::Load(v);
     typename std::set<T> vec;
     std::stringstream ss;
-    for (size_t i = 0; i < node.size(); ++i) {
+    for (auto && i : node) {
       ss.str("");
-      ss << node[i];
+      ss << i;
       vec.insert(LexicalCast<std::string, T>()(ss.str()));
     }
     return vec;
@@ -156,7 +156,7 @@ class LexicalCast<std::string, std::set<T> > {
 template <class T>
 class LexicalCast<std::set<T>, std::string> {
  public:
-  std::string operator()(const std::set<T>& v) {
+  auto operator()(const std::set<T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Sequence);
     for (auto& i : v) {
       node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
@@ -173,13 +173,13 @@ class LexicalCast<std::set<T>, std::string> {
 template <class T>
 class LexicalCast<std::string, std::unordered_set<T> > {
  public:
-  std::unordered_set<T> operator()(const std::string& v) {
+  auto operator()(const std::string& v) -> std::unordered_set<T> {
     YAML::Node node = YAML::Load(v);
     typename std::unordered_set<T> vec;
     std::stringstream ss;
-    for (size_t i = 0; i < node.size(); ++i) {
+    for (auto && i : node) {
       ss.str("");
-      ss << node[i];
+      ss << i;
       vec.insert(LexicalCast<std::string, T>()(ss.str()));
     }
     return vec;
@@ -192,7 +192,7 @@ class LexicalCast<std::string, std::unordered_set<T> > {
 template <class T>
 class LexicalCast<std::unordered_set<T>, std::string> {
  public:
-  std::string operator()(const std::unordered_set<T>& v) {
+  auto operator()(const std::unordered_set<T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Sequence);
     for (auto& i : v) {
       node.push_back(YAML::Load(LexicalCast<T, std::string>()(i)));
@@ -209,7 +209,7 @@ class LexicalCast<std::unordered_set<T>, std::string> {
 template <class T>
 class LexicalCast<std::string, std::map<std::string, T> > {
  public:
-  std::map<std::string, T> operator()(const std::string& v) {
+  auto operator()(const std::string& v) -> std::map<std::string, T> {
     YAML::Node node = YAML::Load(v);
     typename std::map<std::string, T> vec;
     std::stringstream ss;
@@ -229,7 +229,7 @@ class LexicalCast<std::string, std::map<std::string, T> > {
 template <class T>
 class LexicalCast<std::map<std::string, T>, std::string> {
  public:
-  std::string operator()(const std::map<std::string, T>& v) {
+  auto operator()(const std::map<std::string, T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Map);
     for (auto& i : v) {
       node[i.first] = YAML::Load(LexicalCast<T, std::string>()(i.second));
@@ -268,7 +268,7 @@ class LexicalCast<std::string, std::unordered_map<std::string, T> > {
 template <class T>
 class LexicalCast<std::unordered_map<std::string, T>, std::string> {
  public:
-  std::string operator()(const std::unordered_map<std::string, T>& v) {
+  auto operator()(const std::unordered_map<std::string, T>& v) -> std::string {
     YAML::Node node(YAML::NodeType::Map);
     for (auto& i : v) {
       node[i.first] = YAML::Load(LexicalCast<T, std::string>()(i.second));
@@ -290,10 +290,9 @@ template <class T, class FromStr = LexicalCast<std::string, T>,
           class ToStr = LexicalCast<T, std::string> >
 class ConfigVar : public ConfigVarBase {
  public:
-  typedef RWMutex RWMutexType;
-  typedef std::shared_ptr<ConfigVar> ptr;
-  typedef std::function<void(const T& old_value, const T& new_value)>
-      on_change_cb;
+  using RWMutexType = RWMutex;
+  using ptr = std::shared_ptr<ConfigVar>;
+  using on_change_cb = std::function<void (const T &, const T &)>;
 
   ConfigVar(const std::string& name, const T& default_value,
             const std::string& description = "")
@@ -303,7 +302,7 @@ class ConfigVar : public ConfigVarBase {
    * @brief 将参数值转换成YAML String
    * @exception 当转换失败抛出异常
    */
-  std::string toString() override {
+  auto toString() -> std::string override {
     try {
       RWMutexType ::ReadLock lock(m_mutex);
       return ToStr()(m_val);
@@ -316,7 +315,7 @@ class ConfigVar : public ConfigVarBase {
     return "";
   }
 
-  bool fromString(const std::string& val) override {
+  auto fromString(const std::string& val) -> bool override {
     try {
       setValue(FromStr()(val));
     } catch (std::exception& e) {
@@ -327,7 +326,7 @@ class ConfigVar : public ConfigVarBase {
     }
     return false;
   }
-  const T getValue() {
+  auto getValue() -> const T {
     RWMutex::ReadLock lock(m_mutex);
     return m_val;
   }
@@ -346,9 +345,9 @@ class ConfigVar : public ConfigVarBase {
     m_val = v;
   }
 
-  std::string getTypeName() const override { return typeid(m_val).name(); }
+  auto getTypeName() const -> std::string override { return typeid(m_val).name(); }
 
-  uint64_t addListener(on_change_cb cb) {
+  auto addListener(on_change_cb cb) -> uint64_t {
     static uint64_t s_fun_id = 0;
     RWMutexType::WriteLock lock(m_mutex);
     ++s_fun_id;
@@ -365,7 +364,7 @@ class ConfigVar : public ConfigVarBase {
     m_cbs.erase(key);
   }
 
-  on_change_cb getListener(uint64_t key) {
+  auto getListener(uint64_t key) -> on_change_cb {
     RWMutexType::ReadLock lock(m_mutex);
     auto it = m_cbs.find(key);
     return it == m_cbs.end() ? nullptr : it->second;
@@ -385,12 +384,12 @@ class ConfigVar : public ConfigVarBase {
 
 class Config {
  public:
-  typedef std::unordered_map<std::string, ConfigVarBase::ptr> ConfigVarMap;
-  typedef RWMutex RWMutexType;
+  using ConfigVarMap = std::unordered_map<std::string, ConfigVarBase::ptr>;
+  using RWMutexType = RWMutex;
   template <class T>
-  static typename ConfigVar<T>::ptr Lookup(
+  static auto Lookup(
       const std::string& name, const T& default_value,
-      const std::string& description = "") {
+      const std::string& description = "") -> typename ConfigVar<T>::ptr {
     RWMutexType::WriteLock lock(GetMutex());
     auto it = GetDatas().find(name);
     if (it != GetDatas().end()) {
@@ -398,13 +397,12 @@ class Config {
       if (tmp) {
         HX_LOG_INFO(HX_LOG_ROOT()) << "Lookup name= " << name << " exists";
         return tmp;
-      } else {
-        HX_LOG_ERROR(HX_LOG_ROOT())
+      }         HX_LOG_ERROR(HX_LOG_ROOT())
             << "Lookup name=" << name << " exists but type not "
             << " real_type=" << it->second->getTypeName() << " "
             << it->second->toString();
         return nullptr;
-      }
+
     }
 
     if (name.find_first_not_of("abcdefghikjlmnopqrstuvwxyz._012345678") !=
@@ -425,7 +423,7 @@ class Config {
    * @return 返回配置参数名为name的配置参数
    */
   template <class T>
-  static typename ConfigVar<T>::ptr Lookup(const std::string& name) {
+  static auto Lookup(const std::string& name) -> typename ConfigVar<T>::ptr {
     RWMutexType::ReadLock lock(GetMutex());
     auto it = GetDatas().find(name);
     if (it == GetDatas().end()) {
@@ -438,16 +436,16 @@ class Config {
 
   static void LoadFromConfDir(const std::string& path, bool force = false);
 
-  static ConfigVarBase::ptr LookupBase(const std::string& name);
+  static auto LookupBase(const std::string& name) -> ConfigVarBase::ptr;
 
   static void Visit(std::function<void(ConfigVarBase::ptr)> cb);
 
  private:
-  static ConfigVarMap& GetDatas() {
+  static auto GetDatas() -> ConfigVarMap& {
     static ConfigVarMap s_datas;
     return s_datas;
   }
-  static RWMutexType& GetMutex() {
+  static auto GetMutex() -> RWMutexType& {
     static RWMutexType s_mutex;
     return s_mutex;
   }

@@ -1,8 +1,8 @@
 #ifndef __HX_LOG_H__
 #define __HX_LOG_H__
 
-#include <stdarg.h>
-#include <stdint.h>
+#include <cstdarg>
+#include <cstdint>
 
 #include <fstream>
 #include <list>
@@ -90,13 +90,13 @@ class LogLevel {
     FATAL = 5
   };
 
-  static const char* ToString(LogLevel::Level level);
+  static auto ToString(LogLevel::Level level) -> const char*;
 
   /**
    * @brief 将文本转换成日志级别
    * @param[in] str 日志级别文本
    */
-  static LogLevel::Level FromString(const std::string& str);
+  static auto FromString(const std::string& str) -> LogLevel::Level;
 };
 
 /**
@@ -104,11 +104,11 @@ class LogLevel {
  */
 class LogEvent {
  public:
-  typedef std::shared_ptr<LogEvent> ptr;
-  LogEvent();
+  using ptr = std::shared_ptr<LogEvent>;
+  LogEvent() =default;
   LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
            const char* file, int32_t line, uint32_t elapse, uint32_t thread_id,
-           uint32_t fiber_id, uint64_t time, const std::string& thread_name);
+           uint32_t fiber_id, uint64_t time, std::string  thread_name);
 
   const char* getFile() const { return m_file; }
 
@@ -180,13 +180,13 @@ class LogEvent {
  */
 class LogEventWrap {
  public:
-  LogEventWrap(LogEvent::ptr ev);
+  explicit LogEventWrap(LogEvent::ptr ev);
 
   ~LogEventWrap();
 
-  LogEvent::ptr getEvent() const { return m_event; }
+  auto getEvent() const -> LogEvent::ptr { return m_event; }
 
-  std::stringstream& getSS();
+  auto getSS() -> std::stringstream&;
 
  private:
   /**
@@ -221,12 +221,12 @@ class LogFormatter {
    *
    *  默认格式 "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
    */
-  LogFormatter(const std::string& pattern);
+  explicit LogFormatter(std::string  pattern);
 
-  std::string format(std::shared_ptr<Logger> logger, LogLevel::Level level,
-                     LogEvent::ptr event);
-  std::ostream& format(std::ostream& ofs, std::shared_ptr<Logger> logger,
-                       LogLevel::Level level, LogEvent::ptr event);
+  auto format(const std::shared_ptr<Logger>& logger, LogLevel::Level level,
+                     const LogEvent::ptr& event) -> std::string;
+  auto format(std::ostream& ofs, const std::shared_ptr<Logger>& logger,
+                       LogLevel::Level level, const LogEvent::ptr& event) -> std::ostream& ;
 
  public:
   /**
@@ -234,11 +234,11 @@ class LogFormatter {
    */
   class FormatItem {
    public:
-    typedef std::shared_ptr<FormatItem> ptr;
+    using ptr = std::shared_ptr<FormatItem>;
     /**
      * @brief 析构函数
      */
-    virtual ~FormatItem() {}
+    virtual ~FormatItem() = default;
     virtual void format(std::ostream& os, std::shared_ptr<Logger> logger,
                         LogLevel::Level level, LogEvent::ptr event) = 0;
   };
@@ -248,12 +248,12 @@ class LogFormatter {
   /**
    * @brief 是否有错误
    */
-  bool isError() const { return m_error; }
+  auto isError() const -> bool { return m_error; }
 
   /**
    * @brief 返回日志模板
    */
-  const std::string getPattern() const { return m_pattern; }
+  auto getPattern() const ->const std::string& { return m_pattern; }
 
  private:
   /// 日志格式模板
@@ -271,9 +271,9 @@ class LogAppender {
   friend class Logger;
 
  public:
-  typedef std::shared_ptr<LogAppender> ptr;
-  typedef Spinlock MutexType;
-  virtual ~LogAppender() {}
+  using ptr = std::shared_ptr<LogAppender>;
+  using MutexType = Spinlock;
+  virtual ~LogAppender() = default;
 
   virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level,
                    LogEvent::ptr event) = 0;
@@ -309,34 +309,34 @@ class Logger : public std::enable_shared_from_this<Logger> {
   friend class LoggerManager;
 
  public:
-  typedef std::shared_ptr<Logger> ptr;
-  typedef Spinlock MutexType;
-  Logger(const std::string& name = "root");
+  using ptr = std::shared_ptr<Logger>;
+  using MutexType = Spinlock;
+  explicit Logger(std::string  name = "root");
 
-  void log(LogLevel::Level level, LogEvent::ptr event);
-  void debug(LogEvent::ptr event);
-  void info(LogEvent::ptr event);
-  void warn(LogEvent::ptr event);
-  void error(LogEvent::ptr event);
+  void log(LogLevel::Level level, const LogEvent::ptr& event);
+  void debug(const LogEvent::ptr& event);
+  void info(const LogEvent::ptr& event);
+  void warn(const LogEvent::ptr& event);
+  void error(const LogEvent::ptr& event);
 
-  void fatal(LogEvent::ptr event);
+  void fatal(const LogEvent::ptr& event);
 
-  void addAppender(LogAppender::ptr appender);
-  void delAppender(LogAppender::ptr appender);
+  void addAppender(const LogAppender::ptr& appender);
+  void delAppender(const LogAppender::ptr& appender);
   void clearAppenders();
 
-  LogLevel::Level getLevel() const { return m_level; }
+  auto getLevel() const -> LogLevel::Level { return m_level; }
 
   void setLevel(LogLevel::Level val) { m_level = val; }
 
-  const std::string& getName() const { return m_name; }
+  auto getName() const -> const std::string& { return m_name; }
 
   void setFormatter(LogFormatter::ptr val);
 
   void setFormatter(const std::string& val);
 
-  LogFormatter::ptr getFormatter();
-  std::string toYamlString();
+  auto getFormatter() -> LogFormatter::ptr;
+  auto toYamlString() -> std::string;
 
  private:
   /// 日志名称
@@ -358,16 +358,16 @@ class Logger : public std::enable_shared_from_this<Logger> {
  */
 class StdoutLogAppender : public LogAppender {
  public:
-  typedef std::shared_ptr<StdoutLogAppender> ptr;
+  using ptr = std::shared_ptr<StdoutLogAppender>;
   virtual void log(Logger::ptr logger, LogLevel::Level level,
                    LogEvent::ptr event) override;
-  std::string toYamlString() override;
+  auto toYamlString() -> std::string override;
 };
 
 class FileLogAppender : public LogAppender {
  public:
-  typedef std::shared_ptr<FileLogAppender> ptr;
-  FileLogAppender(const std::string& filename);
+  using ptr = std::shared_ptr<FileLogAppender>;
+  explicit FileLogAppender(std::string  filename);
   void log(Logger::ptr logger, LogLevel::Level level,
            LogEvent::ptr event) override;
   std::string toYamlString() override;
@@ -388,7 +388,7 @@ class FileLogAppender : public LogAppender {
  */
 class LoggerManager {
  public:
-  typedef Spinlock MutexType;
+  using MutexType = Spinlock;
   LoggerManager();
   Logger::ptr getLogger(const std::string& name);
   void init();
@@ -404,7 +404,7 @@ class LoggerManager {
 
 /// 日志器管理类单例模式
 
-typedef hx_sylar::Singleton<LoggerManager> LoggerMgr;
+using LoggerMgr = hx_sylar::Singleton<LoggerManager>;
 }  // namespace hx_sylar
 
 #endif

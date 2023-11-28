@@ -5,31 +5,50 @@
 
 #include "fiber.h"
 #include "log.h"
-hx_sylar::Logger::ptr g_logger = HX_LOG_NAME("system");
+
 namespace hx_sylar {
-pid_t GetThreadId() { return syscall(SYS_gettid); }
-uint32_t GetFiberId() { return hx_sylar::Fiber::GetFiberId(); }
+	hx_sylar::Logger::ptr g_logger = HX_LOG_NAME("system");
+auto GetThreadId() -> pid_t { return static_cast<pid_t>(syscall(SYS_gettid)); }
+auto GetFiberId() -> uint32_t { return hx_sylar::Fiber::GetFiberId(); }
 void Backtrace(std::vector<std::string>& bt, int size, int skip) {
-  void** array = (void**)malloc(sizeof(void*) * size);
+  void** array = static_cast<void**>(malloc(sizeof(void*) * size));
   size_t s = ::backtrace(array, size);
-  char** strings = backtrace_symbols(array, s);
-  if (strings == NULL) {
+  char** strings = backtrace_symbols(array, static_cast<int>(s));
+  if (strings == nullptr) {
     HX_LOG_ERROR(g_logger) << "backtrace_symbols error ";
     return;
   }
   for (size_t i = skip; i < s; ++i) {
-    bt.push_back(strings[i]);
+    bt.emplace_back(strings[i]);
   }
   free(strings);
   free(array);
 }
-std::string BacktraceToString(int size, int skip, const std::string& prefix) {
+auto BacktraceToString(int size, int skip, const std::string& prefix)
+    -> std::string {
   std::vector<std::string> bt;
   Backtrace(bt, size, skip);
   std::stringstream ss;
-  for (size_t i = 0; i < bt.size(); ++i) {
-    ss << prefix << bt[i] << std::endl;
+  for (const auto& i : bt) {
+    ss << prefix << i << '\n';
   }
   return ss.str();
+}
+
+auto GetElapsedMS() -> uint64_t {
+  struct timespec ts = {0};
+  clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+  return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+}
+
+auto GetCurrentMS() -> uint64_t {
+  struct timeval tv {};
+  gettimeofday(&tv, nullptr);
+  return tv.tv_sec * 1000UL + tv.tv_usec / 1000;
+}
+auto GetCurrentUS() -> uint64_t {
+  struct timeval tv {};
+  gettimeofday(&tv, nullptr);
+  return tv.tv_sec * 1000 * 1000UL + tv.tv_usec;
 }
 }  // namespace hx_sylar

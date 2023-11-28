@@ -1,0 +1,11 @@
+/snap/clion/250/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/250/bin/ninja/linux/x64/ninja -G Ninja -S /home/hx/hx_sylar -B /home/hx/hx_sylar/cmake-build-debug
+CMake Warning (dev) at CMakeLists.txt:21:
+  Syntax Warning in cmake code at column 14
+
+  Argument not separated from preceding token by whitespace.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+***,/usr/lib/x86_64-linux-gnu/libyaml-cpp.so
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/hx/hx_sylar/cmake-build-debug
