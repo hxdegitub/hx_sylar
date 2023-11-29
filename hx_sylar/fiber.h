@@ -10,6 +10,7 @@
 namespace hx_sylar {
 class Fiber : public std::enable_shared_from_this<Fiber> {
   friend class Scheduler;
+  friend class std::shared_ptr<Fiber>;
 
  public:
   using ptr = std::shared_ptr<Fiber>;

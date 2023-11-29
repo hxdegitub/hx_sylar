@@ -20,7 +20,7 @@ class MallocStackAllocator {
  public:
   static auto Alloc(size_t size) -> void* { return malloc(size); }
 
-  static void Dealloc(void *vp) { return free(vp); }
+  static void Dealloc(void* vp) { return free(vp); }
 };
 
 using StackAllocator = MallocStackAllocator;
@@ -68,7 +68,8 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
 Fiber::~Fiber() {
   --s_fiber_count;
   if (m_stack != nullptr) {
-    HX_ASSERT1(m_state == TERM || m_state == INIT || m_state == EXCEPT,"state : " );
+    HX_ASSERT1(m_state == TERM || m_state == INIT || m_state == EXCEPT,
+               "state : ");
     StackAllocator::Dealloc(m_stack);
   } else {
     HX_ASSERT(nullptr == m_cb);
@@ -87,7 +88,7 @@ void Fiber::reset(std::function<void()> cb) {
   HX_ASSERT(m_state == TERM || m_state == INIT || m_state == EXCEPT);
   m_cb = std::move(cb);
   if (getcontext(&m_ctx) != 0) {
-    HX_ASSERT1(false,"getcontext");
+    HX_ASSERT1(false, "getcontext");
   }
   m_ctx.uc_link = nullptr;
   m_ctx.uc_stack.ss_sp = m_stack;
@@ -208,4 +209,4 @@ void Fiber::CallerMainFunc() {
   HX_ASSERT1(false, "never reach" + std::to_string(raw_ptr->getId()));
 }
 
-}
+}  // namespace hx_sylar

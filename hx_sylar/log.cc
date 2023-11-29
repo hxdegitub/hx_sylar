@@ -1,9 +1,8 @@
 #include "log.h"
 
-
-#include <ctime>
 #include <yaml-cpp/yaml.h>
 
+#include <ctime>
 #include <functional>
 #include <iostream>
 #include <map>
@@ -149,7 +148,7 @@ class ThreadNameFormatItem : public LogFormatter::FormatItem {
 
 class DateTimeFormatItem : public LogFormatter::FormatItem {
  public:
-  explicit DateTimeFormatItem(std::string  format = "%Y-%m-%d %H:%M:%S")
+  explicit DateTimeFormatItem(std::string format = "%Y-%m-%d %H:%M:%S")
       : m_format(std::move(format)) {
     if (m_format.empty()) {
       m_format = "%Y-%m-%d %H:%M:%S";
@@ -158,7 +157,7 @@ class DateTimeFormatItem : public LogFormatter::FormatItem {
 
   void format(std::ostream& os, Logger::ptr logger, LogLevel::Level level,
               LogEvent::ptr event) override {
-    struct tm tm{};
+    struct tm tm {};
     time_t time = event->getTime();
     localtime_r(&time, &tm);
     char buf[64];
@@ -199,7 +198,7 @@ class NewLineFormatItem : public LogFormatter::FormatItem {
 
 class StringFormatItem : public LogFormatter::FormatItem {
  public:
-  explicit StringFormatItem(std::string  str) : m_string(std::move(str)) {}
+  explicit StringFormatItem(std::string str) : m_string(std::move(str)) {}
   void format(std::ostream& os, Logger::ptr logger, LogLevel::Level level,
               LogEvent::ptr event) override {
     os << m_string;
@@ -224,7 +223,7 @@ class TabFormatItem : public LogFormatter::FormatItem {
 LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
                    const char* file, int32_t line, uint32_t elapse,
                    uint32_t thread_id, uint32_t fiber_id, uint64_t time,
-                   std::string  thread_name)
+                   std::string thread_name)
     : m_file(file),
       m_line(line),
       m_elapse(elapse),
@@ -235,8 +234,7 @@ LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
       m_logger(std::move(logger)),
       m_level(level) {}
 
-
-Logger::Logger(std::string  name)
+Logger::Logger(std::string name)
     : m_name(std::move(name)), m_level(LogLevel::DEBUG) {
   m_formatter.reset(new LogFormatter(
       "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
@@ -256,7 +254,7 @@ void Logger::setFormatter(LogFormatter::ptr val) {
 
 void Logger::setFormatter(const std::string& val) {
   std::cout << "---" << val << '\n';
-  hx_sylar::LogFormatter::ptr new_val(new hx_sylar::LogFormatter(val));
+  hx_sylar::LogFormatter::ptr new_val = std::make_shared<LogFormatter>(val);
   if (new_val->isError()) {
     std::cout << "Logger setFormatter name=" << m_name << " value=" << val
               << " invalid formatter" << '\n';
@@ -334,7 +332,7 @@ void Logger::error(const LogEvent::ptr& event) { log(LogLevel::ERROR, event); }
 
 void Logger::fatal(const LogEvent::ptr& event) { log(LogLevel::FATAL, event); }
 
-FileLogAppender::FileLogAppender(std::string  filename)
+FileLogAppender::FileLogAppender(std::string filename)
     : m_filename(std::move(filename)) {
   reopen();
 }
@@ -404,12 +402,14 @@ auto StdoutLogAppender::toYamlString() -> std::string {
   return ss.str();
 }
 
-LogFormatter::LogFormatter(std::string  pattern) : m_pattern(std::move(pattern)) {
+LogFormatter::LogFormatter(std::string pattern)
+    : m_pattern(std::move(pattern)) {
   init();
 }
 
 auto LogFormatter::format(const std::shared_ptr<Logger>& logger,
-                                 LogLevel::Level level, const LogEvent::ptr& event) -> std::string {
+                          LogLevel::Level level, const LogEvent::ptr& event)
+    -> std::string {
   std::stringstream ss;
 
   for (auto& i : m_items) {
@@ -419,8 +419,9 @@ auto LogFormatter::format(const std::shared_ptr<Logger>& logger,
 }
 
 auto LogFormatter::format(std::ostream& ofs,
-                                   const std::shared_ptr<Logger>& logger,
-                                   LogLevel::Level level, const LogEvent::ptr& event) -> std::ostream& {
+                          const std::shared_ptr<Logger>& logger,
+                          LogLevel::Level level, const LogEvent::ptr& event)
+    -> std::ostream& {
   for (auto& i : m_items) {
     i->format(ofs, logger, level, event);
   }
@@ -452,8 +453,8 @@ void LogFormatter::init() {
     std::string str;
     std::string fmt;
     while (n < m_pattern.size()) {
-      if ((fmt_status == 0) && ((isalpha(m_pattern[n]) == 0) && m_pattern[n] != '{' &&
-                          m_pattern[n] != '}')) {
+      if ((fmt_status == 0) && ((isalpha(m_pattern[n]) == 0) &&
+                                m_pattern[n] != '{' && m_pattern[n] != '}')) {
         str = m_pattern.substr(i + 1, n - i - 1);
         break;
       }
@@ -504,9 +505,10 @@ void LogFormatter::init() {
   static std::map<std::string,
                   std::function<FormatItem::ptr(const std::string& str)> >
       s_format_items = {
-#define XX(str, C)                                                           \
-  {                                                                          \
-#str, [](const std::string& fmt) { return FormatItem::ptr(new C(fmt)); } \
+#define XX(str, C)                                                    \
+  {                                                                   \
+#str, [](const std::string&                                       \
+                 fmt) { return std::make_shared<C>(std::move(fmt)); } \
   }
 
           XX(m, MessageFormatItem),     // m:消息
@@ -526,12 +528,13 @@ void LogFormatter::init() {
 
   for (auto& i : vec) {
     if (std::get<2>(i) == 0) {
-      m_items.push_back(FormatItem::ptr(new StringFormatItem(std::get<0>(i))));
+      m_items.push_back(std::make_shared<StringFormatItem>(std::get<0>(i)));
     } else {
       auto it = s_format_items.find(std::get<0>(i));
       if (it == s_format_items.end()) {
-        m_items.push_back(FormatItem::ptr(
-            new StringFormatItem("<<error_format %" + std::get<0>(i) + ">>")));
+        m_items.push_back(std::make_shared<StringFormatItem>(
+            "<<error_format %" + std::get<0>(i) + ">>"));
+
         m_error = true;
       } else {
         m_items.push_back(it->second(std::get<1>(i)));
@@ -561,7 +564,7 @@ auto LoggerManager::getLogger(const std::string& name) -> Logger::ptr {
     return it->second;
   }
 
-  Logger::ptr logger(new Logger(name));
+  Logger::ptr logger = std::make_shared<Logger>(name);
   logger->m_root = m_root;
   m_loggers[name] = logger;
   return logger;
@@ -618,8 +621,7 @@ class LexicalCast<std::string, LogDefine> {
       for (size_t x = 0; x < n["appenders"].size(); ++x) {
         auto a = n["appenders"][x];
         if (!a["type"].IsDefined()) {
-          std::cout << "log config error: appender type is null, " << a
-                    << '\n';
+          std::cout << "log config error: appender type is null, " << a << '\n';
           continue;
         }
         std::string type = a["type"].as<std::string>();
@@ -784,4 +786,4 @@ auto LoggerManager::toYamlString() -> std::string {
 
 void LoggerManager::init() {}
 
-}
+}  // namespace hx_sylar

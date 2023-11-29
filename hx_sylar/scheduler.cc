@@ -1,5 +1,7 @@
 #include "scheduler.h"
 
+#include <type_traits>
+
 #include "hook.h"
 #include "log.h"
 #include "macro.h"
@@ -129,7 +131,8 @@ void Scheduler::run() {
     t_scheduler_fiber = Fiber::GetThis().get();
   }
 
-  Fiber::ptr idle_fiber(new Fiber(std::bind(&Scheduler::idle, this)));
+  Fiber::ptr idle_fiber =
+      std::make_shared<Fiber>(std::bind(&Scheduler::idle, this));
   Fiber::ptr cb_fiber;
 
   FiberAndThread ft;

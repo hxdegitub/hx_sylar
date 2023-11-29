@@ -236,6 +236,30 @@ test_hook/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
 .PHONY : test_hook/fast
 
+hx_sylar/address.o: hx_sylar/address.cc.o
+.PHONY : hx_sylar/address.o
+
+# target to build an object file
+hx_sylar/address.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.o
+.PHONY : hx_sylar/address.cc.o
+
+hx_sylar/address.i: hx_sylar/address.cc.i
+.PHONY : hx_sylar/address.i
+
+# target to preprocess a source file
+hx_sylar/address.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.i
+.PHONY : hx_sylar/address.cc.i
+
+hx_sylar/address.s: hx_sylar/address.cc.s
+.PHONY : hx_sylar/address.s
+
+# target to generate assembly for a file
+hx_sylar/address.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.s
+.PHONY : hx_sylar/address.cc.s
+
 hx_sylar/config.o: hx_sylar/config.cc.o
 .PHONY : hx_sylar/config.o
 
@@ -709,6 +733,9 @@ help:
 	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
+	@echo "... hx_sylar/address.o"
+	@echo "... hx_sylar/address.i"
+	@echo "... hx_sylar/address.s"
 	@echo "... hx_sylar/config.o"
 	@echo "... hx_sylar/config.i"
 	@echo "... hx_sylar/config.s"

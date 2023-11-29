@@ -7,7 +7,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -o0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror 
 # -Wno-unused-function -Wno-builtin-macro-redefined")
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0  -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined ")
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0  -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined ")
 
 
 
@@ -32,9 +32,8 @@ set(LIB_SRC
     hx_sylar/thread.cc
     hx_sylar/timer.cc
     hx_sylar/util.cc
-    hx_sylar/fd_manager.h
     hx_sylar/fd_manager.cc
-        hx_sylar/noncopyable.h
+    hx_sylar/address.cc
 
 )
 

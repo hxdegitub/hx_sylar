@@ -5,14 +5,14 @@
 #ifndef HX_SYLAR_NONCOPYABLE_H
 #define HX_SYLAR_NONCOPYABLE_H
 
-namespace hx_sylar{
-	class Noncopyable{
-	public:
-		Noncopyable(const Noncopyable&) = delete;
-		Noncopyable operator=(const Noncopyable&) = delete;
-		Noncopyable() =default;
-		~Noncopyable() = default;
-	};
-}
+namespace hx_sylar {
+class Noncopyable {
+ public:
+  Noncopyable(const Noncopyable&) = delete;
+  Noncopyable operator=(const Noncopyable&) = delete;
+  Noncopyable() = default;
+  ~Noncopyable() = default;
+};
+}  // namespace hx_sylar
 
-#endif //HX_SYLAR_NONCOPYABLE_H
+#endif  // HX_SYLAR_NONCOPYABLE_H

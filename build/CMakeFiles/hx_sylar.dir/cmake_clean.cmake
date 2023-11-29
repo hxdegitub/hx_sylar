@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.o"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/config.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/config.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/fd_manager.cc.o"
