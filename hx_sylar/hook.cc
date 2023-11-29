@@ -112,7 +112,7 @@ retry:
   if (n == -1 && errno == EAGAIN) {
     hx_sylar::IOManager *iom = hx_sylar::IOManager::GetThis();
     hx_sylar::Timer::ptr timer;
-    std::weak_ptr<timer_info> winfo(tinfo);
+    std::weak_ptr<timer_info> winfo(stinfo);
 
     if (to != (uint64_t)-1) {
       timer = iom->addConditionTimer(
@@ -129,7 +129,7 @@ retry:
     }
 
     int rt = iom->addEvent(fd, (hx_sylar::IOManager::Event)(event));
-    if (HX_UNLIKELY(rt)) {
+    if (SYLAR_UNLIKELY(rt)) {
       HX_LOG_ERROR(g_logger)
           << hook_fun_name << " addEvent(" << fd << ", " << event << ")";
       if (timer) {
@@ -141,8 +141,8 @@ retry:
       if (timer) {
         timer->cancel();
       }
-      if (tinfo->cancelled) {
-        errno = tinfo->cancelled;
+      if (stinfo->cancelled) {
+        errno = stinfo->cancelled;
         return -1;
       }
       goto retry;

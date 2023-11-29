@@ -452,6 +452,30 @@ hx_sylar/scheduler.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.s
 .PHONY : hx_sylar/scheduler.cc.s
 
+hx_sylar/socket.o: hx_sylar/socket.cc.o
+.PHONY : hx_sylar/socket.o
+
+# target to build an object file
+hx_sylar/socket.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.o
+.PHONY : hx_sylar/socket.cc.o
+
+hx_sylar/socket.i: hx_sylar/socket.cc.i
+.PHONY : hx_sylar/socket.i
+
+# target to preprocess a source file
+hx_sylar/socket.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.i
+.PHONY : hx_sylar/socket.cc.i
+
+hx_sylar/socket.s: hx_sylar/socket.cc.s
+.PHONY : hx_sylar/socket.s
+
+# target to generate assembly for a file
+hx_sylar/socket.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.s
+.PHONY : hx_sylar/socket.cc.s
+
 hx_sylar/thread.o: hx_sylar/thread.cc.o
 .PHONY : hx_sylar/thread.o
 
@@ -760,6 +784,9 @@ help:
 	@echo "... hx_sylar/scheduler.o"
 	@echo "... hx_sylar/scheduler.i"
 	@echo "... hx_sylar/scheduler.s"
+	@echo "... hx_sylar/socket.o"
+	@echo "... hx_sylar/socket.i"
+	@echo "... hx_sylar/socket.s"
 	@echo "... hx_sylar/thread.o"
 	@echo "... hx_sylar/thread.i"
 	@echo "... hx_sylar/thread.s"

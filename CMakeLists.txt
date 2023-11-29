@@ -34,6 +34,7 @@ set(LIB_SRC
     hx_sylar/util.cc
     hx_sylar/fd_manager.cc
     hx_sylar/address.cc
+    hx_sylar/socket.cc
 
 )
 

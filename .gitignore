@@ -1,2 +1,4 @@
-run.sh
 *.sh
+.idea
+.vscode
+.cache

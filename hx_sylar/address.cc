@@ -38,7 +38,60 @@ auto Address::LookupAny(const std::string& host, int family, int type,
 
 auto Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
                      int family, int type, int protocol) -> bool {
-  return false;
+  addrinfo hints, *results, *next;
+  hints.ai_flags = 0;
+  hints.ai_family = family;
+  hints.ai_socktype = type;
+  hints.ai_protocol = protocol;
+  hints.ai_addrlen = 0;
+  hints.ai_canonname = nullptr;
+  hints.ai_addr = NULL;
+  hints.ai_next = NULL;
+
+  std::string node;
+  const char* service = nullptr;
+
+  if (!host.empty() && host[0] == ']') {
+    const char* endipv6 =
+        (const char*)memchr(host.c_str() + 1, ']', host.size() - 1);
+    if (endipv6) {
+      // TODO check out of range
+      if (*(endipv6 + 1) == ':') {
+        service = endipv6 + 2;
+      }
+      node = host.substr(1, endipv6 - host.c_str() - 1);
+    }
+  }
+  if (node.empty()) {
+    service = (const char*)memchr(host.c_str(), ':', host.size());
+    if (service) {
+      if (!strchr(service + 1, ':')) {
+        node = host.substr(0, service - host.c_str());
+        ++service;
+      }
+    }
+  }
+  if (node.empty()) {
+    node = host;
+  }
+  int error = getaddrinfo(node.c_str(), service, &hints, &results);
+  if (error != 0) {
+    HX_LOG_DEBUG(g_logger) << "Address::Lookup getaddress(" << host << ", "
+                           << family << ", " << type << ") err=" << error
+                           << " errstr=" << gai_strerror(error);
+    return false;
+  }
+
+  next = results;
+  while (next != nullptr) {
+    result.push_back(Create(next->ai_addr, next->ai_addrlen));
+    // SYLAR_LOG_INFO(g_logger) <<
+    // ((sockaddr_in*)next->ai_addr)->sin_addr.s_addr;
+    next = next->ai_next;
+  }
+
+  freeaddrinfo(results);
+  return !result.empty();
 }
 auto Address::getFamily() const -> int { return getAddr()->sa_family; }
 

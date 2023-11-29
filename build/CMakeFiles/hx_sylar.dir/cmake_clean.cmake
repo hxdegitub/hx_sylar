@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hx_sylar.dir/hx_sylar/mutex.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o.d"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.o"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.o"
