@@ -1,52 +1,84 @@
-//
-// Created by hx on 23-11-28.
-//
 
-#ifndef HX_SYLAR_ENDIAN_H
-#define HX_SYLAR_ENDIAN_H
+#ifndef __SYLAR_ENDIAN_H__
+#define __SYLAR_ENDIAN_H__
 
+#define SYLAR_LITTLE_ENDIAN 1
+#define SYLAR_BIG_ENDIAN 2
 
 #include <byteswap.h>
-#include <cstdint>
-#include <type_traits>
+#include <stdint.h>
 
 namespace hx_sylar {
 
-enum class ByteOrder {
-    LittleEndian,
-    BigEndian
-};
-
+/**
+ * @brief 8字节类型的字节序转化
+ */
 template <class T>
-constexpr ByteOrder getByteOrder() {
-    return ByteOrder::LittleEndian;  // 根据实际情况实现
+typename std::enable_if<sizeof(T) == sizeof(uint64_t), T>::type byteswap(
+    T value) {
+  return (T)bswap_64((uint64_t)value);
 }
 
 /**
- * @brief 字节序转化
+ * @brief 4字节类型的字节序转化
  */
 template <class T>
-typename std::enable_if<std::is_integral<T>::value, T>::type
-byteswap(T value) {
-    if constexpr (getByteOrder<T>() == ByteOrder::LittleEndian) {
-        return (T)__builtin_bswap64((uint64_t)value);
-    } else {
-        return value;
-    }
+typename std::enable_if<sizeof(T) == sizeof(uint32_t), T>::type byteswap(
+    T value) {
+  return (T)bswap_32((uint32_t)value);
 }
 
+/**
+ * @brief 2字节类型的字节序转化
+ */
 template <class T>
-typename std::enable_if<std::is_integral<T>::value, T>::type
-byteswapOnLittleEndian(T t) {
-    return t;
+typename std::enable_if<sizeof(T) == sizeof(uint16_t), T>::type byteswap(
+    T value) {
+  return (T)bswap_16((uint16_t)value);
 }
 
+#if BYTE_ORDER == BIG_ENDIAN
+#define SYLAR_BYTE_ORDER SYLAR_BIG_ENDIAN
+#else
+#define SYLAR_BYTE_ORDER SYLAR_LITTLE_ENDIAN
+#endif
+
+#if SYLAR_BYTE_ORDER == SYLAR_BIG_ENDIAN
+
+/**
+ * @brief 只在小端机器上执行byteswap, 在大端机器上什么都不做
+ */
 template <class T>
-typename std::enable_if<std::is_integral<T>::value, T>::type
-byteswapOnBigEndian(T t) {
-    return byteswap(t);
+T byteswapOnLittleEndian(T t) {
+  return t;
 }
 
-} // namespace hx_sylar
+/**
+ * @brief 只在大端机器上执行byteswap, 在小端机器上什么都不做
+ */
+template <class T>
+T byteswapOnBigEndian(T t) {
+  return byteswap(t);
+}
+#else
 
-#endif //HX_SYLAR_ENDIAN_H
+/**
+ * @brief 只在小端机器上执行byteswap, 在大端机器上什么都不做
+ */
+template <class T>
+T byteswapOnLittleEndian(T t) {
+  return byteswap(t);
+}
+
+/**
+ * @brief 只在大端机器上执行byteswap, 在小端机器上什么都不做
+ */
+template <class T>
+T byteswapOnBigEndian(T t) {
+  return t;
+}
+#endif
+
+}  // namespace hx_sylar
+
+#endif

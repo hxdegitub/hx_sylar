@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 #include <cstdint>
+#include <list>
 #include <memory>
 #include <sstream>
 
@@ -52,8 +53,8 @@ auto Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
   const char* service = nullptr;
 
   if (!host.empty() && host[0] == ']') {
-    const char* endipv6 =
-        (const char*)memchr(host.c_str() + 1, ']', host.size() - 1);
+    const char* endipv6 = static_cast<const char*>(
+        memchr(host.c_str() + 1, ']', host.size() - 1));
     if (endipv6) {
       // TODO check out of range
       if (*(endipv6 + 1) == ':') {
@@ -63,7 +64,7 @@ auto Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
     }
   }
   if (node.empty()) {
-    service = (const char*)memchr(host.c_str(), ':', host.size());
+    service = static_cast<const char*>(memchr(host.c_str(), ':', host.size()));
     if (service) {
       if (!strchr(service + 1, ':')) {
         node = host.substr(0, service - host.c_str());
