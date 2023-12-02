@@ -76,15 +76,15 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o: CMakeFiles/test_hook.dir/flags.ma
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: /home/hx/hx_sylar/tests/test_hook.cc
 CMakeFiles/test_hook.dir/tests/test_hook.cc.o: CMakeFiles/test_hook.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_hook.dir/tests/test_hook.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_hook.dir/tests/test_hook.cc.o -MF CMakeFiles/test_hook.dir/tests/test_hook.cc.o.d -o CMakeFiles/test_hook.dir/tests/test_hook.cc.o -c /home/hx/hx_sylar/tests/test_hook.cc
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_hook.dir/tests/test_hook.cc.o -MF CMakeFiles/test_hook.dir/tests/test_hook.cc.o.d -o CMakeFiles/test_hook.dir/tests/test_hook.cc.o -c /home/hx/hx_sylar/tests/test_hook.cc
 
 CMakeFiles/test_hook.dir/tests/test_hook.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_hook.dir/tests/test_hook.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_hook.cc > CMakeFiles/test_hook.dir/tests/test_hook.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_hook.cc > CMakeFiles/test_hook.dir/tests/test_hook.cc.i
 
 CMakeFiles/test_hook.dir/tests/test_hook.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_hook.dir/tests/test_hook.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_hook.cc -o CMakeFiles/test_hook.dir/tests/test_hook.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_hook.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_hook.cc -o CMakeFiles/test_hook.dir/tests/test_hook.cc.s
 
 # Object files for target test_hook
 test_hook_OBJECTS = \
@@ -96,6 +96,8 @@ test_hook_EXTERNAL_OBJECTS =
 /home/hx/hx_sylar/bin/test_hook: CMakeFiles/test_hook.dir/tests/test_hook.cc.o
 /home/hx/hx_sylar/bin/test_hook: CMakeFiles/test_hook.dir/build.make
 /home/hx/hx_sylar/bin/test_hook: libhx_sylar.so
+/home/hx/hx_sylar/bin/test_hook: /usr/lib/x86_64-linux-gnu/libssl.so
+/home/hx/hx_sylar/bin/test_hook: /usr/lib/x86_64-linux-gnu/libcrypto.so
 /home/hx/hx_sylar/bin/test_hook: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
 /home/hx/hx_sylar/bin/test_hook: CMakeFiles/test_hook.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/hx/hx_sylar/bin/test_hook"

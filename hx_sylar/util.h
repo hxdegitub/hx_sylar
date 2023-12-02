@@ -15,13 +15,35 @@
 #include <vector>
 namespace hx_sylar {
 auto GetThreadId() -> pid_t;
-uint32_t GetFiberId();
+auto GetFiberId() -> uint32_t;
 void Backtrace(std::vector<std::string>& bt, int size = 64, int skip = 1);
-std::string BacktraceToString(int size = 64, int skip = 2,
-                              const std::string& prefix = "");
+auto BacktraceToString(int size = 64, int skip = 2,
+                       const std::string& prefix = "") -> std::string;
 
 auto GetCurrentMS() -> uint64_t;
 auto GetElapsedMS() -> uint64_t;
 auto GetCurrentUS() -> uint64_t;
+
+class StringUtil {
+ public:
+  static auto Format(const char* fmt, ...) -> std::string;
+  static auto Formatv(const char* fmt, va_list ap) -> std::string;
+
+  static auto UrlEncode(const std::string& str, bool space_as_plus = true)
+      -> std::string;
+  static auto UrlDecode(const std::string& str, bool space_as_plus = true)
+      -> std::string;
+
+  static auto Trim(const std::string& str,
+                   const std::string& delimit = " \t\r\n") -> std::string;
+  static auto TrimLeft(const std::string& str,
+                       const std::string& delimit = " \t\r\n") -> std::string;
+  static auto TrimRight(const std::string& str,
+                        const std::string& delimit = " \t\r\n") -> std::string;
+
+  static auto WStringToString(const std::wstring& ws) -> std::string;
+  static auto StringToWString(const std::string& s) -> std::wstring;
+};
+
 }  // namespace hx_sylar
 #endif

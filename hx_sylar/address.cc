@@ -27,7 +27,22 @@ static auto CountBytes(T value) -> uint32_t {
   }
   return result;
 }
-
+auto Address::LookupAnyIPAddress(const std::string& host, int family, int type,
+                                 int protocol) -> IPAddress::ptr {
+  std::vector<Address::ptr> result;
+  if (Lookup(result, host, family, type, protocol)) {
+    // for(auto& i : result) {
+    //     std::cout << i->toString() << std::endl;
+    // }
+    for (auto& i : result) {
+      IPAddress::ptr v = std::dynamic_pointer_cast<IPAddress>(i);
+      if (v) {
+        return v;
+      }
+    }
+  }
+  return nullptr;
+}
 auto Address::LookupAny(const std::string& host, int family, int type,
                         int protocol) -> Address::ptr {
   std::vector<Address::ptr> result;

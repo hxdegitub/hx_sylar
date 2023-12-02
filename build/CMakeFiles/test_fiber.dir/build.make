@@ -76,15 +76,15 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: CMakeFiles/test_fiber.dir/flags
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fiber.cc
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: CMakeFiles/test_fiber.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -MF CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o.d -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/hx/hx_sylar/tests/test_fiber.cc
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -MF CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o.d -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o -c /home/hx/hx_sylar/tests/test_fiber.cc
 
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_fiber.cc > CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_fiber.cc > CMakeFiles/test_fiber.dir/tests/test_fiber.cc.i
 
 CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_fiber.cc -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_fiber.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_fiber.cc -o CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 
 # Object files for target test_fiber
 test_fiber_OBJECTS = \
@@ -96,6 +96,8 @@ test_fiber_EXTERNAL_OBJECTS =
 /home/hx/hx_sylar/bin/test_fiber: CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o
 /home/hx/hx_sylar/bin/test_fiber: CMakeFiles/test_fiber.dir/build.make
 /home/hx/hx_sylar/bin/test_fiber: libhx_sylar.so
+/home/hx/hx_sylar/bin/test_fiber: /usr/lib/x86_64-linux-gnu/libssl.so
+/home/hx/hx_sylar/bin/test_fiber: /usr/lib/x86_64-linux-gnu/libcrypto.so
 /home/hx/hx_sylar/bin/test_fiber: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
 /home/hx/hx_sylar/bin/test_fiber: CMakeFiles/test_fiber.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/hx/hx_sylar/bin/test_fiber"

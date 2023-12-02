@@ -3,7 +3,6 @@
 
 #include <cstdarg>
 #include <cstdint>
-
 #include <fstream>
 #include <list>
 #include <map>
@@ -92,10 +91,6 @@ class LogLevel {
 
   static auto ToString(LogLevel::Level level) -> const char*;
 
-  /**
-   * @brief 将文本转换成日志级别
-   * @param[in] str 日志级别文本
-   */
   static auto FromString(const std::string& str) -> LogLevel::Level;
 };
 
@@ -105,10 +100,10 @@ class LogLevel {
 class LogEvent {
  public:
   using ptr = std::shared_ptr<LogEvent>;
-  LogEvent() =default;
+  LogEvent() = default;
   LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level,
            const char* file, int32_t line, uint32_t elapse, uint32_t thread_id,
-           uint32_t fiber_id, uint64_t time, std::string  thread_name);
+           uint32_t fiber_id, uint64_t time, std::string thread_name);
 
   const char* getFile() const { return m_file; }
 
@@ -123,33 +118,19 @@ class LogEvent {
   uint64_t getTime() const { return m_time; }
 
   const std::string& getThreadName() const { return m_threadName; }
-  /**
-   * @brief 返回日志内容
-   */
+
   std::string getContent() const { return m_ss.str(); }
-  /**
-   * @brief 返回日志器
-   */
+
   std::shared_ptr<Logger> getLogger() const { return m_logger; }
 
-  /**
-   * @brief 返回日志级别
-   */
   LogLevel::Level getLevel() const { return m_level; }
 
   /**
    * @brief 返回日志内容字符串流
    */
   std::stringstream& getSS() { return m_ss; }
-
-  /**
-   * @brief 格式化写入日志内容
-   */
   void format(const char* fmt, ...);
 
-  /**
-   * @brief 格式化写入日志内容
-   */
   void format(const char* fmt, va_list al);
 
  private:
@@ -196,9 +177,6 @@ class LogEventWrap {
   std::stringstream m_ss;
 };
 
-/**
- * @brief 日志格式化
- */
 class LogFormatter {
  public:
   typedef std::shared_ptr<LogFormatter> ptr;
@@ -221,12 +199,13 @@ class LogFormatter {
    *
    *  默认格式 "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
    */
-  explicit LogFormatter(std::string  pattern);
+  explicit LogFormatter(std::string pattern);
 
   auto format(const std::shared_ptr<Logger>& logger, LogLevel::Level level,
-                     const LogEvent::ptr& event) -> std::string;
+              const LogEvent::ptr& event) -> std::string;
   auto format(std::ostream& ofs, const std::shared_ptr<Logger>& logger,
-                       LogLevel::Level level, const LogEvent::ptr& event) -> std::ostream& ;
+              LogLevel::Level level, const LogEvent::ptr& event)
+      -> std::ostream&;
 
  public:
   /**
@@ -253,7 +232,7 @@ class LogFormatter {
   /**
    * @brief 返回日志模板
    */
-  auto getPattern() const ->const std::string& { return m_pattern; }
+  auto getPattern() const -> const std::string& { return m_pattern; }
 
  private:
   /// 日志格式模板
@@ -284,14 +263,8 @@ class LogAppender {
 
   LogFormatter::ptr getFormatter();
 
-  /**
-   * @brief 获取日志级别
-   */
   LogLevel::Level getLevel() const { return m_level; }
 
-  /**
-   * @brief 设置日志级别
-   */
   void setLevel(LogLevel::Level val) { m_level = val; }
 
  protected:
@@ -302,16 +275,13 @@ class LogAppender {
   LogFormatter::ptr m_formatter;
 };
 
-/**
- * @brief 日志器
- */
 class Logger : public std::enable_shared_from_this<Logger> {
   friend class LoggerManager;
 
  public:
   using ptr = std::shared_ptr<Logger>;
   using MutexType = Spinlock;
-  explicit Logger(std::string  name = "root");
+  explicit Logger(std::string name = "root");
 
   void log(LogLevel::Level level, const LogEvent::ptr& event);
   void debug(const LogEvent::ptr& event);
@@ -353,9 +323,6 @@ class Logger : public std::enable_shared_from_this<Logger> {
   Logger::ptr m_root;
 };
 
-/**
- * @brief 输出到控制台的Appender
- */
 class StdoutLogAppender : public LogAppender {
  public:
   using ptr = std::shared_ptr<StdoutLogAppender>;
@@ -367,7 +334,7 @@ class StdoutLogAppender : public LogAppender {
 class FileLogAppender : public LogAppender {
  public:
   using ptr = std::shared_ptr<FileLogAppender>;
-  explicit FileLogAppender(std::string  filename);
+  explicit FileLogAppender(std::string filename);
   void log(Logger::ptr logger, LogLevel::Level level,
            LogEvent::ptr event) override;
   std::string toYamlString() override;
@@ -375,17 +342,12 @@ class FileLogAppender : public LogAppender {
   bool reopen();
 
  private:
-  /// 文件路径
   std::string m_filename;
-  /// 文件流
   std::ofstream m_filestream;
   /// 上次重新打开时间
   uint64_t m_lastTime = 0;
 };
 
-/**
- * @brief 日志器管理类
- */
 class LoggerManager {
  public:
   using MutexType = Spinlock;

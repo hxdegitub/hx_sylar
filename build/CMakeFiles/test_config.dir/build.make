@@ -76,15 +76,15 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o: CMakeFiles/test_config.dir/fl
 CMakeFiles/test_config.dir/tests/test_config.cc.o: /home/hx/hx_sylar/tests/test_config.cc
 CMakeFiles/test_config.dir/tests/test_config.cc.o: CMakeFiles/test_config.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_config.dir/tests/test_config.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_config.dir/tests/test_config.cc.o -MF CMakeFiles/test_config.dir/tests/test_config.cc.o.d -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/hx/hx_sylar/tests/test_config.cc
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_config.dir/tests/test_config.cc.o -MF CMakeFiles/test_config.dir/tests/test_config.cc.o.d -o CMakeFiles/test_config.dir/tests/test_config.cc.o -c /home/hx/hx_sylar/tests/test_config.cc
 
 CMakeFiles/test_config.dir/tests/test_config.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_config.dir/tests/test_config.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_config.cc > CMakeFiles/test_config.dir/tests/test_config.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_config.cc > CMakeFiles/test_config.dir/tests/test_config.cc.i
 
 CMakeFiles/test_config.dir/tests/test_config.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_config.dir/tests/test_config.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_config.cc -o CMakeFiles/test_config.dir/tests/test_config.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_config.cc -o CMakeFiles/test_config.dir/tests/test_config.cc.s
 
 # Object files for target test_config
 test_config_OBJECTS = \
@@ -96,6 +96,8 @@ test_config_EXTERNAL_OBJECTS =
 /home/hx/hx_sylar/bin/test_config: CMakeFiles/test_config.dir/tests/test_config.cc.o
 /home/hx/hx_sylar/bin/test_config: CMakeFiles/test_config.dir/build.make
 /home/hx/hx_sylar/bin/test_config: libhx_sylar.so
+/home/hx/hx_sylar/bin/test_config: /usr/lib/x86_64-linux-gnu/libssl.so
+/home/hx/hx_sylar/bin/test_config: /usr/lib/x86_64-linux-gnu/libcrypto.so
 /home/hx/hx_sylar/bin/test_config: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
 /home/hx/hx_sylar/bin/test_config: CMakeFiles/test_config.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/hx/hx_sylar/bin/test_config"

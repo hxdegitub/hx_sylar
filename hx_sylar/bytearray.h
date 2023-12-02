@@ -1,4 +1,4 @@
-#ifndef __HX_SYLAR_BYteARRAY_H__
+#ifndef __HX_SYLAR_BYTEARRAY_H__
 #define __HX_SYLAR_BYTEARRAY_H__
 
 #include <bits/types/struct_iovec.h>

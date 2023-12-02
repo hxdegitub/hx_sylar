@@ -25,7 +25,7 @@ static void ListAllMember(
                            << node;
     return;
   }
-  output.push_back(std::make_pair(prefix, node));
+  output.emplace_back(prefix, node);
   if (node.IsMap()) {
     for (auto it = node.begin(); it != node.end(); ++it) {
       ListAllMember(prefix.empty() ? it->first.Scalar()
@@ -92,10 +92,10 @@ static hx_sylar::Mutex s_mutex;
 void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
   RWMutexType::ReadLock lock(GetMutex());
   ConfigVarMap& m = GetDatas();
-  for (auto & it : m) {
+  for (auto& it : m) {
     cb(it.second);
   }
 }
-void Config::LoadFromConfDir(const std::string &path, bool force) {}
+void Config::LoadFromConfDir(const std::string& path, bool force) {}
 
 }  // namespace hx_sylar

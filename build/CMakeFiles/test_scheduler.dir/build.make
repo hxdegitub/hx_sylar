@@ -76,15 +76,15 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: CMakeFiles/test_schedul
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: /home/hx/hx_sylar/tests/test_scheduler.cc
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: CMakeFiles/test_scheduler.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -MF CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o.d -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -c /home/hx/hx_sylar/tests/test_scheduler.cc
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -MF CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o.d -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o -c /home/hx/hx_sylar/tests/test_scheduler.cc
 
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_scheduler.cc > CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hx/hx_sylar/tests/test_scheduler.cc > CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
 
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_scheduler.cc -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+	/usr/bin/clang++ $(CXX_DEFINES) -D__FILE__=\"tests/test_scheduler.cc\" $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hx/hx_sylar/tests/test_scheduler.cc -o CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
 
 # Object files for target test_scheduler
 test_scheduler_OBJECTS = \
@@ -96,6 +96,8 @@ test_scheduler_EXTERNAL_OBJECTS =
 /home/hx/hx_sylar/bin/test_scheduler: CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
 /home/hx/hx_sylar/bin/test_scheduler: CMakeFiles/test_scheduler.dir/build.make
 /home/hx/hx_sylar/bin/test_scheduler: libhx_sylar.so
+/home/hx/hx_sylar/bin/test_scheduler: /usr/lib/x86_64-linux-gnu/libssl.so
+/home/hx/hx_sylar/bin/test_scheduler: /usr/lib/x86_64-linux-gnu/libcrypto.so
 /home/hx/hx_sylar/bin/test_scheduler: /usr/lib/x86_64-linux-gnu/libyaml-cpp.so
 /home/hx/hx_sylar/bin/test_scheduler: CMakeFiles/test_scheduler.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hx/hx_sylar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/hx/hx_sylar/bin/test_scheduler"

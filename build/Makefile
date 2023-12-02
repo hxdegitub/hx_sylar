@@ -236,6 +236,58 @@ test_hook/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
 .PHONY : test_hook/fast
 
+#=============================================================================
+# Target rules for targets named test_bytearray
+
+# Build rule for target.
+test_bytearray: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_bytearray
+.PHONY : test_bytearray
+
+# fast build rule for target.
+test_bytearray/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
+.PHONY : test_bytearray/fast
+
+#=============================================================================
+# Target rules for targets named test_http
+
+# Build rule for target.
+test_http: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_http
+.PHONY : test_http
+
+# fast build rule for target.
+test_http/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/build
+.PHONY : test_http/fast
+
+#=============================================================================
+# Target rules for targets named test_http_parser
+
+# Build rule for target.
+test_http_parser: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_http_parser
+.PHONY : test_http_parser
+
+# fast build rule for target.
+test_http_parser/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
+.PHONY : test_http_parser/fast
+
+#=============================================================================
+# Target rules for targets named test_http_server
+
+# Build rule for target.
+test_http_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_http_server
+.PHONY : test_http_server
+
+# fast build rule for target.
+test_http_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/build
+.PHONY : test_http_server/fast
+
 hx_sylar/address.o: hx_sylar/address.cc.o
 .PHONY : hx_sylar/address.o
 
@@ -259,6 +311,30 @@ hx_sylar/address.s: hx_sylar/address.cc.s
 hx_sylar/address.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/address.cc.s
 .PHONY : hx_sylar/address.cc.s
+
+hx_sylar/bytearray.o: hx_sylar/bytearray.cc.o
+.PHONY : hx_sylar/bytearray.o
+
+# target to build an object file
+hx_sylar/bytearray.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/bytearray.cc.o
+.PHONY : hx_sylar/bytearray.cc.o
+
+hx_sylar/bytearray.i: hx_sylar/bytearray.cc.i
+.PHONY : hx_sylar/bytearray.i
+
+# target to preprocess a source file
+hx_sylar/bytearray.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/bytearray.cc.i
+.PHONY : hx_sylar/bytearray.cc.i
+
+hx_sylar/bytearray.s: hx_sylar/bytearray.cc.s
+.PHONY : hx_sylar/bytearray.s
+
+# target to generate assembly for a file
+hx_sylar/bytearray.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/bytearray.cc.s
+.PHONY : hx_sylar/bytearray.cc.s
 
 hx_sylar/config.o: hx_sylar/config.cc.o
 .PHONY : hx_sylar/config.o
@@ -355,6 +431,222 @@ hx_sylar/hook.s: hx_sylar/hook.cc.s
 hx_sylar/hook.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/hook.cc.s
 .PHONY : hx_sylar/hook.cc.s
+
+hx_sylar/http/http.o: hx_sylar/http/http.cc.o
+.PHONY : hx_sylar/http/http.o
+
+# target to build an object file
+hx_sylar/http/http.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http.cc.o
+.PHONY : hx_sylar/http/http.cc.o
+
+hx_sylar/http/http.i: hx_sylar/http/http.cc.i
+.PHONY : hx_sylar/http/http.i
+
+# target to preprocess a source file
+hx_sylar/http/http.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http.cc.i
+.PHONY : hx_sylar/http/http.cc.i
+
+hx_sylar/http/http.s: hx_sylar/http/http.cc.s
+.PHONY : hx_sylar/http/http.s
+
+# target to generate assembly for a file
+hx_sylar/http/http.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http.cc.s
+.PHONY : hx_sylar/http/http.cc.s
+
+hx_sylar/http/http11_parser.o: hx_sylar/http/http11_parser.cc.o
+.PHONY : hx_sylar/http/http11_parser.o
+
+# target to build an object file
+hx_sylar/http/http11_parser.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http11_parser.cc.o
+.PHONY : hx_sylar/http/http11_parser.cc.o
+
+hx_sylar/http/http11_parser.i: hx_sylar/http/http11_parser.cc.i
+.PHONY : hx_sylar/http/http11_parser.i
+
+# target to preprocess a source file
+hx_sylar/http/http11_parser.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http11_parser.cc.i
+.PHONY : hx_sylar/http/http11_parser.cc.i
+
+hx_sylar/http/http11_parser.s: hx_sylar/http/http11_parser.cc.s
+.PHONY : hx_sylar/http/http11_parser.s
+
+# target to generate assembly for a file
+hx_sylar/http/http11_parser.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http11_parser.cc.s
+.PHONY : hx_sylar/http/http11_parser.cc.s
+
+hx_sylar/http/http_connection.o: hx_sylar/http/http_connection.cc.o
+.PHONY : hx_sylar/http/http_connection.o
+
+# target to build an object file
+hx_sylar/http/http_connection.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_connection.cc.o
+.PHONY : hx_sylar/http/http_connection.cc.o
+
+hx_sylar/http/http_connection.i: hx_sylar/http/http_connection.cc.i
+.PHONY : hx_sylar/http/http_connection.i
+
+# target to preprocess a source file
+hx_sylar/http/http_connection.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_connection.cc.i
+.PHONY : hx_sylar/http/http_connection.cc.i
+
+hx_sylar/http/http_connection.s: hx_sylar/http/http_connection.cc.s
+.PHONY : hx_sylar/http/http_connection.s
+
+# target to generate assembly for a file
+hx_sylar/http/http_connection.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_connection.cc.s
+.PHONY : hx_sylar/http/http_connection.cc.s
+
+hx_sylar/http/http_parser.o: hx_sylar/http/http_parser.cc.o
+.PHONY : hx_sylar/http/http_parser.o
+
+# target to build an object file
+hx_sylar/http/http_parser.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_parser.cc.o
+.PHONY : hx_sylar/http/http_parser.cc.o
+
+hx_sylar/http/http_parser.i: hx_sylar/http/http_parser.cc.i
+.PHONY : hx_sylar/http/http_parser.i
+
+# target to preprocess a source file
+hx_sylar/http/http_parser.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_parser.cc.i
+.PHONY : hx_sylar/http/http_parser.cc.i
+
+hx_sylar/http/http_parser.s: hx_sylar/http/http_parser.cc.s
+.PHONY : hx_sylar/http/http_parser.s
+
+# target to generate assembly for a file
+hx_sylar/http/http_parser.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_parser.cc.s
+.PHONY : hx_sylar/http/http_parser.cc.s
+
+hx_sylar/http/http_server.o: hx_sylar/http/http_server.cc.o
+.PHONY : hx_sylar/http/http_server.o
+
+# target to build an object file
+hx_sylar/http/http_server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.o
+.PHONY : hx_sylar/http/http_server.cc.o
+
+hx_sylar/http/http_server.i: hx_sylar/http/http_server.cc.i
+.PHONY : hx_sylar/http/http_server.i
+
+# target to preprocess a source file
+hx_sylar/http/http_server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.i
+.PHONY : hx_sylar/http/http_server.cc.i
+
+hx_sylar/http/http_server.s: hx_sylar/http/http_server.cc.s
+.PHONY : hx_sylar/http/http_server.s
+
+# target to generate assembly for a file
+hx_sylar/http/http_server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.s
+.PHONY : hx_sylar/http/http_server.cc.s
+
+hx_sylar/http/http_session.o: hx_sylar/http/http_session.cc.o
+.PHONY : hx_sylar/http/http_session.o
+
+# target to build an object file
+hx_sylar/http/http_session.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_session.cc.o
+.PHONY : hx_sylar/http/http_session.cc.o
+
+hx_sylar/http/http_session.i: hx_sylar/http/http_session.cc.i
+.PHONY : hx_sylar/http/http_session.i
+
+# target to preprocess a source file
+hx_sylar/http/http_session.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_session.cc.i
+.PHONY : hx_sylar/http/http_session.cc.i
+
+hx_sylar/http/http_session.s: hx_sylar/http/http_session.cc.s
+.PHONY : hx_sylar/http/http_session.s
+
+# target to generate assembly for a file
+hx_sylar/http/http_session.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/http_session.cc.s
+.PHONY : hx_sylar/http/http_session.cc.s
+
+hx_sylar/http/httpclient_parser.o: hx_sylar/http/httpclient_parser.cc.o
+.PHONY : hx_sylar/http/httpclient_parser.o
+
+# target to build an object file
+hx_sylar/http/httpclient_parser.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/httpclient_parser.cc.o
+.PHONY : hx_sylar/http/httpclient_parser.cc.o
+
+hx_sylar/http/httpclient_parser.i: hx_sylar/http/httpclient_parser.cc.i
+.PHONY : hx_sylar/http/httpclient_parser.i
+
+# target to preprocess a source file
+hx_sylar/http/httpclient_parser.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/httpclient_parser.cc.i
+.PHONY : hx_sylar/http/httpclient_parser.cc.i
+
+hx_sylar/http/httpclient_parser.s: hx_sylar/http/httpclient_parser.cc.s
+.PHONY : hx_sylar/http/httpclient_parser.s
+
+# target to generate assembly for a file
+hx_sylar/http/httpclient_parser.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/httpclient_parser.cc.s
+.PHONY : hx_sylar/http/httpclient_parser.cc.s
+
+hx_sylar/http/servlet.o: hx_sylar/http/servlet.cc.o
+.PHONY : hx_sylar/http/servlet.o
+
+# target to build an object file
+hx_sylar/http/servlet.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/servlet.cc.o
+.PHONY : hx_sylar/http/servlet.cc.o
+
+hx_sylar/http/servlet.i: hx_sylar/http/servlet.cc.i
+.PHONY : hx_sylar/http/servlet.i
+
+# target to preprocess a source file
+hx_sylar/http/servlet.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/servlet.cc.i
+.PHONY : hx_sylar/http/servlet.cc.i
+
+hx_sylar/http/servlet.s: hx_sylar/http/servlet.cc.s
+.PHONY : hx_sylar/http/servlet.s
+
+# target to generate assembly for a file
+hx_sylar/http/servlet.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/servlet.cc.s
+.PHONY : hx_sylar/http/servlet.cc.s
+
+hx_sylar/http/tcp_server.o: hx_sylar/http/tcp_server.cc.o
+.PHONY : hx_sylar/http/tcp_server.o
+
+# target to build an object file
+hx_sylar/http/tcp_server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/tcp_server.cc.o
+.PHONY : hx_sylar/http/tcp_server.cc.o
+
+hx_sylar/http/tcp_server.i: hx_sylar/http/tcp_server.cc.i
+.PHONY : hx_sylar/http/tcp_server.i
+
+# target to preprocess a source file
+hx_sylar/http/tcp_server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/tcp_server.cc.i
+.PHONY : hx_sylar/http/tcp_server.cc.i
+
+hx_sylar/http/tcp_server.s: hx_sylar/http/tcp_server.cc.s
+.PHONY : hx_sylar/http/tcp_server.s
+
+# target to generate assembly for a file
+hx_sylar/http/tcp_server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/http/tcp_server.cc.s
+.PHONY : hx_sylar/http/tcp_server.cc.s
 
 hx_sylar/iomanager.o: hx_sylar/iomanager.cc.o
 .PHONY : hx_sylar/iomanager.o
@@ -476,6 +768,54 @@ hx_sylar/socket.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.s
 .PHONY : hx_sylar/socket.cc.s
 
+hx_sylar/stream.o: hx_sylar/stream.cc.o
+.PHONY : hx_sylar/stream.o
+
+# target to build an object file
+hx_sylar/stream.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream.cc.o
+.PHONY : hx_sylar/stream.cc.o
+
+hx_sylar/stream.i: hx_sylar/stream.cc.i
+.PHONY : hx_sylar/stream.i
+
+# target to preprocess a source file
+hx_sylar/stream.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream.cc.i
+.PHONY : hx_sylar/stream.cc.i
+
+hx_sylar/stream.s: hx_sylar/stream.cc.s
+.PHONY : hx_sylar/stream.s
+
+# target to generate assembly for a file
+hx_sylar/stream.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream.cc.s
+.PHONY : hx_sylar/stream.cc.s
+
+hx_sylar/stream/socket_stream.o: hx_sylar/stream/socket_stream.cc.o
+.PHONY : hx_sylar/stream/socket_stream.o
+
+# target to build an object file
+hx_sylar/stream/socket_stream.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream/socket_stream.cc.o
+.PHONY : hx_sylar/stream/socket_stream.cc.o
+
+hx_sylar/stream/socket_stream.i: hx_sylar/stream/socket_stream.cc.i
+.PHONY : hx_sylar/stream/socket_stream.i
+
+# target to preprocess a source file
+hx_sylar/stream/socket_stream.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream/socket_stream.cc.i
+.PHONY : hx_sylar/stream/socket_stream.cc.i
+
+hx_sylar/stream/socket_stream.s: hx_sylar/stream/socket_stream.cc.s
+.PHONY : hx_sylar/stream/socket_stream.s
+
+# target to generate assembly for a file
+hx_sylar/stream/socket_stream.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/stream/socket_stream.cc.s
+.PHONY : hx_sylar/stream/socket_stream.cc.s
+
 hx_sylar/thread.o: hx_sylar/thread.cc.o
 .PHONY : hx_sylar/thread.o
 
@@ -572,6 +912,30 @@ tests/test.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/test.cc.s
 .PHONY : tests/test.cc.s
 
+tests/test_bytearray.o: tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.o
+
+# target to build an object file
+tests/test_bytearray.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.o
+.PHONY : tests/test_bytearray.cc.o
+
+tests/test_bytearray.i: tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.i
+
+# target to preprocess a source file
+tests/test_bytearray.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.i
+.PHONY : tests/test_bytearray.cc.i
+
+tests/test_bytearray.s: tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.s
+
+# target to generate assembly for a file
+tests/test_bytearray.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/tests/test_bytearray.cc.s
+.PHONY : tests/test_bytearray.cc.s
+
 tests/test_config.o: tests/test_config.cc.o
 .PHONY : tests/test_config.o
 
@@ -643,6 +1007,78 @@ tests/test_hook.s: tests/test_hook.cc.s
 tests/test_hook.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
 .PHONY : tests/test_hook.cc.s
+
+tests/test_http.o: tests/test_http.cc.o
+.PHONY : tests/test_http.o
+
+# target to build an object file
+tests/test_http.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.o
+.PHONY : tests/test_http.cc.o
+
+tests/test_http.i: tests/test_http.cc.i
+.PHONY : tests/test_http.i
+
+# target to preprocess a source file
+tests/test_http.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.i
+.PHONY : tests/test_http.cc.i
+
+tests/test_http.s: tests/test_http.cc.s
+.PHONY : tests/test_http.s
+
+# target to generate assembly for a file
+tests/test_http.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cc.s
+.PHONY : tests/test_http.cc.s
+
+tests/test_http_parser.o: tests/test_http_parser.cc.o
+.PHONY : tests/test_http_parser.o
+
+# target to build an object file
+tests/test_http_parser.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.o
+.PHONY : tests/test_http_parser.cc.o
+
+tests/test_http_parser.i: tests/test_http_parser.cc.i
+.PHONY : tests/test_http_parser.i
+
+# target to preprocess a source file
+tests/test_http_parser.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.i
+.PHONY : tests/test_http_parser.cc.i
+
+tests/test_http_parser.s: tests/test_http_parser.cc.s
+.PHONY : tests/test_http_parser.s
+
+# target to generate assembly for a file
+tests/test_http_parser.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cc.s
+.PHONY : tests/test_http_parser.cc.s
+
+tests/test_http_server.o: tests/test_http_server.cc.o
+.PHONY : tests/test_http_server.o
+
+# target to build an object file
+tests/test_http_server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o
+.PHONY : tests/test_http_server.cc.o
+
+tests/test_http_server.i: tests/test_http_server.cc.i
+.PHONY : tests/test_http_server.i
+
+# target to preprocess a source file
+tests/test_http_server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.i
+.PHONY : tests/test_http_server.cc.i
+
+tests/test_http_server.s: tests/test_http_server.cc.s
+.PHONY : tests/test_http_server.s
+
+# target to generate assembly for a file
+tests/test_http_server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_server.dir/build.make CMakeFiles/test_http_server.dir/tests/test_http_server.cc.s
+.PHONY : tests/test_http_server.cc.s
 
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 .PHONY : tests/test_iomanager.o
@@ -750,9 +1186,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... hx_sylar"
 	@echo "... test"
+	@echo "... test_bytearray"
 	@echo "... test_config"
 	@echo "... test_fiber"
 	@echo "... test_hook"
+	@echo "... test_http"
+	@echo "... test_http_parser"
+	@echo "... test_http_server"
 	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_thread"
@@ -760,6 +1200,9 @@ help:
 	@echo "... hx_sylar/address.o"
 	@echo "... hx_sylar/address.i"
 	@echo "... hx_sylar/address.s"
+	@echo "... hx_sylar/bytearray.o"
+	@echo "... hx_sylar/bytearray.i"
+	@echo "... hx_sylar/bytearray.s"
 	@echo "... hx_sylar/config.o"
 	@echo "... hx_sylar/config.i"
 	@echo "... hx_sylar/config.s"
@@ -772,6 +1215,33 @@ help:
 	@echo "... hx_sylar/hook.o"
 	@echo "... hx_sylar/hook.i"
 	@echo "... hx_sylar/hook.s"
+	@echo "... hx_sylar/http/http.o"
+	@echo "... hx_sylar/http/http.i"
+	@echo "... hx_sylar/http/http.s"
+	@echo "... hx_sylar/http/http11_parser.o"
+	@echo "... hx_sylar/http/http11_parser.i"
+	@echo "... hx_sylar/http/http11_parser.s"
+	@echo "... hx_sylar/http/http_connection.o"
+	@echo "... hx_sylar/http/http_connection.i"
+	@echo "... hx_sylar/http/http_connection.s"
+	@echo "... hx_sylar/http/http_parser.o"
+	@echo "... hx_sylar/http/http_parser.i"
+	@echo "... hx_sylar/http/http_parser.s"
+	@echo "... hx_sylar/http/http_server.o"
+	@echo "... hx_sylar/http/http_server.i"
+	@echo "... hx_sylar/http/http_server.s"
+	@echo "... hx_sylar/http/http_session.o"
+	@echo "... hx_sylar/http/http_session.i"
+	@echo "... hx_sylar/http/http_session.s"
+	@echo "... hx_sylar/http/httpclient_parser.o"
+	@echo "... hx_sylar/http/httpclient_parser.i"
+	@echo "... hx_sylar/http/httpclient_parser.s"
+	@echo "... hx_sylar/http/servlet.o"
+	@echo "... hx_sylar/http/servlet.i"
+	@echo "... hx_sylar/http/servlet.s"
+	@echo "... hx_sylar/http/tcp_server.o"
+	@echo "... hx_sylar/http/tcp_server.i"
+	@echo "... hx_sylar/http/tcp_server.s"
 	@echo "... hx_sylar/iomanager.o"
 	@echo "... hx_sylar/iomanager.i"
 	@echo "... hx_sylar/iomanager.s"
@@ -787,6 +1257,12 @@ help:
 	@echo "... hx_sylar/socket.o"
 	@echo "... hx_sylar/socket.i"
 	@echo "... hx_sylar/socket.s"
+	@echo "... hx_sylar/stream.o"
+	@echo "... hx_sylar/stream.i"
+	@echo "... hx_sylar/stream.s"
+	@echo "... hx_sylar/stream/socket_stream.o"
+	@echo "... hx_sylar/stream/socket_stream.i"
+	@echo "... hx_sylar/stream/socket_stream.s"
 	@echo "... hx_sylar/thread.o"
 	@echo "... hx_sylar/thread.i"
 	@echo "... hx_sylar/thread.s"
@@ -799,6 +1275,9 @@ help:
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
+	@echo "... tests/test_bytearray.o"
+	@echo "... tests/test_bytearray.i"
+	@echo "... tests/test_bytearray.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
@@ -808,6 +1287,15 @@ help:
 	@echo "... tests/test_hook.o"
 	@echo "... tests/test_hook.i"
 	@echo "... tests/test_hook.s"
+	@echo "... tests/test_http.o"
+	@echo "... tests/test_http.i"
+	@echo "... tests/test_http.s"
+	@echo "... tests/test_http_parser.o"
+	@echo "... tests/test_http_parser.i"
+	@echo "... tests/test_http_parser.s"
+	@echo "... tests/test_http_server.o"
+	@echo "... tests/test_http_server.i"
+	@echo "... tests/test_http_server.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"
