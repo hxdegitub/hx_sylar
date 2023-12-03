@@ -32,6 +32,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/hx/hx_sylar/hx_sylar/stream/socket_stream.cc" "CMakeFiles/hx_sylar.dir/hx_sylar/stream/socket_stream.cc.o" "gcc" "CMakeFiles/hx_sylar.dir/hx_sylar/stream/socket_stream.cc.o.d"
   "/home/hx/hx_sylar/hx_sylar/thread.cc" "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o" "gcc" "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o.d"
   "/home/hx/hx_sylar/hx_sylar/timer.cc" "CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.o" "gcc" "CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.o.d"
+  "/home/hx/hx_sylar/hx_sylar/uri.cc" "CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o" "gcc" "CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o.d"
   "/home/hx/hx_sylar/hx_sylar/util.cc" "CMakeFiles/hx_sylar.dir/hx_sylar/util.cc.o" "gcc" "CMakeFiles/hx_sylar.dir/hx_sylar/util.cc.o.d"
   )
 

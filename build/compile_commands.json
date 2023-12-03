@@ -151,6 +151,12 @@
 },
 {
   "directory": "/home/hx/hx_sylar/build",
+  "command": "/usr/bin/clang++ -Dhx_sylar_EXPORTS -D__FILE__=\\\"hx_sylar/uri.cc\\\" -I/home/hx/hx_sylar/.   -O0  -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -fPIC -o CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o -c /home/hx/hx_sylar/hx_sylar/uri.cc",
+  "file": "/home/hx/hx_sylar/hx_sylar/uri.cc",
+  "output": "CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o"
+},
+{
+  "directory": "/home/hx/hx_sylar/build",
   "command": "/usr/bin/clang++  -D__FILE__=\\\"tests/test.cc\\\" -I/home/hx/hx_sylar/.   -O0  -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined  -g -o CMakeFiles/test.dir/tests/test.cc.o -c /home/hx/hx_sylar/tests/test.cc",
   "file": "/home/hx/hx_sylar/tests/test.cc",
   "output": "CMakeFiles/test.dir/tests/test.cc.o"

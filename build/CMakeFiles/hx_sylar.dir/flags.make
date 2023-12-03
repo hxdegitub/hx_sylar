@@ -18,7 +18,7 @@ CXX_FLAGS =   -O0  -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-fu
 
 # Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/log.cc.o_DEFINES = __FILE__="hx_sylar/log.cc"
 
-# Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/mutex.cc.o_DEFINES = __FILE__="hx_sylar/mutex.cc"
+# Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/mutex.cc.o_DEFINES = __FILE__="hx_sylar/mutex.cc";__FILE__="hx_sylar/mutex.cc"
 
 # Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/scheduler.cc.o_DEFINES = __FILE__="hx_sylar/scheduler.cc"
 
@@ -57,4 +57,6 @@ CXX_FLAGS =   -O0  -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-fu
 # Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/http/servlet.cc.o_DEFINES = __FILE__="hx_sylar/http/servlet.cc"
 
 # Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/http/http_connection.cc.o_DEFINES = __FILE__="hx_sylar/http/http_connection.cc"
+
+# Custom defines: CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o_DEFINES = __FILE__="hx_sylar/uri.cc"
 

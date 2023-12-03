@@ -47,6 +47,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/hx_sylar.dir/hx_sylar/thread.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.o.d"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o"
+  "CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o.d"
   "CMakeFiles/hx_sylar.dir/hx_sylar/util.cc.o"
   "CMakeFiles/hx_sylar.dir/hx_sylar/util.cc.o.d"
   "libhx_sylar.pdb"

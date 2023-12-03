@@ -848,6 +848,7 @@ CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/thread \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/std_thread.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/this_thread_sleep.h \
+  /home/hx/hx_sylar/./hx_sylar/mutex.h \
   /home/hx/hx_sylar/./hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/./hx_sylar/util.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cxxabi.h \
@@ -926,7 +927,6 @@ CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.o: \
   /home/hx/hx_sylar/hx_sylar/http/http.h \
   /home/hx/hx_sylar/./hx_sylar/stream/socket_stream.h \
   /home/hx/hx_sylar/./hx_sylar/bytearray.h \
-  /home/hx/hx_sylar/./hx_sylar/mutex.h \
   /home/hx/hx_sylar/./hx_sylar/socket.h \
   /home/hx/hx_sylar/./hx_sylar/stream.h \
   /home/hx/hx_sylar/./hx_sylar/http/tcp_server.h

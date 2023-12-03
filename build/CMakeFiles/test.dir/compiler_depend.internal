@@ -4,6 +4,7 @@
 CMakeFiles/test.dir/tests/test.cc.o
  /home/hx/hx_sylar/tests/test.cc
  /home/hx/hx_sylar/hx_sylar/log.h
+ /home/hx/hx_sylar/hx_sylar/mutex.h
  /home/hx/hx_sylar/hx_sylar/noncopyable.h
  /home/hx/hx_sylar/hx_sylar/singleton.h
  /home/hx/hx_sylar/hx_sylar/thread.h

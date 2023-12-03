@@ -864,6 +864,30 @@ hx_sylar/timer.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/timer.cc.s
 .PHONY : hx_sylar/timer.cc.s
 
+hx_sylar/uri.o: hx_sylar/uri.cc.o
+.PHONY : hx_sylar/uri.o
+
+# target to build an object file
+hx_sylar/uri.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.o
+.PHONY : hx_sylar/uri.cc.o
+
+hx_sylar/uri.i: hx_sylar/uri.cc.i
+.PHONY : hx_sylar/uri.i
+
+# target to preprocess a source file
+hx_sylar/uri.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.i
+.PHONY : hx_sylar/uri.cc.i
+
+hx_sylar/uri.s: hx_sylar/uri.cc.s
+.PHONY : hx_sylar/uri.s
+
+# target to generate assembly for a file
+hx_sylar/uri.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hx_sylar.dir/build.make CMakeFiles/hx_sylar.dir/hx_sylar/uri.cc.s
+.PHONY : hx_sylar/uri.cc.s
+
 hx_sylar/util.o: hx_sylar/util.cc.o
 .PHONY : hx_sylar/util.o
 
@@ -1269,6 +1293,9 @@ help:
 	@echo "... hx_sylar/timer.o"
 	@echo "... hx_sylar/timer.i"
 	@echo "... hx_sylar/timer.s"
+	@echo "... hx_sylar/uri.o"
+	@echo "... hx_sylar/uri.i"
+	@echo "... hx_sylar/uri.s"
 	@echo "... hx_sylar/util.o"
 	@echo "... hx_sylar/util.i"
 	@echo "... hx_sylar/util.s"

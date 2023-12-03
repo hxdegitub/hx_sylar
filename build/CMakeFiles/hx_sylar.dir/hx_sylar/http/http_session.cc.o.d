@@ -858,6 +858,7 @@ CMakeFiles/hx_sylar.dir/hx_sylar/http/http_session.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/thread \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/std_thread.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/this_thread_sleep.h \
+  /home/hx/hx_sylar/./hx_sylar/mutex.h \
   /home/hx/hx_sylar/./hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/./hx_sylar/util.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cxxabi.h \
@@ -870,7 +871,6 @@ CMakeFiles/hx_sylar.dir/hx_sylar/http/http_session.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/quoted_string.h \
   /home/hx/hx_sylar/./hx_sylar/macro.h \
   /home/hx/hx_sylar/./hx_sylar/timer.h \
-  /home/hx/hx_sylar/./hx_sylar/mutex.h \
   /home/hx/hx_sylar/./hx_sylar/socket.h /usr/include/netinet/tcp.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \

@@ -313,6 +313,10 @@ CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/thread \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/std_thread.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/this_thread_sleep.h \
+  /home/hx/hx_sylar/hx_sylar/mutex.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/list \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_list.h \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/list.tcc \
   /home/hx/hx_sylar/hx_sylar/singleton.h \
   /home/hx/hx_sylar/hx_sylar/hook.h /usr/include/fcntl.h \
   /usr/include/x86_64-linux-gnu/bits/fcntl.h \
@@ -321,9 +325,6 @@ CMakeFiles/hx_sylar.dir/hx_sylar/socket.cc.o: \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
   /home/hx/hx_sylar/hx_sylar/iomanager.h \
   /home/hx/hx_sylar/hx_sylar/scheduler.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/list \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_list.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/list.tcc \
   /home/hx/hx_sylar/hx_sylar/fiber.h /usr/include/ucontext.h \
   /usr/include/x86_64-linux-gnu/bits/indirect-return.h \
   /usr/include/x86_64-linux-gnu/sys/ucontext.h \

@@ -247,6 +247,7 @@ CMakeFiles/test.dir/tests/test.cc.o: /home/hx/hx_sylar/tests/test.cc \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/mutex \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/std_mutex.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/unique_lock.h \
+  /home/hx/hx_sylar/tests/../hx_sylar/mutex.h \
   /home/hx/hx_sylar/tests/../hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/tests/../hx_sylar/util.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/cxxabi.h \

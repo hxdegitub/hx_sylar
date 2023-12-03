@@ -32,6 +32,8 @@ set(LIB_SRC hx_sylar/config.cc hx_sylar/fiber.cc hx_sylar/hook.cc hx_sylar/ioman
     hx_sylar/http/http_server.cc
      hx_sylar/http/servlet.cc 
      hx_sylar/http/http_connection.cc
+     hx_sylar/mutex.cc
+     hx_sylar/uri.cc
 )
 
 
