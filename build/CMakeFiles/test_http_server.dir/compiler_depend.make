@@ -24,10 +24,12 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
   /home/hx/hx_sylar/hx_sylar/address.h \
   /home/hx/hx_sylar/hx_sylar/iomanager.h \
   /home/hx/hx_sylar/hx_sylar/socket.h \
+  /home/hx/hx_sylar/hx_sylar/thread.h \
   /home/hx/hx_sylar/hx_sylar/http/http.h \
   /home/hx/hx_sylar/hx_sylar/http/http11_common.h \
   /home/hx/hx_sylar/hx_sylar/http/http11_parser.h \
   /home/hx/hx_sylar/hx_sylar/http/http_session.h \
+  /home/hx/hx_sylar/hx_sylar/http/servlet.h \
   /home/hx/hx_sylar/hx_sylar/http/tcp_server.h \
   /home/hx/hx_sylar/hx_sylar/log.h \
   /usr/include/c++/11/algorithm \
@@ -1408,8 +1410,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/boost/range/mutable_iterator.hpp:
 
-/usr/include/boost/range/iterator_range_core.hpp:
-
 /usr/include/boost/range/functions.hpp:
 
 /usr/include/boost/range/difference_type.hpp:
@@ -1846,10 +1846,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/boost/mpl/aux_/config/ctps.hpp:
 
-/usr/include/c++/11/bits/locale_classes.tcc:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
-
 /usr/include/boost/type_traits/conversion_traits.hpp:
 
 /usr/include/boost/mpl/vector/aux_/tag.hpp:
@@ -1884,23 +1880,13 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/c++/11/optional:
 
-/usr/include/boost/core/checked_delete.hpp:
+/usr/include/c++/11/bits/unique_lock.h:
 
-/usr/include/c++/11/bits/hashtable.h:
+/usr/include/boost/range/iterator.hpp:
 
-/usr/include/boost/mpl/apply_fwd.hpp:
+/usr/include/boost/preprocessor/list/fold_right.hpp:
 
-/usr/include/openssl/conftypes.h:
-
-/home/hx/hx_sylar/hx_sylar/iomanager.h:
-
-/home/hx/hx_sylar/hx_sylar/http/http.h:
-
-/usr/include/openssl/dherr.h:
-
-/usr/include/c++/11/bits/stl_multimap.h:
-
-/usr/include/boost/mpl/logical.hpp:
+/usr/include/boost/mpl/assert.hpp:
 
 /usr/include/c++/11/streambuf:
 
@@ -2008,6 +1994,14 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/boost/mpl/distance_fwd.hpp:
 
+/usr/include/boost/type_traits/is_convertible.hpp:
+
+/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/c++/11/ctime:
@@ -2102,14 +2096,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/boost/iterator/detail/facade_iterator_category.hpp:
 
-/usr/include/boost/type_traits/is_convertible.hpp:
-
-/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
 /usr/include/boost/mpl/iter_fold_if.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp:
@@ -2123,6 +2109,12 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 /usr/include/boost/mpl/aux_/preprocessed/gcc/arg.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
+
+/usr/include/boost/range/iterator_range_core.hpp:
+
+/home/hx/hx_sylar/hx_sylar/http/servlet.h:
+
+/usr/include/c++/11/tr1/exp_integral.tcc:
 
 /home/hx/hx_sylar/hx_sylar/config.h:
 
@@ -2278,6 +2270,12 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/c++/11/bits/list.tcc:
 
+/usr/include/openssl/pkcs7.h:
+
+/usr/include/boost/mpl/same_as.hpp:
+
+/usr/include/c++/11/ext/new_allocator.h:
+
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /home/hx/hx_sylar/hx_sylar/http/http11_common.h:
@@ -2285,6 +2283,24 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 /usr/include/c++/11/bits/locale_facets.tcc:
 
 /usr/include/c++/11/bits/this_thread_sleep.h:
+
+/usr/include/openssl/conftypes.h:
+
+/home/hx/hx_sylar/hx_sylar/iomanager.h:
+
+/home/hx/hx_sylar/hx_sylar/http/http.h:
+
+/usr/include/boost/core/checked_delete.hpp:
+
+/usr/include/c++/11/bits/hashtable.h:
+
+/usr/include/boost/mpl/apply_fwd.hpp:
+
+/usr/include/openssl/dherr.h:
+
+/usr/include/c++/11/bits/stl_multimap.h:
+
+/usr/include/boost/mpl/logical.hpp:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
@@ -2311,6 +2327,10 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 /usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
 
 /usr/include/c++/11/bits/locale_classes.h:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
 
 /usr/include/c++/11/cassert:
 
@@ -2341,14 +2361,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 /usr/include/c++/11/bits/stream_iterator.h:
 
 /usr/include/boost/mpl/aux_/config/bind.hpp:
-
-/usr/include/c++/11/bits/unique_lock.h:
-
-/usr/include/boost/range/iterator.hpp:
-
-/usr/include/boost/preprocessor/list/fold_right.hpp:
-
-/usr/include/boost/mpl/assert.hpp:
 
 /usr/include/c++/11/clocale:
 
@@ -2474,8 +2486,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 
 /usr/include/boost/mpl/list/aux_/begin_end.hpp:
 
-/usr/include/c++/11/tr1/exp_integral.tcc:
-
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/boost/assert.hpp:
@@ -2537,12 +2547,6 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: /home/hx/hx_sylar/t
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/boost/config/no_tr1/complex.hpp:
-
-/usr/include/openssl/pkcs7.h:
-
-/usr/include/c++/11/ext/new_allocator.h:
-
-/usr/include/boost/mpl/same_as.hpp:
 
 /usr/include/boost/mpl/aux_/clear_impl.hpp:
 

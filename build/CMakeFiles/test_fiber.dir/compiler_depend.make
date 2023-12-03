@@ -7,6 +7,7 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
   /home/hx/hx_sylar/hx_sylar/hx_sylar.h \
   /home/hx/hx_sylar/hx_sylar/log.h \
   /home/hx/hx_sylar/hx_sylar/macro.h \
+  /home/hx/hx_sylar/hx_sylar/mutex.h \
   /home/hx/hx_sylar/hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/hx_sylar/singleton.h \
   /home/hx/hx_sylar/hx_sylar/thread.h \
@@ -1638,48 +1639,6 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
-/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
-
-/usr/include/c++/11/bits/move.h:
-
-/usr/include/c++/11/bits/hash_bytes.h:
-
-/usr/include/yaml-cpp/dll.h:
-
-/usr/include/boost/lexical_cast/detail/is_character.hpp:
-
-/usr/include/c++/11/cwctype:
-
-/usr/include/boost/mpl/aux_/push_front_impl.hpp:
-
-/home/hx/hx_sylar/hx_sylar/thread.h:
-
-/usr/include/c++/11/bits/stl_relops.h:
-
-/usr/include/boost/core/noncopyable.hpp:
-
-/usr/include/boost/mpl/limits/vector.hpp:
-
-/usr/include/c++/11/ostream:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
-
-/usr/include/boost/preprocessor/arithmetic/add.hpp:
-
-/usr/include/boost/config/detail/posix_features.hpp:
-
-/usr/include/c++/11/iterator:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/c++/11/bits/range_access.h:
-
-/usr/include/c++/11/bits/unique_ptr.h:
-
-/usr/include/boost/mpl/vector/aux_/size.hpp:
-
-/usr/include/c++/11/bits/ios_base.h:
-
 /usr/include/c++/11/bits/invoke.h:
 
 /usr/include/c++/11/sstream:
@@ -1723,6 +1682,10 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/c++/11/bits/concept_check.h:
+
+/usr/include/boost/mpl/vector/aux_/size.hpp:
+
+/usr/include/c++/11/bits/ios_base.h:
 
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
@@ -1824,6 +1787,40 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 
 /usr/include/c++/11/bits/stl_algobase.h:
 
+/usr/include/boost/assert/source_location.hpp:
+
+/usr/include/c++/11/tr1/hypergeometric.tcc:
+
+/usr/include/boost/mpl/aux_/config/adl.hpp:
+
+/usr/include/boost/concept_check.hpp:
+
+/usr/include/c++/11/bits/functional_hash.h:
+
+/usr/include/stdio.h:
+
+/usr/include/boost/detail/lcast_precision.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/math.h:
+
+/usr/include/c++/11/bits/exception_ptr.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
+
+/usr/include/c++/11/bits/charconv.h:
+
+/usr/include/c++/11/bits/locale_classes.tcc:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/boost/type_traits/conversion_traits.hpp:
+
+/usr/include/boost/mpl/vector/aux_/tag.hpp:
+
+/usr/include/c++/11/type_traits:
+
 /usr/include/c++/11/bits/fstream.tcc:
 
 /home/hx/hx_sylar/hx_sylar/config.h:
@@ -1841,6 +1838,10 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 /usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/cstddef:
+
+/usr/include/c++/11/bits/localefwd.h:
+
+/usr/include/boost/iterator/iterator_facade.hpp:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
@@ -1872,6 +1873,42 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 
 /usr/include/c++/11/bits/char_traits.h:
 
+/usr/include/c++/11/cwctype:
+
+/usr/include/boost/mpl/aux_/push_front_impl.hpp:
+
+/home/hx/hx_sylar/hx_sylar/thread.h:
+
+/usr/include/boost/lexical_cast/detail/inf_nan.hpp:
+
+/usr/include/c++/11/bits/move.h:
+
+/usr/include/c++/11/bits/hash_bytes.h:
+
+/usr/include/yaml-cpp/dll.h:
+
+/usr/include/boost/lexical_cast/detail/is_character.hpp:
+
+/usr/include/c++/11/bits/stl_relops.h:
+
+/usr/include/boost/core/noncopyable.hpp:
+
+/usr/include/c++/11/ostream:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/vector.hpp:
+
+/usr/include/boost/preprocessor/arithmetic/add.hpp:
+
+/usr/include/boost/config/detail/posix_features.hpp:
+
+/usr/include/c++/11/iterator:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/c++/11/bits/range_access.h:
+
+/usr/include/c++/11/bits/unique_ptr.h:
+
 /usr/include/boost/config/user.hpp:
 
 /usr/include/boost/preprocessor/control/iif.hpp:
@@ -1887,6 +1924,8 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 /usr/include/c++/11/bits/locale_facets_nonio.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
+
+/home/hx/hx_sylar/hx_sylar/mutex.h:
 
 /usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
 
@@ -1920,12 +1959,6 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 
 /usr/include/c++/11/bits/alloc_traits.h:
 
-/usr/include/boost/type_traits/conversion_traits.hpp:
-
-/usr/include/boost/mpl/vector/aux_/tag.hpp:
-
-/usr/include/c++/11/type_traits:
-
 /usr/include/c++/11/tuple:
 
 /usr/include/boost/mpl/aux_/has_begin.hpp:
@@ -1935,38 +1968,6 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 /usr/include/boost/iterator/interoperable.hpp:
 
 /usr/include/boost/mpl/distance_fwd.hpp:
-
-/usr/include/boost/assert/source_location.hpp:
-
-/usr/include/c++/11/tr1/hypergeometric.tcc:
-
-/usr/include/boost/mpl/aux_/config/adl.hpp:
-
-/usr/include/boost/iterator/iterator_facade.hpp:
-
-/usr/include/c++/11/bits/localefwd.h:
-
-/usr/include/boost/concept_check.hpp:
-
-/usr/include/c++/11/bits/functional_hash.h:
-
-/usr/include/stdio.h:
-
-/usr/include/boost/detail/lcast_precision.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/math.h:
-
-/usr/include/c++/11/bits/exception_ptr.h:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
-
-/usr/include/c++/11/bits/charconv.h:
-
-/usr/include/c++/11/bits/locale_classes.tcc:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
 
 /usr/include/c++/11/bits/stream_iterator.h:
 
@@ -2083,6 +2084,36 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 /usr/include/boost/numeric/conversion/detail/preprocessed/numeric_cast_traits_long_long.hpp:
 
 /usr/include/c++/11/pstl/pstl_config.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/advance_backward.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/boost/mpl/aux_/yes_no.hpp:
+
+/usr/include/c++/11/bits/allocated_ptr.h:
+
+/usr/include/assert.h:
+
+/usr/include/boost/type_traits/is_volatile.hpp:
+
+/usr/include/boost/swap.hpp:
+
+/usr/include/boost/integer_fwd.hpp:
+
+/usr/include/boost/iterator/detail/config_undef.hpp:
+
+/usr/include/boost/mpl/placeholders.hpp:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/boost/preprocessor/list/fold_left.hpp:
+
+/usr/include/boost/mpl/void_fwd.hpp:
+
+/usr/include/c++/11/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/11/bits/stl_bvector.h:
 
@@ -2208,35 +2239,7 @@ CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o: /home/hx/hx_sylar/tests/test_fi
 
 /usr/include/c++/11/bits/ostream_insert.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/advance_backward.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/boost/mpl/aux_/yes_no.hpp:
-
-/usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/assert.h:
-
-/usr/include/boost/type_traits/is_volatile.hpp:
-
-/usr/include/boost/swap.hpp:
-
-/usr/include/boost/integer_fwd.hpp:
-
-/usr/include/boost/iterator/detail/config_undef.hpp:
-
-/usr/include/boost/mpl/placeholders.hpp:
-
-/usr/include/boost/preprocessor/list/fold_left.hpp:
-
-/usr/include/boost/mpl/void_fwd.hpp:
-
-/usr/include/c++/11/bits/stl_iterator_base_types.h:
-
-/usr/include/c++/11/cstdlib:
+/usr/include/boost/mpl/limits/vector.hpp:
 
 /usr/include/boost/detail/workaround.hpp:
 

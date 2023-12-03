@@ -6,6 +6,7 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
   /home/hx/hx_sylar/hx_sylar/http/http11_common.h \
   /home/hx/hx_sylar/hx_sylar/http/http11_parser.h \
   /home/hx/hx_sylar/hx_sylar/log.h \
+  /home/hx/hx_sylar/hx_sylar/mutex.h \
   /home/hx/hx_sylar/hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/hx_sylar/singleton.h \
   /home/hx/hx_sylar/hx_sylar/thread.h \
@@ -1308,6 +1309,8 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/boost/mpl/vector/vector0.hpp:
 
+/usr/include/boost/mpl/vector/aux_/vector0.hpp:
+
 /usr/include/boost/type_traits/is_volatile.hpp:
 
 /usr/include/boost/swap.hpp:
@@ -1554,6 +1557,12 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/boost/lexical_cast/detail/is_character.hpp:
 
+/usr/include/c++/11/cwctype:
+
+/usr/include/boost/mpl/aux_/push_front_impl.hpp:
+
+/home/hx/hx_sylar/hx_sylar/thread.h:
+
 /usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/boost/core/noncopyable.hpp:
@@ -1632,11 +1641,11 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/c++/11/bits/istream.tcc:
 
+/usr/include/c++/11/bits/codecvt.h:
+
 /usr/include/boost/preprocessor/facilities/empty.hpp:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
-
-/usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/c++/11/bits/erase_if.h:
 
@@ -1698,18 +1707,6 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/boost/mpl/aux_/na_fwd.hpp:
 
-/usr/include/boost/type_traits/is_convertible.hpp:
-
-/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
-/usr/include/boost/mpl/less.hpp:
-
-/usr/include/boost/mpl/vector/aux_/push_front.hpp:
-
 /usr/include/boost/mpl/vector/aux_/iterator.hpp:
 
 /usr/include/c++/11/bits/stl_vector.h:
@@ -1744,6 +1741,16 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/c++/11/bits/unordered_map.h:
 
+/usr/include/c++/11/ctime:
+
+/usr/include/c++/11/bits/basic_string.tcc:
+
+/usr/include/boost/type_traits/is_base_and_derived.hpp:
+
+/home/hx/hx_sylar/hx_sylar/http/http11_parser.h:
+
+/usr/include/c++/11/bits/predefined_ops.h:
+
 /usr/include/c++/11/iomanip:
 
 /usr/include/boost/range/algorithm/equal.hpp:
@@ -1765,6 +1772,18 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 /usr/include/boost/mpl/aux_/largest_int.hpp:
 
 /usr/include/c++/11/backward/binders.h:
+
+/usr/include/boost/type_traits/is_convertible.hpp:
+
+/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/boost/mpl/less.hpp:
+
+/usr/include/boost/mpl/vector/aux_/push_front.hpp:
 
 /usr/include/c++/11/bits/align.h:
 
@@ -1802,53 +1821,13 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
+/home/hx/hx_sylar/hx_sylar/mutex.h:
+
 /usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
 
 /usr/include/assert.h:
 
 /usr/include/c++/11/bits/allocated_ptr.h:
-
-/usr/include/c++/11/bits/stream_iterator.h:
-
-/usr/include/boost/mpl/aux_/config/bind.hpp:
-
-/usr/include/c++/11/tr1/beta_function.tcc:
-
-/usr/include/c++/11/array:
-
-/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
-
-/usr/include/c++/11/bits/unique_lock.h:
-
-/usr/include/boost/mpl/aux_/config/workaround.hpp:
-
-/usr/include/c++/11/bits/uses_allocator.h:
-
-/usr/include/boost/range/iterator.hpp:
-
-/usr/include/boost/preprocessor/list/fold_right.hpp:
-
-/usr/include/boost/mpl/assert.hpp:
-
-/usr/include/boost/mpl/aux_/inserter_algorithm.hpp:
-
-/usr/include/c++/11/map:
-
-/usr/include/boost/type_traits/is_base_and_derived.hpp:
-
-/home/hx/hx_sylar/hx_sylar/http/http11_parser.h:
-
-/usr/include/c++/11/bits/predefined_ops.h:
-
-/usr/include/c++/11/ctime:
-
-/usr/include/c++/11/bits/basic_string.tcc:
-
-/usr/include/c++/11/cwchar:
-
-/usr/include/boost/mpl/aux_/config/arrays.hpp:
-
-/usr/include/c++/11/bits/stl_algobase.h:
 
 /usr/include/boost/assert/source_location.hpp:
 
@@ -1881,6 +1860,38 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 /usr/include/c++/11/bits/locale_classes.tcc:
 
 /usr/include/c++/11/ext/aligned_buffer.h:
+
+/usr/include/c++/11/bits/stream_iterator.h:
+
+/usr/include/boost/mpl/aux_/config/bind.hpp:
+
+/usr/include/c++/11/tr1/beta_function.tcc:
+
+/usr/include/c++/11/array:
+
+/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
+
+/usr/include/c++/11/bits/unique_lock.h:
+
+/usr/include/boost/mpl/aux_/config/workaround.hpp:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/boost/range/iterator.hpp:
+
+/usr/include/boost/preprocessor/list/fold_right.hpp:
+
+/usr/include/boost/mpl/assert.hpp:
+
+/usr/include/boost/mpl/aux_/inserter_algorithm.hpp:
+
+/usr/include/c++/11/map:
+
+/usr/include/c++/11/bits/stl_algobase.h:
+
+/usr/include/c++/11/cwchar:
+
+/usr/include/boost/mpl/aux_/config/arrays.hpp:
 
 /usr/include/boost/preprocessor/logical/bool.hpp:
 
@@ -2099,12 +2110,6 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/11/cstdlib:
-
-/home/hx/hx_sylar/hx_sylar/thread.h:
-
-/usr/include/c++/11/cwctype:
-
-/usr/include/boost/mpl/aux_/push_front_impl.hpp:
 
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdint.h:
 
@@ -2407,8 +2412,6 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o: /home/hx/hx_sylar/tests/test_http
 /usr/include/boost/mpl/aux_/preprocessed/gcc/placeholders.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/plus.hpp:
-
-/usr/include/boost/mpl/vector/aux_/vector0.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 

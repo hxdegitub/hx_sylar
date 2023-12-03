@@ -8,6 +8,7 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
   /home/hx/hx_sylar/hx_sylar/iomanager.h \
   /home/hx/hx_sylar/hx_sylar/log.h \
   /home/hx/hx_sylar/hx_sylar/macro.h \
+  /home/hx/hx_sylar/hx_sylar/mutex.h \
   /home/hx/hx_sylar/hx_sylar/noncopyable.h \
   /home/hx/hx_sylar/hx_sylar/scheduler.h \
   /home/hx/hx_sylar/hx_sylar/singleton.h \
@@ -1478,9 +1479,9 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 
 /usr/include/boost/mpl/vector/aux_/front.hpp:
 
-/usr/include/c++/11/bits/shared_ptr.h:
+/usr/include/boost/predef/library/c/gnu.h:
 
-/usr/include/boost/mpl/aux_/advance_forward.hpp:
+/usr/include/boost/mpl/vector/aux_/clear.hpp:
 
 /usr/include/boost/core/addressof.hpp:
 
@@ -1521,10 +1522,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /home/hx/hx_sylar/hx_sylar/thread.h:
 
 /home/hx/hx_sylar/hx_sylar/iomanager.h:
-
-/usr/include/boost/core/enable_if.hpp:
-
-/usr/include/boost/array.hpp:
 
 /usr/include/alloca.h:
 
@@ -1716,28 +1713,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs.h:
-
-/usr/include/x86_64-linux-gnu/bits/indirect-return.h:
-
-/usr/include/c++/11/set:
-
-/usr/include/boost/current_function.hpp:
-
-/usr/include/boost/mpl/vector/aux_/size.hpp:
-
-/usr/include/c++/11/bits/ios_base.h:
-
-/usr/include/c++/11/sstream:
-
-/usr/include/boost/mpl/aux_/config/gcc.hpp:
-
-/usr/include/boost/mpl/aux_/config/ttp.hpp:
-
-/usr/include/arpa/inet.h:
-
-/home/hx/hx_sylar/hx_sylar/hx_sylar.h:
-
 /usr/include/boost/core/checked_delete.hpp:
 
 /usr/include/c++/11/bits/hashtable.h:
@@ -1774,6 +1749,18 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 
 /usr/include/c++/11/ext/string_conversions.h:
 
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/bits/indirect-return.h:
+
+/usr/include/c++/11/set:
+
+/usr/include/boost/current_function.hpp:
+
+/usr/include/boost/mpl/vector/aux_/size.hpp:
+
+/usr/include/c++/11/bits/ios_base.h:
+
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
@@ -1789,6 +1776,22 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /usr/include/c++/11/bits/exception.h:
 
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/cstddef:
+
+/usr/include/c++/11/bits/unordered_set.h:
+
+/usr/include/c++/11/bits/stl_vector.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/c++/11/bits/range_access.h:
+
+/usr/include/boost/preprocessor/arithmetic/add.hpp:
+
+/usr/include/boost/config/detail/posix_features.hpp:
+
+/usr/include/c++/11/iterator:
 
 /usr/include/c++/11/bits/erase_if.h:
 
@@ -1892,12 +1895,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 
 /usr/include/c++/11/type_traits:
 
-/usr/include/c++/11/bits/unordered_set.h:
-
-/usr/include/c++/11/bits/stl_vector.h:
-
-/usr/include/c++/11/cstddef:
-
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
 
 /usr/include/boost/mpl/aux_/config/typeof.hpp:
@@ -1927,16 +1924,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/boost/core/noncopyable.hpp:
-
-/usr/include/boost/preprocessor/arithmetic/add.hpp:
-
-/usr/include/boost/config/detail/posix_features.hpp:
-
-/usr/include/c++/11/iterator:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/c++/11/bits/range_access.h:
 
 /usr/include/c++/11/bits/unique_ptr.h:
 
@@ -1986,11 +1973,21 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 
 /usr/include/boost/mpl/distance_fwd.hpp:
 
-/usr/include/c++/11/cerrno:
-
 /usr/include/c++/11/bits/hashtable_policy.h:
 
+/home/hx/hx_sylar/hx_sylar/mutex.h:
+
 /usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
+
+/usr/include/c++/11/sstream:
+
+/usr/include/boost/mpl/aux_/config/gcc.hpp:
+
+/usr/include/boost/mpl/aux_/config/ttp.hpp:
+
+/usr/include/arpa/inet.h:
+
+/home/hx/hx_sylar/hx_sylar/hx_sylar.h:
 
 /home/hx/hx_sylar/hx_sylar/config.h:
 
@@ -2027,6 +2024,8 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
+
+/usr/include/c++/11/cerrno:
 
 /usr/include/boost/type_traits/is_convertible.hpp:
 
@@ -2165,6 +2164,14 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /usr/include/boost/config/detail/suffix.hpp:
 
 /usr/include/boost/mpl/list/aux_/iterator.hpp:
+
+/usr/include/c++/11/bits/shared_ptr.h:
+
+/usr/include/boost/array.hpp:
+
+/usr/include/boost/core/enable_if.hpp:
+
+/usr/include/boost/mpl/aux_/advance_forward.hpp:
 
 /usr/include/boost/container/container_fwd.hpp:
 
@@ -2397,10 +2404,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: /home/hx/hx_sylar/tests
 /usr/include/boost/config/detail/select_platform_config.hpp:
 
 /usr/include/boost/lexical_cast/detail/widest_char.hpp:
-
-/usr/include/boost/predef/library/c/gnu.h:
-
-/usr/include/boost/mpl/vector/aux_/clear.hpp:
 
 /usr/include/boost/lexical_cast/try_lexical_convert.hpp:
 

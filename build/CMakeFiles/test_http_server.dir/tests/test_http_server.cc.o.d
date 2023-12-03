@@ -930,6 +930,8 @@ CMakeFiles/test_http_server.dir/tests/test_http_server.cc.o: \
   /home/hx/hx_sylar/./hx_sylar/stream.h \
   /home/hx/hx_sylar/tests/../hx_sylar/log.h \
   /home/hx/hx_sylar/./hx_sylar/http/http_server.h \
+  /home/hx/hx_sylar/tests/../hx_sylar/http/servlet.h \
+  /home/hx/hx_sylar/tests/../hx_sylar/http/../thread.h \
   /home/hx/hx_sylar/tests/../hx_sylar/http/tcp_server.h \
   /home/hx/hx_sylar/tests/../hx_sylar/http/../address.h \
   /home/hx/hx_sylar/tests/../hx_sylar/http/../iomanager.h \

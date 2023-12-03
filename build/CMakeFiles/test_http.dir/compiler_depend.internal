@@ -7,6 +7,7 @@ CMakeFiles/test_http.dir/tests/test_http.cc.o
  /home/hx/hx_sylar/hx_sylar/http/http11_common.h
  /home/hx/hx_sylar/hx_sylar/http/http11_parser.h
  /home/hx/hx_sylar/hx_sylar/log.h
+ /home/hx/hx_sylar/hx_sylar/mutex.h
  /home/hx/hx_sylar/hx_sylar/noncopyable.h
  /home/hx/hx_sylar/hx_sylar/singleton.h
  /home/hx/hx_sylar/hx_sylar/thread.h

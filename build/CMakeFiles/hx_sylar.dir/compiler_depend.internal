@@ -6629,10 +6629,13 @@ CMakeFiles/hx_sylar.dir/hx_sylar/http/http_server.cc.o
  /home/hx/hx_sylar/hx_sylar/address.h
  /home/hx/hx_sylar/hx_sylar/iomanager.h
  /home/hx/hx_sylar/hx_sylar/socket.h
+ /home/hx/hx_sylar/hx_sylar/thread.h
  /home/hx/hx_sylar/hx_sylar/http/http.h
  /home/hx/hx_sylar/hx_sylar/http/http11_common.h
  /home/hx/hx_sylar/hx_sylar/http/http11_parser.h
  /home/hx/hx_sylar/hx_sylar/http/http_server.h
+ /home/hx/hx_sylar/hx_sylar/http/http_session.h
+ /home/hx/hx_sylar/hx_sylar/http/servlet.h
  /home/hx/hx_sylar/hx_sylar/http/tcp_server.h
  /usr/include/c++/11/algorithm
  /usr/include/c++/11/array

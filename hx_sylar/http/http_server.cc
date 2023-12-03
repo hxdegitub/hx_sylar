@@ -19,6 +19,7 @@ HttpServer::HttpServer(bool keepalive, hx_sylar::IOManager* worker,
                        hx_sylar::IOManager* io_worker,
                        hx_sylar::IOManager* accept_worker)
     : TcpServer(worker, accept_worker) {}
+
 void HttpServer::handleClient(Socket::ptr& client) {
   HttpSession::ptr session(new HttpSession(client));
 
@@ -33,10 +34,14 @@ void HttpServer::handleClient(Socket::ptr& client) {
     HttpResponse::ptr rsp = std::make_shared<HttpResponse>(
         req->getVersion(), req->isClose() || !m_isKeepalive);
 
-    rsp->setBody("hello sylar");
-
+    rsp->setHeader("Server", getName());
+    m_dispatch->handle(req, rsp, session);
     session->sendResponse(rsp);
-  } while (m_isKeepalive);
+
+    if (!m_isKeepalive || req->isClose()) {
+      break;
+    }
+  } while (true);
   session->close();
 }
 // void HttpServer::setName(const std::string& v) {

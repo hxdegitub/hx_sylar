@@ -1,8 +1,11 @@
 #ifndef __HX_SYLAR_HTTP_SERVER__
 #define __HX_SYLAR_HTTP_SERVER__
 #include <memory>
+#include <utility>
 
+#include "http_session.h"
 #include "hx_sylar/iomanager.h"
+#include "servlet.h"
 #include "tcp_server.h"
 namespace hx_sylar::http {
 class HttpServer : public TcpServer {
@@ -21,7 +24,9 @@ class HttpServer : public TcpServer {
    */
   // void setServletDispatch(ServletDispatch::ptr v) { m_dispatch = v; }
 
-  //   virtual void setName(const std::string& v) override;
+  // virtual void setName(const std::string& v) override;
+  void setServletDispatch(ServletDispatch::ptr v) { m_dispatch = std::move(v); }
+  auto getServletDispatch() const -> ServletDispatch::ptr { return m_dispatch; }
 
  protected:
   virtual void handleClient(Socket::ptr& client) override;
@@ -30,6 +35,7 @@ class HttpServer : public TcpServer {
   /// 是否支持长连接
   bool m_isKeepalive;
   /// Servlet分发器
+  ServletDispatch::ptr m_dispatch;
 };
 }  // namespace hx_sylar::http
 #endif

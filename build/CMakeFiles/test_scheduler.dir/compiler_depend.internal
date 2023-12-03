@@ -8,6 +8,7 @@ CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
  /home/hx/hx_sylar/hx_sylar/hx_sylar.h
  /home/hx/hx_sylar/hx_sylar/log.h
  /home/hx/hx_sylar/hx_sylar/macro.h
+ /home/hx/hx_sylar/hx_sylar/mutex.h
  /home/hx/hx_sylar/hx_sylar/noncopyable.h
  /home/hx/hx_sylar/hx_sylar/scheduler.h
  /home/hx/hx_sylar/hx_sylar/singleton.h
