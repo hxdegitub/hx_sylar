@@ -72,7 +72,16 @@ IOManager::~IOManager() {
   }
 }
 
-void IOManager::contextResize(size_t size) {}
+void IOManager::contextResize(size_t size) {
+  m_fdContexts.resize(size);
+
+  for (size_t i = 0; i < m_fdContexts.size(); ++i) {
+    if (m_fdContexts[i] == nullptr) {
+      m_fdContexts[i] = new FdContext;
+      m_fdContexts[i]->fd = i;
+    }
+  }
+}
 
 auto IOManager::addEvent(int fd, Event event, std::function<void()> cb) -> int {
   FdContext* fd_ctx = nullptr;

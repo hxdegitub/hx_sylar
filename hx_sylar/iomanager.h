@@ -21,8 +21,6 @@ class IOManager : public Scheduler, public TimerManager {
   struct FdContext {
     using MutexType = Mutex;
     struct EventContext {
-      explicit EventContext(const std::function<void()>& cb);
-
       // 事件执行的调度器
       Scheduler* scheduler = nullptr;
       ///事件协程
