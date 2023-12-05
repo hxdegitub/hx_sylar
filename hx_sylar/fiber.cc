@@ -130,7 +130,7 @@ void Fiber::swapOut() {
 
 void Fiber::SetThis(Fiber* f) { t_fiber = f; }
 
-//协程切换到后台，并且设置为Ready状态
+//返回当前协程
 auto Fiber::GetThis() -> Fiber::ptr {
   if (t_fiber != nullptr) {
     return t_fiber->shared_from_this();
@@ -140,7 +140,7 @@ auto Fiber::GetThis() -> Fiber::ptr {
   t_thread_fiber = main_fiber;
   return t_fiber->shared_from_this();
 }
-
+//协程切换到后台，并且设置为Ready状态
 void Fiber::YieldToReady() {
   Fiber::ptr cur = GetThis();
   HX_ASSERT(cur->m_state == EXEC);

@@ -8,6 +8,7 @@
 #include "servlet.h"
 #include "tcp_server.h"
 namespace hx_sylar::http {
+
 class HttpServer : public TcpServer {
  public:
   using ptr = std::shared_ptr<HttpServer>;

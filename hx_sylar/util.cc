@@ -468,4 +468,22 @@ auto StringUtil::StringToWString(const std::string& s) -> std::wstring {
   setlocale(LC_ALL, str_locale.c_str());
   return wstr_result;
 }
+
+auto Time2Str(time_t ts, const std::string& format) -> std::string {
+  struct tm tm;
+  localtime_r(&ts, &tm);
+  char buf[64];
+  strftime(buf, sizeof(buf), format.c_str(), &tm);
+  return buf;
+}
+
+auto Str2Time(const char* str, const char* format) -> time_t {
+  struct tm t;
+  memset(&t, 0, sizeof(t));
+  if (strptime(str, format, &t) == nullptr) {
+    return 0;
+  }
+  return mktime(&t);
+}
+
 }  // namespace hx_sylar

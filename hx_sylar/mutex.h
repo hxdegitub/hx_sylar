@@ -26,15 +26,13 @@ class Semaphore : public Noncopyable {
   auto operator=(const Semaphore) -> Semaphore = delete;
 
  private:
-  sem_t m_semaphore{};
+  sem_t m_semaphore;
 };
 
 template <class T>
 struct ScopedLockImpl {
  public:
-  explicit ScopedLockImpl(T& mutex) : m_mutex(mutex) {
-    m_mutex.lock(), m_lock = true;
-  }
+  ScopedLockImpl(T& mutex) : m_mutex(mutex) { m_mutex.lock(), m_lock = true; }
   ~ScopedLockImpl() { unlock(); }
   void lock() {
     if (!m_lock) {
@@ -63,7 +61,7 @@ class Mutex : public Noncopyable {
   void unlock() { pthread_mutex_unlock(&m_mutex); }
 
  private:
-  pthread_mutex_t m_mutex{};
+  pthread_mutex_t m_mutex;
 };
 
 template <class T>
@@ -94,7 +92,7 @@ struct ReadScopedLockImpl : public Noncopyable {
 template <class T>
 struct WriteScopedLockImpl : public Noncopyable {
  public:
-  explicit WriteScopedLockImpl(T& mutex) : m_mutex(mutex) {
+  WriteScopedLockImpl(T& mutex) : m_mutex(mutex) {
     m_mutex.wrlock(), m_lock = true;
   }
   ~WriteScopedLockImpl() { unlock(); }
@@ -130,11 +128,11 @@ class RWMutex : public Noncopyable {  // read write lock
   void unlock() { pthread_rwlock_unlock(&m_lock); }  // unlock
 
  private:
-  pthread_rwlock_t m_lock{};  // lock
+  pthread_rwlock_t m_lock;  // lock
 };
 
 class NullMutex : public Noncopyable {
-  typedef ScopedLockImpl<NullMutex> Lock;
+  using Lock = ScopedLockImpl<NullMutex>;
   NullMutex() {}
   ~NullMutex() = default;
   void lock() {}
@@ -162,7 +160,7 @@ class Spinlock : public Noncopyable {
   void unlock() { pthread_spin_unlock(&m_mutex); }
 
  private:
-  pthread_spinlock_t m_mutex{};
+  pthread_spinlock_t m_mutex;
 };
 
 class CASLock : public Noncopyable {

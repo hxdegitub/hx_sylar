@@ -44,19 +44,19 @@ class Fiber : public std::enable_shared_from_this<Fiber> {
   // 设置当前协程
   static void SetThis(Fiber* f);
   // 返回当前协程
-  static Fiber::ptr GetThis();
+  static auto GetThis() -> Fiber::ptr;
   // 协程切换到后台 设置为Ready
   static void YieldToReady();
   // 协程切换到后，设置为Hold
   static void YieldToHold();
   // 总协程数
-  static uint64_t TotalFibers();
+  static auto TotalFibers() -> uint64_t;
 
   static void MainFunc();
 
   static void CallerMainFunc();
 
-  static uint64_t GetFiberId();
+  static auto GetFiberId() -> uint64_t;
 
   State getState() const { return m_state; }
   //  void back();

@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "log.h"
+// #include "mutex.h"
 #include "thread.h"
 #include "util.h"
 
@@ -75,7 +76,7 @@ class LexicalCast<std::string, std::vector<T> > {
     YAML::Node node = YAML::Load(v);
     typename std::vector<T> vec;
     std::stringstream ss;
-    for (auto && i : node) {
+    for (auto&& i : node) {
       ss.str("");
       ss << i;
       vec.push_back(LexicalCast<std::string, T>()(ss.str()));
@@ -108,7 +109,7 @@ class LexicalCast<std::string, std::list<T> > {
     YAML::Node node = YAML::Load(v);
     typename std::list<T> vec;
     std::stringstream ss;
-    for (auto && i : node) {
+    for (auto&& i : node) {
       ss.str("");
       ss << i;
       vec.push_back(LexicalCast<std::string, T>()(ss.str()));
@@ -141,7 +142,7 @@ class LexicalCast<std::string, std::set<T> > {
     YAML::Node node = YAML::Load(v);
     typename std::set<T> vec;
     std::stringstream ss;
-    for (auto && i : node) {
+    for (auto&& i : node) {
       ss.str("");
       ss << i;
       vec.insert(LexicalCast<std::string, T>()(ss.str()));
@@ -177,7 +178,7 @@ class LexicalCast<std::string, std::unordered_set<T> > {
     YAML::Node node = YAML::Load(v);
     typename std::unordered_set<T> vec;
     std::stringstream ss;
-    for (auto && i : node) {
+    for (auto&& i : node) {
       ss.str("");
       ss << i;
       vec.insert(LexicalCast<std::string, T>()(ss.str()));
@@ -292,7 +293,7 @@ class ConfigVar : public ConfigVarBase {
  public:
   using RWMutexType = RWMutex;
   using ptr = std::shared_ptr<ConfigVar>;
-  using on_change_cb = std::function<void (const T &, const T &)>;
+  using on_change_cb = std::function<void(const T&, const T&)>;
 
   ConfigVar(const std::string& name, const T& default_value,
             const std::string& description = "")
@@ -327,7 +328,7 @@ class ConfigVar : public ConfigVarBase {
     return false;
   }
   auto getValue() -> const T {
-    RWMutex::ReadLock lock(m_mutex);
+    RWMutexType::ReadLock lock(m_mutex);
     return m_val;
   }
 
@@ -345,7 +346,9 @@ class ConfigVar : public ConfigVarBase {
     m_val = v;
   }
 
-  auto getTypeName() const -> std::string override { return typeid(m_val).name(); }
+  auto getTypeName() const -> std::string override {
+    return typeid(m_val).name();
+  }
 
   auto addListener(on_change_cb cb) -> uint64_t {
     static uint64_t s_fun_id = 0;
@@ -387,9 +390,9 @@ class Config {
   using ConfigVarMap = std::unordered_map<std::string, ConfigVarBase::ptr>;
   using RWMutexType = RWMutex;
   template <class T>
-  static auto Lookup(
-      const std::string& name, const T& default_value,
-      const std::string& description = "") -> typename ConfigVar<T>::ptr {
+  static auto Lookup(const std::string& name, const T& default_value,
+                     const std::string& description = "") ->
+      typename ConfigVar<T>::ptr {
     RWMutexType::WriteLock lock(GetMutex());
     auto it = GetDatas().find(name);
     if (it != GetDatas().end()) {
@@ -397,12 +400,12 @@ class Config {
       if (tmp) {
         HX_LOG_INFO(HX_LOG_ROOT()) << "Lookup name= " << name << " exists";
         return tmp;
-      }         HX_LOG_ERROR(HX_LOG_ROOT())
-            << "Lookup name=" << name << " exists but type not "
-            << " real_type=" << it->second->getTypeName() << " "
-            << it->second->toString();
-        return nullptr;
-
+      }
+      HX_LOG_ERROR(HX_LOG_ROOT())
+          << "Lookup name=" << name << " exists but type not "
+          << " real_type=" << it->second->getTypeName() << " "
+          << it->second->toString();
+      return nullptr;
     }
 
     if (name.find_first_not_of("abcdefghikjlmnopqrstuvwxyz._012345678") !=

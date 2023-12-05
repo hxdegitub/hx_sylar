@@ -57,8 +57,8 @@ void Scheduler::start() {
 
   m_threads_.resize(m_thread_count_);
   for (size_t i = 0; i < m_thread_count_; ++i) {
-    m_threads_[i].reset(new Thread(std::bind(&Scheduler::run, this),
-                                   m_name_ + "_" + std::to_string(i)));
+    m_threads_[i].reset(
+        new Thread([this] { this->run(); }, m_name_ + "_" + std::to_string(i)));
     m_thread_ids_.push_back(m_threads_[i]->getId());
   }
   lock.unlock();
@@ -131,8 +131,7 @@ void Scheduler::run() {
     t_scheduler_fiber = Fiber::GetThis().get();
   }
 
-  Fiber::ptr idle_fiber =
-      std::make_shared<Fiber>(std::bind(&Scheduler::idle, this));
+  Fiber::ptr idle_fiber = std::make_shared<Fiber>([this] { this->idle(); });
   Fiber::ptr cb_fiber;
 
   FiberAndThread ft;
@@ -221,7 +220,8 @@ void Scheduler::run() {
   }
 }
 
-void Scheduler::tickle() { HX_LOG_INFO(g_logger) << "tickle"; }
+void Scheduler::tickle() { /*HX_LOG_INFO(g_logger) << "tickle";*/
+}
 
 auto Scheduler::stopping() -> bool {
   MutexType::Lock lock(m_mutex_);
@@ -236,7 +236,7 @@ void Scheduler::idle() {
   }
 }
 
-std::ostream& Scheduler::dump(std::ostream& os) {
+auto Scheduler::dump(std::ostream& os) -> std::ostream& {
   os << "[Scheduler name=" << m_name_ << " size=" << m_thread_count_
      << " active_count=" << m_active_thread_count_
      << " idle_count=" << m_idle_thread_count_ << " stopping=" << m_stopping_
