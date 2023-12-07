@@ -123,12 +123,15 @@ class TcpServer : public std::enable_shared_from_this<TcpServer>, Noncopyable {
   auto isStop() -> bool const { return m_isStop; }
 
   //   auto getConf()const -> TcpServerConfg::ptr;
-  void setConf(const TcpServerConf& v);
+
   auto getSocks() const -> std::vector<Socket::ptr> { return m_socks; }
   auto toString(const std::string& prefix) -> std::string;
+  TcpServerConf::ptr getConf() const { return m_conf; }
+  void setConf(TcpServerConf::ptr v) { m_conf = v; }
+  void setConf(const TcpServerConf& v);
 
  protected:
-  virtual void handleClient(Socket::ptr& client);
+  virtual void handleClient(Socket::ptr client);
   virtual void startAccept(Socket::ptr sock);
 
  private:
@@ -141,6 +144,8 @@ class TcpServer : public std::enable_shared_from_this<TcpServer>, Noncopyable {
   std::string m_type = "tcp";
   bool m_isStop;
   bool m_ssl = false;
+
+  TcpServerConf::ptr m_conf;
 };
 }  // namespace hx_sylar
 #endif

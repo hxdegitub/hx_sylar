@@ -91,7 +91,7 @@ class Socket : public std::enable_shared_from_this<Socket>, public Noncopyable {
 
   virtual auto accept() -> Socket::ptr;
 
-  virtual auto bind(const Address::ptr& addr) -> bool;
+  virtual auto bind(const Address::ptr addr) -> bool;
   virtual auto connect(const Address::ptr addr, uint64_t timeout_ms = -1)
       -> bool;
   virtual auto reconnect(uint64_t timeout_ms = -1) -> bool;
@@ -100,10 +100,10 @@ class Socket : public std::enable_shared_from_this<Socket>, public Noncopyable {
 
   virtual auto send(const void* buffer, size_t length, int flag = 0) -> int;
   virtual auto send(const iovec* buffers, size_t length, int flags = 0) -> int;
-  virtual auto sendTo(const void* buuffer, size_t length,
-                      const Address::ptr& to, int flags = 0) -> int;
+  virtual auto sendTo(const void* buuffer, size_t length, const Address::ptr to,
+                      int flags = 0) -> int;
   virtual auto sendTo(const iovec* buffers, size_t length,
-                      const Address::ptr& to, int flags = 0) -> int;
+                      const Address::ptr to, int flags = 0) -> int;
 
   virtual auto recv(void* buffer, size_t length, int flags = 0) -> int;
   virtual auto recv(struct iovec* buffers, size_t length, int flags = 0) -> int;
@@ -167,10 +167,10 @@ class SSLSocket : public Socket {
       -> int override;
   virtual auto send(const iovec* buffers, size_t length, int flags = 0)
       -> int override;
-  virtual auto sendTo(const void* buuffer, size_t length,
-                      const Address::ptr& to, int flags = 0) -> int override;
+  virtual auto sendTo(const void* buuffer, size_t length, const Address::ptr to,
+                      int flags = 0) -> int override;
   virtual auto sendTo(const iovec* buffers, size_t length,
-                      const Address::ptr& to, int flags = 0) -> int override;
+                      const Address::ptr to, int flags = 0) -> int override;
   virtual auto recv(void* buffer, size_t length, int flags = 0) -> int override;
   virtual auto recv(struct iovec* buffers, size_t length, int flags = 0)
       -> int override;

@@ -15,7 +15,7 @@ SocketStream::~SocketStream() {
     m_socket->close();
   }
 }
-auto SocketStream::read(ByteArray::ptr& ba, size_t length) -> int {
+auto SocketStream::read(ByteArray::ptr ba, size_t length) -> int {
   if (!isConnected()) {
     return -1;
   }
@@ -35,7 +35,7 @@ auto SocketStream::write(const void* buffer, size_t length) -> int {
   }
   return m_socket->send(buffer, length);
 }
-auto SocketStream::write(ByteArray::ptr& ba, size_t length) -> int {
+auto SocketStream::write(ByteArray::ptr ba, size_t length) -> int {
   if (!isConnected()) {
     return -1;
   }

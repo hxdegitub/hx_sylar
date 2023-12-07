@@ -173,7 +173,7 @@ auto IPAddress::Create(const char* address, uint16_t port) -> IPAddress::ptr {
   }
   try {
     IPAddress::ptr result = std::dynamic_pointer_cast<IPAddress>(
-        Address::Create(results->ai_addr, (socklen_t)results->ai_addrlen));
+        Address::Create(results->ai_addr, results->ai_addrlen));
     if (result) {
       result->setPort(port);
     }

@@ -17,11 +17,11 @@ class SocketStream : public Stream {
   ~SocketStream() override;
 
   virtual auto read(void* buffer, size_t length) -> int override;
-  virtual auto read(ByteArray::ptr& ba, size_t length) -> int override;
+  virtual auto read(ByteArray::ptr ba, size_t length) -> int override;
 
   virtual auto write(const void* buffer, size_t length) -> int override;
 
-  virtual auto write(ByteArray::ptr& ba, size_t length) -> int override;
+  virtual auto write(ByteArray::ptr ba, size_t length) -> int override;
 
   virtual void close() override;
 

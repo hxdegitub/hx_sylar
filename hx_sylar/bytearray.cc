@@ -326,11 +326,15 @@ void ByteArray::write(const void* buf, size_t size) {
   }
 }
 void ByteArray::setPosition(size_t val) {
-  if (val > m_size) {
+  if (val > m_capacity) {
     throw std::out_of_range("set_position out of range");
   }
 
   m_position = val;
+
+  if (m_position > m_size) {
+    m_size = m_position;
+  }
   m_cur = m_root;
   while (val > m_cur->size) {
     val -= m_cur->size;

@@ -57,8 +57,8 @@ IOManager::IOManager(size_t threads, bool user_call, const std::string& name)
   rt = epoll_ctl(m_epfd, EPOLL_CTL_ADD, m_tickleFds[0], &event);
 
   HX_ASSERT(!rt);
+  contextResize(32);
 
-  m_fdContexts.resize(64);
   start();
 }
 
@@ -138,7 +138,7 @@ auto IOManager::addEvent(int fd, Event event, std::function<void()> cb) -> int {
 
 auto IOManager::delEvent(int fd, Event event) -> bool {
   RWMutexType ::ReadLock lock(m_mutex);
-  if (m_fdContexts.empty()) {
+  if (m_fdContexts.size() <= fd) {
     return false;
   }
   FdContext* fd_ctx = m_fdContexts[fd];
@@ -209,6 +209,7 @@ auto IOManager::cancelAll(int fd) -> bool {
     return false;
   }
   FdContext* fd_ctx = m_fdContexts[fd];
+
   lock.unlock();
 
   FdContext::MutexType::Lock lock2(fd_ctx->mutex);

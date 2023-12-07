@@ -30,7 +30,7 @@ class HttpServer : public TcpServer {
   auto getServletDispatch() const -> ServletDispatch::ptr { return m_dispatch; }
 
  protected:
-  virtual void handleClient(Socket::ptr& client) override;
+  virtual void handleClient(Socket::ptr client) override;
 
  private:
   /// 是否支持长连接

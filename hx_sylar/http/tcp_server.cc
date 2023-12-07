@@ -1,16 +1,16 @@
 #include "tcp_server.h"
 
-#include <vector>
-
-#include "hx_sylar/address.h"
 #include "hx_sylar/config.h"
-#include "hx_sylar/iomanager.h"
+#include "hx_sylar/log.h"
+
 namespace hx_sylar {
-hx_sylar::Logger::ptr m_logger = HX_LOG_NAME("system");
+
 static hx_sylar::ConfigVar<uint64_t>::ptr g_tcp_server_read_timeout =
     hx_sylar::Config::Lookup("tcp_server.read_timeout",
                              static_cast<uint64_t>(60 * 1000 * 2),
                              "tcp server read timeout");
+
+static hx_sylar::Logger::ptr g_logger = HX_LOG_NAME("system");
 
 TcpServer::TcpServer(hx_sylar::IOManager* worker,
                      hx_sylar::IOManager* io_worker,
@@ -19,8 +19,9 @@ TcpServer::TcpServer(hx_sylar::IOManager* worker,
       m_ioWorker(io_worker),
       m_acceptWorker(accept_worker),
       m_recvTimeout(g_tcp_server_read_timeout->getValue()),
-      m_name("sylar/1.0.0"),
+      m_name("hx_sylar/1.0.0"),
       m_isStop(true) {}
+
 TcpServer::~TcpServer() {
   for (auto& i : m_socks) {
     i->close();
@@ -28,7 +29,11 @@ TcpServer::~TcpServer() {
   m_socks.clear();
 }
 
-auto TcpServer::bind(hx_sylar::Address::ptr addr, bool ssl) -> bool {
+void TcpServer::setConf(const TcpServerConf& v) {
+  m_conf.reset(new TcpServerConf(v));
+}
+
+bool TcpServer::bind(hx_sylar::Address::ptr addr, bool ssl) {
   std::vector<Address::ptr> addrs;
   std::vector<Address::ptr> fails;
   addrs.push_back(addr);
@@ -42,14 +47,14 @@ auto TcpServer::bind(const std::vector<Address::ptr>& addrs,
     Socket::ptr sock =
         ssl ? SSLSocket::CreateTCP(addr) : Socket::CreateTCP(addr);
     if (!sock->bind(addr)) {
-      HX_LOG_ERROR(m_logger)
+      HX_LOG_ERROR(g_logger)
           << "bind fail errno=" << errno << " errstr=" << strerror(errno)
           << " addr=[" << addr->toString() << "]";
       fails.push_back(addr);
       continue;
     }
     if (!sock->listen()) {
-      HX_LOG_ERROR(m_logger)
+      HX_LOG_ERROR(g_logger)
           << "listen fail errno=" << errno << " errstr=" << strerror(errno)
           << " addr=[" << addr->toString() << "]";
       fails.push_back(addr);
@@ -64,24 +69,12 @@ auto TcpServer::bind(const std::vector<Address::ptr>& addrs,
   }
 
   for (auto& i : m_socks) {
-    HX_LOG_INFO(m_logger) << "type=" << m_type << " name=" << m_name
+    HX_LOG_INFO(g_logger) << "type=" << m_type << " name=" << m_name
                           << " ssl=" << m_ssl << " server bind success: " << *i;
   }
   return true;
 }
 
-auto TcpServer::start() -> bool {
-  if (!m_isStop) {
-    return false;
-  }
-  m_isStop = false;
-
-  for (auto& sock : m_socks) {
-    m_acceptWorker->schedule(
-        [capture0 = shared_from_this(), sock] { capture0->startAccept(sock); });
-  }
-  return true;
-}
 void TcpServer::startAccept(Socket::ptr sock) {
   while (!m_isStop) {
     Socket::ptr client = sock->accept();
@@ -90,11 +83,24 @@ void TcpServer::startAccept(Socket::ptr sock) {
       m_ioWorker->schedule(
           std::bind(&TcpServer::handleClient, shared_from_this(), client));
     } else {
-      HX_LOG_ERROR(m_logger)
+      HX_LOG_ERROR(g_logger)
           << "accept errno=" << errno << " errstr=" << strerror(errno);
     }
   }
 }
+
+bool TcpServer::start() {
+  if (!m_isStop) {
+    return true;
+  }
+  m_isStop = false;
+  for (auto& sock : m_socks) {
+    m_acceptWorker->schedule(
+        std::bind(&TcpServer::startAccept, shared_from_this(), sock));
+  }
+  return true;
+}
+
 void TcpServer::stop() {
   m_isStop = true;
   auto self = shared_from_this();
@@ -106,12 +112,13 @@ void TcpServer::stop() {
     m_socks.clear();
   });
 }
-void TcpServer::handleClient(Socket::ptr& client) {
-  HX_LOG_INFO(m_logger) << " handleClient " << *client;
+
+void TcpServer::handleClient(Socket::ptr client) {
+  HX_LOG_INFO(g_logger) << "handleClient: " << *client;
 }
 
-auto TcpServer::loadCertificates(const std::string& cert_file,
-                                 const std::string& key_file) -> bool {
+bool TcpServer::loadCertificates(const std::string& cert_file,
+                                 const std::string& key_file) {
   for (auto& i : m_socks) {
     auto ssl_socket = std::dynamic_pointer_cast<SSLSocket>(i);
     if (ssl_socket) {
@@ -120,15 +127,14 @@ auto TcpServer::loadCertificates(const std::string& cert_file,
       }
     }
   }
-
   return true;
 }
-auto TcpServer::toString(const std::string& prefix) -> std::string {
+
+std::string TcpServer::toString(const std::string& prefix) {
   std::stringstream ss;
   ss << prefix << "[type=" << m_type << " name=" << m_name << " ssl=" << m_ssl
-     << " worker=" << (m_worker != nullptr ? m_worker->getName() : "")
-     << " accept="
-     << (m_acceptWorker != nullptr ? m_acceptWorker->getName() : "")
+     << " worker=" << (m_worker ? m_worker->getName() : "")
+     << " accept=" << (m_acceptWorker ? m_acceptWorker->getName() : "")
      << " recv_timeout=" << m_recvTimeout << "]" << std::endl;
   std::string pfx = prefix.empty() ? "    " : prefix;
   for (auto& i : m_socks) {
@@ -136,4 +142,5 @@ auto TcpServer::toString(const std::string& prefix) -> std::string {
   }
   return ss.str();
 }
+
 }  // namespace hx_sylar

@@ -115,7 +115,17 @@ auto Socket::init(int sock) -> bool {
   }
   return false;
 }
-auto Socket::bind(const Address::ptr& addr) -> bool {
+
+auto Socket::CreateUnixTCPSocket() -> Socket::ptr {
+  Socket::ptr sock(new Socket(UNIX, TCP, 0));
+  return sock;
+}
+
+auto Socket::CreateUnixUDPSocket() -> Socket::ptr {
+  Socket::ptr sock(new Socket(UNIX, UDP, 0));
+  return sock;
+}
+auto Socket::bind(const Address::ptr addr) -> bool {
   // FdCtx::ptr ctx = FdMgr::GetInstance()->get(sock);
   // if (ctx && ctx->isSocket() && !ctx->isClose()) {
   // }
@@ -127,16 +137,23 @@ auto Socket::bind(const Address::ptr& addr) -> bool {
     }
   }
 
+  UnixAddress::ptr uaddr = std::dynamic_pointer_cast<UnixAddress>(addr);
+  if (uaddr) {
+    Socket::ptr sock = Socket::CreateUnixTCPSocket();
+    if (sock->connect(uaddr)) {
+      return false;
+    }
+    hx_sylar::FSUtil::Unlink(uaddr->getPath(), true);
+  }
   if (SYLAR_UNLIKELY(addr->getFamily() != m_family)) {
     HX_LOG_ERROR(g_logger) << " bind sock.family (" << m_family
                            << ") adddr addr.family ()" << addr->getFamily()
                            << ") not equal , addr = " << addr->toString();
     return false;
   }
-  if (::bind(m_sock, addr->getAddr(), addr->getFamily())) {
-    HX_LOG_ERROR(g_logger) << "bind sock.family (" << m_family
-                           << "0 addr.family ()" << addr->getFamily()
-                           << ") noe equal addr = " << addr->toString();
+  if (::bind(m_sock, addr->getAddr(), addr->getAddrLen())) {
+    HX_LOG_ERROR(g_logger) << "bind error errrno=" << errno
+                           << " errstr=" << strerror(errno);
     return false;
   }
   getLocalAddress();
@@ -214,7 +231,7 @@ auto Socket::send(const iovec* buffers, size_t length, int flags) -> int {
   }
   return -1;
 }
-auto Socket::sendTo(const void* buffer, size_t length, const Address::ptr& to,
+auto Socket::sendTo(const void* buffer, size_t length, const Address::ptr to,
                     int flags) -> int {
   if (m_isConnected) {
     return ::sendto(m_sock, buffer, length, flags, to->getAddr(),
@@ -222,7 +239,7 @@ auto Socket::sendTo(const void* buffer, size_t length, const Address::ptr& to,
   }
   return -1;
 }
-auto Socket::sendTo(const iovec* buffers, size_t length, const Address::ptr& to,
+auto Socket::sendTo(const iovec* buffers, size_t length, const Address::ptr to,
                     int flags) -> int {
   if (m_isConnected) {
     msghdr msg;
@@ -246,7 +263,7 @@ auto Socket::recv(iovec* buffers, size_t length, int flags) -> int {
   if (m_isConnected) {
     msghdr msg;
     memset(&msg, 0, sizeof msg);
-    msg.msg_iov = (iovec*)buffers;
+    msg.msg_iov = buffers;
     msg.msg_iovlen = length;
     return ::recvmsg(m_sock, &msg, flags);
   }
@@ -481,14 +498,14 @@ auto SSLSocket::send(const iovec* buffers, size_t length, int flags) -> int {
   return total;
 }
 
-auto SSLSocket::sendTo(const void* buffer, size_t length,
-                       const Address::ptr& to, int flags) -> int {
+auto SSLSocket::sendTo(const void* buffer, size_t length, const Address::ptr to,
+                       int flags) -> int {
   HX_ASSERT(false);
   return -1;
 }
 
 auto SSLSocket::sendTo(const iovec* buffers, size_t length,
-                       const Address::ptr& to, int flags) -> int {
+                       const Address::ptr to, int flags) -> int {
   HX_ASSERT(false);
   return -1;
 }

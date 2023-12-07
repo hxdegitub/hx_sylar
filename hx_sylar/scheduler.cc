@@ -24,7 +24,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, std::string name)
     HX_ASSERT(GetThis() == nullptr);
     t_scheduler = this;
 
-    m_root_fiber_.reset(new Fiber(std::bind(&Scheduler::run, this), 0, true));
+    m_root_fiber_.reset(new Fiber([this] { this->run(); }, 0, true));
     hx_sylar::Thread::SetName(m_name_);
 
     t_scheduler_fiber = m_root_fiber_.get();
@@ -61,7 +61,7 @@ void Scheduler::start() {
         new Thread([this] { this->run(); }, m_name_ + "_" + std::to_string(i)));
     m_thread_ids_.push_back(m_threads_[i]->getId());
   }
-  lock.unlock();
+  // lock.unlock();
 }
 
 void Scheduler::stop() {
@@ -220,8 +220,7 @@ void Scheduler::run() {
   }
 }
 
-void Scheduler::tickle() { /*HX_LOG_INFO(g_logger) << "tickle";*/
-}
+void Scheduler::tickle() { HX_LOG_INFO(g_logger) << "tickle"; }
 
 auto Scheduler::stopping() -> bool {
   MutexType::Lock lock(m_mutex_);

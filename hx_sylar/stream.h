@@ -23,19 +23,19 @@ class Stream {
    */
   virtual auto read(void* buffer, size_t length) -> int = 0;
 
-  virtual auto read(ByteArray::ptr& ba, size_t length) -> int = 0;
+  virtual auto read(ByteArray::ptr ba, size_t length) -> int = 0;
 
   virtual auto readFixSize(void* buffer, size_t length) -> int;
 
-  virtual auto readFixSize(ByteArray::ptr& ba, size_t length) -> int;
+  virtual auto readFixSize(ByteArray::ptr ba, size_t length) -> int;
 
   virtual auto write(const void* buffer, size_t length) -> int = 0;
 
-  virtual auto write(ByteArray::ptr& ba, size_t length) -> int = 0;
+  virtual auto write(ByteArray::ptr ba, size_t length) -> int = 0;
 
   virtual auto writeFixSize(const void* buffer, size_t length) -> int;
 
-  virtual auto writeFixSize(ByteArray::ptr& ba, size_t length) -> int;
+  virtual auto writeFixSize(ByteArray::ptr ba, size_t length) -> int;
 
   /**
    * @brief 关闭流

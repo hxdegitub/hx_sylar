@@ -78,6 +78,7 @@ bool Timer::reset(uint64_t ms, bool from_now) {
     start = m_next - m_ms;
   }
   m_ms = ms;
+
   m_next = start + m_ms;
   m_manager->addTimer(shared_from_this(), lock);
   return true;

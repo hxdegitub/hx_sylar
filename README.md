@@ -1,6 +1,5 @@
-## 
 #sylar
-目前完成的部分，视频教程中模块都已完成
+原地址：github.com/sylar-yin/sylar
 
 ## 日志
 log4j 格式的日志类。
@@ -115,5 +114,3 @@ TimerManager:
 *    void idle() override;   epoll等待，实现定时器时间设置。检测Timer的函数。
 *    void onTimerInsertedAtFront() override; 插入新的timer在前面就执行。
 *    void contextResize(size_t size); 重新设置context的大小。
-
-##

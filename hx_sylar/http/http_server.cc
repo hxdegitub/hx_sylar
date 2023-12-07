@@ -20,7 +20,7 @@ HttpServer::HttpServer(bool keepalive, hx_sylar::IOManager* worker,
                        hx_sylar::IOManager* accept_worker)
     : TcpServer(worker, accept_worker) {}
 
-void HttpServer::handleClient(Socket::ptr& client) {
+void HttpServer::handleClient(Socket::ptr client) {
   HttpSession::ptr session(new HttpSession(client));
 
   do {
